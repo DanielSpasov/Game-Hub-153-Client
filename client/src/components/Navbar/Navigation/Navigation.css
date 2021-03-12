@@ -1,0 +1,23 @@
+.navigation {
+    float: left;
+}
+
+.navigation span a {
+    display: table-cell;
+    text-decoration: none;
+    color: white;
+    font-size: 25px;
+    padding: 17px;
+    margin: 17px;
+    font-weight: bold;
+}
+
+.navigation span a:visited {
+    text-decoration: none;
+    color: white;
+}
+
+.navigation span a:hover {
+    text-decoration: none;
+    color: #a970ff;
+}

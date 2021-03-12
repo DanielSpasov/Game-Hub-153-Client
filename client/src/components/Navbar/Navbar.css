@@ -1,0 +1,8 @@
+.navbar {
+    background-color: #18181b;
+    display: inline-block;
+    width: 100%;
+    font-family: 'Verdana';
+    position: relative;
+    margin: auto;
+}

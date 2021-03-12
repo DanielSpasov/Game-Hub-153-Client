@@ -1,0 +1,24 @@
+.search-box {
+    padding: 10px;
+    position: absolute;
+    margin-left: 35%;
+}
+
+.search-box input {
+    border-radius: 10px;
+    padding: 10px;
+    border: 3px solid #464649;
+    background-color: #464649;
+    width: 200%;
+    font-size: 20px;
+}
+
+.search-box input:hover {
+    outline: none;
+    border: 3px solid #aeaeb0;
+}
+
+.search-box input:focus {
+    outline: none;
+    border: 3px solid #a970ff;
+}
