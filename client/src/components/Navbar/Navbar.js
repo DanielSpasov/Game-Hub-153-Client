@@ -11,13 +11,9 @@ function Navbar() {
         <nav className="navbar">
 
             <Logo />
-
             <Navigation />
-
             <SearchBox />
-
             <Profile />
-
             <DropdownMenu />
 
         </nav>
