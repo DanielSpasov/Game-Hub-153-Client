@@ -4,6 +4,12 @@
     margin-left: -40px;
 }
 
+.list-item:hover {
+    border: solid #464649;
+    border-radius: 5px;
+    background-color: #464649;
+}
+
 .list-item a {
     text-decoration: none;
     color: white;
