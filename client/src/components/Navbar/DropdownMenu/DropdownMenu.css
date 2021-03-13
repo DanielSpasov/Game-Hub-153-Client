@@ -1,0 +1,29 @@
+.dropdown {
+    position: relative;
+    display: block;
+    float: right;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown span {
+    display: table-cell;
+    text-decoration: none;
+    color: white;
+    padding: 17px;
+    margin: 17px;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.dropdown span:hover {
+    text-decoration: none;
+    color: #a970ff;
+}
+
+.dropdown span a {
+    text-decoration: none;
+    color: white
+}
