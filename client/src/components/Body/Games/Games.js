@@ -6,15 +6,19 @@ function Games({
     games
 }) {
     return (
-        <div className="games-container">
+        <div className="games-section">
 
-            {games.map(x => 
-                <Game
-                    key={x._id}
-                    title={x.title}
-                    imageUrl={x.imageUrl}
-                />
-            )}
+            <h1>Featured Games:</h1>
+
+            <div className="games-container">
+                {games?.map(x =>
+                    <Game
+                        key={x._id}
+                        title={x.title}
+                        imageUrl={x.imageUrl}
+                    />
+                )}
+            </div>
 
         </div>
     )

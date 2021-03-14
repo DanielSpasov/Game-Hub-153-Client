@@ -1,12 +1,6 @@
-.game-container {
+.game-card {
+    position: relative;
     display: inline-block;
-    border: 2px solid white;
-    margin: 10px;
-    padding: 8px;
+    padding: 10px;
     max-width: 200px;
-}
-
-.game-container h2 {
-    margin-top: 0px;
-    font-size: 15px;
 }
