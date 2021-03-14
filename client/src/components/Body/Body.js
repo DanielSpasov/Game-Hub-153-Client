@@ -5,6 +5,7 @@ import './Body.css'
 import gamesService from '../../services/gamesService'
 
 import Games from './Games/Games'
+import Footer from './Footer/Footer'
 
 
 class Body extends Component {
@@ -28,6 +29,8 @@ class Body extends Component {
             <main className="main-container">
 
                 <Games games={this.state.games} />
+
+                <Footer />
 
             </main>
         )
