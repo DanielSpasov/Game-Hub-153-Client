@@ -1,10 +1,12 @@
 import './Navigation.css'
 
+import Item from './Item/Item'
+
 function Navigation() {
     return (
         <div className="navigation">
-            <span><a href="#/categories">Categories</a></span>
-            <span><a href="#/games">Games</a></span>
+            <Item href="#/categories" text="Categories" id="categories" />
+            <Item href="#/games" text="Games" id="games"  />
         </div>
     )
 }

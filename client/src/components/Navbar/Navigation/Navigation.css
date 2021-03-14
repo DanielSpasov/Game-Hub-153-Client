@@ -3,28 +3,8 @@
     float: left;
 }
 
-.navigation span a {
-    display: table-cell;
-    text-decoration: none;
-    color: white;
-    font-size: 20px;
-    padding: 17px;
-    margin: 17px;
-    font-weight: bold;
-}
-
-.navigation span a:visited {
-    text-decoration: none;
-    color: white;
-}
-
-.navigation span a:hover {
-    text-decoration: none;
-    color: #a970ff;
-}
-
-@media screen and (max-width: 400px) {
+/* @media screen and (max-width: 400px) {
     .navigation {
         display: none;
     }
-}
+} */

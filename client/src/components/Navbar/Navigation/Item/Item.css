@@ -1,0 +1,31 @@
+.nav-item a {
+    display: table-cell;
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    padding: 17px;
+    margin: 17px;
+    font-weight: bold;
+}
+
+.nav-item a:visited {
+    text-decoration: none;
+    color: white;
+}
+
+.nav-item a:hover {
+    text-decoration: none;
+    color: #a970ff;
+}
+
+@media screen and (max-width: 400px) {
+    .nav-item#categories {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 250px) {
+    .nav-item#games {
+        display: none;
+    }
+}
