@@ -15,7 +15,7 @@
 }
 
 .game-image:hover {
-    animation: mover 2s infinite  alternate;
+    animation: mover 1s infinite  alternate;
 }
 
 @keyframes mover {
