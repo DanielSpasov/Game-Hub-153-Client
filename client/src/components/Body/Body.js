@@ -1,17 +1,37 @@
+import { Component } from 'react'
+
 import './Body.css'
 
-function Body() {
-    return (
-        <main className="main-container">
+import gamesService from '../../services/gamesService'
 
-            <div>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam libero inventore accusantium obcaecati deleniti? Error dolore in dignissimos minus earum, eos neque consequatur velit unde, illo facilis! Incidunt, minima nesciunt.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam libero inventore accusantium obcaecati deleniti? Error dolore in dignissimos minus earum, eos neque consequatur velit unde, illo facilis! Incidunt, minima nesciunt.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam libero inventore accusantium obcaecati deleniti? Error dolore in dignissimos minus earum, eos neque consequatur velit unde, illo facilis! Incidunt, minima nesciunt.</p>
-            </div>
+import Games from './Games/Games'
 
-        </main>
-    )
+
+class Body extends Component {
+
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            games: []
+        }
+    }
+
+    componentDidMount() {
+        gamesService.getAll()
+            .then(data => this.setState({ games: data }))
+            .catch(err => console.log(err))
+    }
+
+    render() {
+        return (
+            <main className="main-container">
+
+                <Games games={this.state.games} />
+
+            </main>
+        )
+    }
 }
 
 export default Body
