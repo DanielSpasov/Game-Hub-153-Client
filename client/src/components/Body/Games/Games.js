@@ -9,7 +9,7 @@ function Games({
     return (
         <div className="games-section">
 
-            <h1>Search Games:</h1>
+            <h1 className="games-section-title">Search Games:</h1>
         
             <SearchBox />
 
