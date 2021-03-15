@@ -3,8 +3,9 @@
     text-decoration: none;
     color: white;
     font-size: 20px;
-    padding-right: 15px;
-    margin: 17px;
+    padding-right: 13px;
+    padding-left: 13px;
+    border-left: 1px solid #aeaeb0;
 }
 
 .nav-item a:visited {
