@@ -16,3 +16,9 @@
 .followed-games-list a:hover {
     color: #a970ff;
 }
+
+@media screen and (max-width: 940px) {
+    .followed-games-list {
+        display: none;
+    }
+}

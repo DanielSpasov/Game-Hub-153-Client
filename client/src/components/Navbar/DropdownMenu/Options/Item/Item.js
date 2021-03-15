@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import './Item.css'
 
 function Item({
@@ -6,7 +8,7 @@ function Item({
 }) {
     return (
         <li className="list-item">
-            <a href={href}>{children}</a>
+            <Link to={href}>{children}</Link>
         </li>
     )
 }

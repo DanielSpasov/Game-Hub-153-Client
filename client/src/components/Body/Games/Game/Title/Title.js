@@ -1,10 +1,12 @@
+import { Link } from 'react-router-dom'
+
 import './Title.css'
 
 function Title({
     title
 }) {
     return (
-        <a className="game-title" href="#/titleRedirect">{title}</a>
+        <Link to={title} className="game-title">{title}</Link>
     )
 }
 

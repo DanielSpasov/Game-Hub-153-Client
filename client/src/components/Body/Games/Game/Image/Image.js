@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import './Image.css'
 
 function Image({
@@ -6,9 +8,9 @@ function Image({
 }) {
     return (
         <div className="image-box">
-            <a href="#/imageRedirect">
+            <Link to={title}>
                 <img className="game-image" src={imageUrl} alt={title} width="200px" height="280px" />
-            </a>
+            </Link>
         </div>
     )
 }

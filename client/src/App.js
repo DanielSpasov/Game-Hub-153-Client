@@ -3,7 +3,7 @@ import './App.css'
 import Navbar from './components/Navbar/Navbar'
 import Sidebar from './components/Sidebar/Sidebar'
 import Body from './components/Body/Body'
-// import Footer from './components/Footer/Footer'
+import Footer from './components/Footer/Footer'
 
 function App() {
     return (
@@ -12,7 +12,7 @@ function App() {
             <Navbar />
             <Sidebar />
             <Body />
-            {/* <Footer /> */}
+            <Footer />
 
         </div>
     )

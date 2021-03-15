@@ -8,18 +8,18 @@ function Options() {
 
             <h1 className="list-title">TODO: Users</h1>
             <ul className="list">
-                <Item href="#">Profile Settings</Item>
-                <Item href="#">Register</Item>
-                <Item href="#">Login</Item>
-                <Item href="#">Logout</Item>
+                <Item href="/profile">Profile Settings</Item>
+                <Item href="/register">Register</Item>
+                <Item href="/login">Login</Item>
+                <Item href="/logout">Logout</Item>
             </ul>
 
             <h1 className="list-title">TODO: Functionality</h1>
             <ul className="list">
-                <Item href="#">Follow Games</Item>
-                <Item href="#">Genres</Item>
-                <Item href="#">Games</Item>
-                <Item href="#">Developers</Item>
+                <Item href="/followGames">Follow Games</Item>
+                <Item href="/genres">Genres</Item>
+                <Item href="/games">Games</Item>
+                <Item href="/developers">Developers</Item>
             </ul>
 
             <h1 className="list-title">TODO: Misc</h1>
