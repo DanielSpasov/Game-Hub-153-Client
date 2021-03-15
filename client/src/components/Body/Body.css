@@ -6,3 +6,9 @@
     padding-left: 250px;
     color: white;
 }
+
+@media screen and (max-width: 940px) {
+    .main-container {
+        padding-left: 50px;
+    }
+}
