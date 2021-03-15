@@ -1,9 +1,8 @@
 .main-container {
     background-color: #0e0e10;
-    width: 100%;
     height: auto;
-    padding-top: 10px;
+    padding-top: 50px;
     padding-bottom: 10px;
-    margin-top: -4px;
+    padding-left: 250px;
     color: white;
 }
