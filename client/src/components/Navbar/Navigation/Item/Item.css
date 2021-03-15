@@ -3,9 +3,8 @@
     text-decoration: none;
     color: white;
     font-size: 20px;
-    padding: 17px;
+    padding-right: 15px;
     margin: 17px;
-    font-weight: bold;
 }
 
 .nav-item a:visited {

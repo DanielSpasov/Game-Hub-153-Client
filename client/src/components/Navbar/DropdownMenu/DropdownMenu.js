@@ -19,7 +19,7 @@ class DropdownMenu extends Component {
         return (
             <div className="dropdown">
 
-                <span>...</span>
+                <span className="dots">...</span>
 
                 <Options />
 
