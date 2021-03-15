@@ -3,7 +3,7 @@ import './SearchBox.css'
 function SearchBox() {
     return (
         <div className="search-box">
-            <input type="text" placeholder="Search" />
+            <input className="search-field" type="text" placeholder="Search" />
         </div>
     )
 }
