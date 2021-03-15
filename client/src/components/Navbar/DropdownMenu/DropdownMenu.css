@@ -22,7 +22,7 @@
     color: #a970ff;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 340px) {
     .dropdown {
         display: none;
     }

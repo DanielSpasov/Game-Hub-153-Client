@@ -12,13 +12,13 @@
     width: 250px;
 }
 
-.dropdown-content h1 {
+.list {
+    list-style: none;
+}
+
+.list-title {
     font-size: 17px;
     color: gray;
     font-weight: bold;
     text-align: center;
-}
-
-.dropdown-content ul {
-    list-style: none;
 }
