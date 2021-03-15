@@ -1,3 +1,5 @@
+import { NavLink } from 'react-router-dom'
+
 import './Item.css'
 
 function Item({
@@ -7,9 +9,7 @@ function Item({
 }) {
     return (
         <span id={id} className="nav-item">
-            <a href={href}>
-                {text}
-            </a>
+            <NavLink to={href}>{text}</NavLink>
         </span>
     )
 }

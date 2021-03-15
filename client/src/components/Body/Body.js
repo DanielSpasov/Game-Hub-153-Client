@@ -1,10 +1,12 @@
 import { Component } from 'react'
+import { Route, Switch } from 'react-router-dom'
 
 import './Body.css'
 
 import gamesService from '../../services/gamesService'
 
 import Games from './Games/Games'
+import HomePage from './HomePage/HomePage.js'
 
 
 class Body extends Component {
@@ -27,7 +29,10 @@ class Body extends Component {
         return (
             <main className="main-container">
 
-                <Games games={this.state.games} />
+                <Switch>
+                    <Route path="/" component={HomePage} exact/>
+                    <Route path="/games" render={() => <Games games={this.state.games} />} exact/>
+                </Switch>
 
             </main>
         )

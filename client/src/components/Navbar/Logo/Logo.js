@@ -1,14 +1,16 @@
 import './Logo.css'
 
+import { NavLink } from 'react-router-dom'
+
 function Logo() {
     return (
         <div className="logo">
-            <a href="#/">
+            <NavLink to="/">
                 <img alt="Home" src="logo-white512.png" width="40px" height="40px" />
-            </a>
-            <a href="#/">
+            </NavLink>
+            <NavLink to="/">
                 <img alt="Home" src="logo-purple512.png" width="40px" height="40px" className="img-top" />
-            </a>
+            </NavLink>
         </div>
     )
 }
