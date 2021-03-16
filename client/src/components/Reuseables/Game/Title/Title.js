@@ -6,7 +6,7 @@ function Title({
     title
 }) {
     return (
-        <Link to={title} className="game-title">{title}</Link>
+        <Link to={'/wiki/games/' + title} className="game-title">{title}</Link>
     )
 }
 

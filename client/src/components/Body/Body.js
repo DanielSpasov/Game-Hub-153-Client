@@ -32,6 +32,7 @@ class Body extends Component {
                 <Switch>
                     <Route path="/" component={HomePage} exact/>
                     <Route path="/games" render={() => <Games games={this.state.games} />} exact/>
+                    <Route path="/wiki/games/:game" render={() => <Games games={this.state.games} />} exact/>
                 </Switch>
 
             </main>

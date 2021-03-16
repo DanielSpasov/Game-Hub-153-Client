@@ -1,9 +1,9 @@
 const router = require('express').Router()
 
-const homeController = require('./controllers/homeController')
+const restController = require('./controllers/restController')
 
 
-router.use('/', homeController)
+router.use('/api', restController)
 
 
 router.get('*', (req, res) => {
