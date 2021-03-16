@@ -9,14 +9,15 @@ class Image extends Component {
         super(props)
 
         this.state = {
-            bgColor: ''
+            bgColor: '',
+            height: '280px',
         }
     }
 
     componentDidMount() {
         if (this.props.type === 'games') this.setState({ bgColor: '#a970ff' })
         if (this.props.type === 'genres') this.setState({ bgColor: '#fa3e3e' })
-        if (this.props.type === 'devs') this.setState({ bgColor: '#4c15ff' })
+        if (this.props.type === 'devs') this.setState({ bgColor: '#4c15ff', height: '200px' })
     }
 
     render() {
@@ -26,7 +27,7 @@ class Image extends Component {
                     <img
                         className="game-image"
                         width="200px"
-                        height="280px"
+                        height={this.state.height}
                         src={this.props.imageUrl}
                         alt={this.props.title}
                     />

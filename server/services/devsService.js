@@ -7,7 +7,8 @@ function getAll() {
 async function getTopFive() {
     let devs = await Dev.find({}).lean()
 
-    console.log(devs)
+    devs = devs.sort((a, b) => (b.upvotes - a.upvotes))
+    devs = devs.slice(0, 5)
 
     return devs
 }
