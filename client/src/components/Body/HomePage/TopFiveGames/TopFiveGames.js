@@ -1,6 +1,6 @@
 import './TopFiveGames.css'
 
-import Game from '../../../Reuseables/Game/Game'
+import Game from '../../../Common/Game/Game'
 
 
 function TopFiveGames({
@@ -9,8 +9,8 @@ function TopFiveGames({
     return (
         <div className="top-five-games">
 
-            <h2>Top 5 Most Upvoted Games</h2>
-            
+            <h2>Our top 5 most upvoted games</h2>
+
             <div className="game-container">
                 {games.map(x =>
                     <Game key={x._id} title={x.title} imageUrl={x.imageUrl} />

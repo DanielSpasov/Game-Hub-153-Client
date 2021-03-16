@@ -24,8 +24,6 @@ class HomePage extends Component {
         gameService.getTopFive()
             .then(games => this.setState({ games }))
             .catch(err => console.log(err))
-
-
         genreService.getTopFive()
             .then(genres => this.setState({ genres }))
             .catch(err => console.log(err))
@@ -42,7 +40,7 @@ class HomePage extends Component {
 
 
                 <div className="top-five-developers">
-                    <h2>Top 5 Most Loved Developers</h2>
+                    <h2>Our top 5 most loved game developers</h2>
 
                 </div>
 

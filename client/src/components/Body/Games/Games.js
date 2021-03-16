@@ -1,7 +1,7 @@
 import './Games.css'
 
-import Game from '../../Reuseables/Game/Game'
-import SearchBox from '../../Reuseables/SearchBox/SearchBox'
+import Game from '../../Common/Game/Game'
+import SearchBox from '../../Common/SearchBox/SearchBox'
 
 function Games({
     games

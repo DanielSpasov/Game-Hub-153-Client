@@ -30,9 +30,9 @@ class Body extends Component {
             <main className="main-container">
 
                 <Switch>
-                    <Route path="/" component={HomePage} exact/>
+                    <Route path="/" render={() => <HomePage />} exact/>
                     <Route path="/games" render={() => <Games games={this.state.games} />} exact/>
-                    <Route path="/wiki/games/:game" render={() => <Games games={this.state.games} />} exact/>
+                    <Route path="/games/:game" render={() => <Games games={this.state.games} />} exact/>
                 </Switch>
 
             </main>
