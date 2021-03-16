@@ -1,11 +1,17 @@
 const router = require('express').Router()
 
-const categoryService = require('../services/categoriesService')
+const genreService = require('../services/genreService')
 const gameService = require('../services/gameService')
 const devService = require('../services/devService')
 
-router.get('/categories.getAll', (req, res) => {
-    categoryService.getAll()
+router.get('/genre/getAll', (req, res) => {
+    genreService.getAll()
+        .then(data => res.send(JSON.stringify(data)))
+        .catch(err => console.log(err))
+})
+
+router.get('/genre/getTopFive', (req, res) => {
+    genreService.getTopFive()
         .then(data => res.send(JSON.stringify(data)))
         .catch(err => console.log(err))
 })

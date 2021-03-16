@@ -1,0 +1,19 @@
+.genre-card {
+    display: inline-block;
+    background-color: #464649;
+    margin: 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    padding: 10px;
+    width: 200px;
+}
+
+.genre-link {
+    color: white;
+    text-decoration: none;
+}
+
+.genre-link:hover {
+    color: #a970ff;
+    text-decoration: none;
+}
