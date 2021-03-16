@@ -1,37 +1,16 @@
 const router = require('express').Router()
 
-const genreService = require('../services/genreService')
-const gameService = require('../services/gameService')
-const devService = require('../services/devService')
 
-router.get('/genre/getAll', (req, res) => {
-    genreService.getAll()
-        .then(data => res.send(JSON.stringify(data)))
-        .catch(err => console.log(err))
-})
+const gamesController = require('./gamesController')
+const genreController = require('./genreController')
+const devsController = require('./devsController')
 
-router.get('/genre/getTopFive', (req, res) => {
-    genreService.getTopFive()
-        .then(data => res.send(JSON.stringify(data)))
-        .catch(err => console.log(err))
-})
 
-router.get('/games/getAll', (req, res) => {
-    gameService.getAll()
-        .then(data => res.send(JSON.stringify(data)))
-        .catch(err => console.log(err))
-})
 
-router.get('/games/getTopFive', (req, res) => {
-    gameService.getTopFive()
-        .then(data => res.send(JSON.stringify(data)))
-        .catch(err => console.log(err))
-})
+router.use('/games', gamesController)
+router.use('/genre', genreController)
+router.use('/devs', devsController)
 
-router.get('/devs/getAll', (req, res) => {
-    devService.getAll()
-        .then(data => res.send(JSON.stringify(data)))
-        .catch(err => console.log(err))
-})
+
 
 module.exports = router
