@@ -4,9 +4,12 @@ import { Route, Switch } from 'react-router-dom'
 import './Body.css'
 
 import gamesService from '../../services/gamesService'
+import genreService from '../../services/genreService'
+
+import HomePage from './HomePage/HomePage.js'
 
 import Games from './Games/Games'
-import HomePage from './HomePage/HomePage.js'
+import Genres from './Genres/Genres'
 
 
 class Body extends Component {
@@ -23,6 +26,9 @@ class Body extends Component {
         gamesService.getAll()
             .then(data => this.setState({ games: data }))
             .catch(err => console.log(err))
+        genreService.getAll()
+            .then(data => this.setState({ genres: data }))
+            .catch(err => console.log(err))
     }
 
     render() {
@@ -30,9 +36,11 @@ class Body extends Component {
             <main className="main-container">
 
                 <Switch>
-                    <Route path="/" render={() => <HomePage />} exact/>
-                    <Route path="/games" render={() => <Games games={this.state.games} />} exact/>
-                    <Route path="/games/:game" render={() => <Games games={this.state.games} />} exact/>
+                    <Route path="/" render={() => <HomePage />} exact />
+                    <Route path="/games" render={() => <Games games={this.state.games} />} exact />
+                    <Route path="/genres" render={() => <Genres genres={this.state.genres} />} exact />
+
+                    <Route path="/games/:game" render={() => <Games games={this.state.games} />} exact />
                 </Switch>
 
             </main>

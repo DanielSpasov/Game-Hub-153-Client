@@ -5,11 +5,11 @@ function TopFiveGenres({
     genres
 }) {
     return (
-        <div className="top-five-genres">
+        <div>
 
             <h2>Our top 5 most played genres</h2>
 
-            <div className="genres-container">
+            <div>
                 {genres.map(x =>
                     <Genre key={x._id} name={x.name} imageUrl={x.imageUrl} />
                 )}

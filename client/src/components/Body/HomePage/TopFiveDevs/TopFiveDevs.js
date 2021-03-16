@@ -5,11 +5,11 @@ function TopFiveDevs({
     devs,
 }) {
     return (
-        <div className="top-five-devs">
+        <div>
 
             <h2>Our top 5 most loved game developers</h2>
 
-            <div className="devs-container">
+            <div>
                 {devs.map(x =>
                     <Dev key={x._id} orgName={x.orgName} imageUrl={x.imageUrl} />
                 )}
