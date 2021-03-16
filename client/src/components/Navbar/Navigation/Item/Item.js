@@ -9,7 +9,7 @@ function Item({
 }) {
     return (
         <span id={id} className="nav-item">
-            <NavLink to={href}>{text}</NavLink>
+            <NavLink activeStyle={{'color': '#a970ff'}} to={href}>{text}</NavLink>
         </span>
     )
 }
