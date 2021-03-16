@@ -8,5 +8,11 @@ router.get('/getAll', (req, res) => {
         .catch(err => console.log(err))
 })
 
+router.get('/getTopFive', (req, res) => {
+    devsService.getTopFive()
+        .then(data => res.send(JSON.stringify(data)))
+        .catch(err => console.log(err))
+})
+
 
 module.exports = router

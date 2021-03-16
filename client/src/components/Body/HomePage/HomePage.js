@@ -2,9 +2,11 @@ import { Component } from 'react'
 
 import gameService from '../../../services/gamesService'
 import genreService from '../../../services/genreService'
+import devService from '../../../services/devService'
 
 import TopFiveGames from './TopFiveGames/TopFiveGames'
 import TopFiveGenres from './TopFiveGenres/TopFiveGenres'
+import TopFiveDevs from './TopFiveDevs/TopFiveDevs'
 
 import './HomePage.css'
 
@@ -17,6 +19,7 @@ class HomePage extends Component {
         this.state = {
             games: [],
             genres: [],
+            devs: [],
         }
     }
 
@@ -27,6 +30,9 @@ class HomePage extends Component {
         genreService.getTopFive()
             .then(genres => this.setState({ genres }))
             .catch(err => console.log(err))
+        devService.getTopFive()
+            .then(devs => this.setState({ devs }))
+            .catch(err => console.log(err))
     }
 
     render() {
@@ -36,13 +42,7 @@ class HomePage extends Component {
 
                 <TopFiveGames games={this.state.games} />
                 <TopFiveGenres genres={this.state.genres} />
-
-
-
-                <div className="top-five-developers">
-                    <h2>Our top 5 most loved game developers</h2>
-
-                </div>
+                <TopFiveDevs devs={this.state.devs} />
 
             </div>
         )
