@@ -7,7 +7,7 @@ function getAll() {
 async function getTopFive() {
     let genres = await Genre.find({}).lean()
 
-    genres = genres.sort((a, b) => (b.numberOfPlayers - a.numberOfPlayers))
+    genres = genres.sort((a, b) => (b.upvotes - a.upvotes))
     genres = genres.slice(0, 5)
 
     return genres

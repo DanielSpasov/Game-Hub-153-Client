@@ -1,5 +1,3 @@
-import './TopFiveGames.css'
-
 import Game from '../../../Common/Game/Game'
 
 

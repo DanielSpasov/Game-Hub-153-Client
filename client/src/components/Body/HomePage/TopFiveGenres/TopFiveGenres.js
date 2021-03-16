@@ -1,5 +1,3 @@
-import './TopFiveGenres.css'
-
 import Genre from '../../../Common/Genre/Genre'
 
 

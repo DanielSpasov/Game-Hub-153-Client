@@ -38,7 +38,9 @@ class HomePage extends Component {
     render() {
         return (
             <div className="home-container">
-                <h1>Welcome to Game Hub</h1>
+
+                <h1 className="home-page-title">Welcome to Game Hub</h1>
+                <h3 className="home-page-description">The best place for game info, ratings, and discussion</h3>
 
                 <TopFiveGames games={this.state.games} />
                 <TopFiveGenres genres={this.state.genres} />
