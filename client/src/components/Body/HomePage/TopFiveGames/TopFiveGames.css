@@ -1,4 +1,10 @@
 .top-five-games {
+    position: relative;
     display: inline-block;
-    width: 1200px;
+    text-align: center;
+}
+
+.games-container {
+    text-align: center;
+    max-width: 1250px;
 }
