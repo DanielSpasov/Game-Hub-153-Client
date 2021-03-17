@@ -6,7 +6,6 @@ import SearchBox from '../../Common/SearchBox/SearchBox'
 function Devs({
     devs
 }) {
-    console.log(devs)
     return (
         <div className="devs-section">
 

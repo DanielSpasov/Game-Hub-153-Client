@@ -8,7 +8,6 @@ function Dev({
     orgName,
     imageUrl,
 }) {
-    // console.log(orgName)
     return (
         <div className="dev-card">
             <Image title={orgName} imageUrl={imageUrl} type='devs' />

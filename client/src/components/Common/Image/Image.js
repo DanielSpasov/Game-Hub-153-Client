@@ -18,7 +18,6 @@ class Image extends Component {
         if (this.props.type === 'games') this.setState({ bgColor: '#a970ff' })
         if (this.props.type === 'genres') this.setState({ bgColor: '#fa3e3e' })
         if (this.props.type === 'devs') this.setState({ bgColor: '#1538ff', height: '200px' })
-        console.log(this.props)
     }
 
     render() {

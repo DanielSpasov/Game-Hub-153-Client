@@ -19,7 +19,7 @@
 }
 
 @media screen and (max-width: 700px) {
-    .nav-item#developers {
+    .nav-item#devs {
         display: none;
     }
 }
