@@ -1,0 +1,31 @@
+.nav-item a {
+    display: table-cell;
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    padding-left: 13px;
+    padding-right: 13px;
+    border-right: 1px solid #aeaeb0;
+}
+
+.nav-item a:visited {
+    text-decoration: none;
+    color: white;
+}
+
+.nav-item a:hover {
+    text-decoration: none;
+    color: #a970ff;
+}
+
+@media screen and (max-width: 910px) {
+    .nav-item#login {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 830px) {
+    .nav-item#register {
+        display: none;
+    }
+}

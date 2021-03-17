@@ -2,6 +2,7 @@ import './Navbar.css'
 
 import Logo from './Logo/Logo'
 import Navigation from './Navigation/Navigation'
+import UserNavigation from './UserNavigation/UserNavigation'
 import Profile from './Profile/Profile'
 import DropdownMenu from './DropdownMenu/DropdownMenu'
 
@@ -13,6 +14,7 @@ function Navbar() {
             <Navigation />
             <Profile />
             <DropdownMenu />
+            <UserNavigation />
 
         </nav>
     )
