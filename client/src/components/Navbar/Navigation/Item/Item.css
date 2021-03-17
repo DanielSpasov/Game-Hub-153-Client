@@ -18,26 +18,20 @@
     color: #a970ff;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 550px) {
     .nav-item#devs {
         display: none;
     }
 }
 
-@media screen and (max-width: 560px) {
-    .nav-item#games {
-        display: none;
-    }
-}
-
-@media screen and (max-width: 470px) {
+@media screen and (max-width: 410px) {
     .nav-item#genres {
         display: none;
     }
 }
 
-@media screen and (max-width: 370px) {
-    .nav-item#follow-games {
+@media screen and (max-width: 300px) {
+    .nav-item#games {
         display: none;
     }
 }
