@@ -1,0 +1,35 @@
+.login-section {
+    padding-bottom: 599px;
+}
+
+.login-section-title {
+    font-size: 30px;
+    padding: 15px;
+}
+
+.login-field {
+    background-color: #464649;
+    border: 2px solid #464649;
+    border-radius: 10px;
+    padding: 8px;
+    font-size: 15px;
+    color: white;
+    width: 50%;
+    margin: 10px
+}
+
+.login-field:hover {
+    outline: none;
+    border: 2px solid #aeaeb0;
+    color: white;
+}
+
+.login-field:focus {
+    outline: none;
+    border: 2px solid #a970ff;
+    color: white;
+}
+
+.field-label {
+    font-size: 20px;
+}

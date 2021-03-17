@@ -12,6 +12,7 @@ import FollowGames from './FollowGames/FollowGames'
 import Games from './Games/Games'
 import Genres from './Genres/Genres'
 import Devs from './Devs/Devs'
+import Login from './Login/Login'
 
 
 class Body extends Component {
@@ -39,22 +40,20 @@ class Body extends Component {
     }
 
     render() {
-
-        let isLoggedIn = true
-
         return (
             <main className="main-container">
 
                 <Switch>
+
                     <Route path="/" component={HomePage} exact />
                     <Route path="/followGames" render={() => <FollowGames games={this.state.games} />} exact />
                     <Route path="/genres" render={() => <Genres genres={this.state.genres} />} exact />
                     <Route path="/games" render={() => <Games games={this.state.games} />} exact />
                     <Route path="/devs" render={() => <Devs devs={this.state.devs} />} exact />
 
-                    <Route path="/games/:game" render={() => (
-                        isLoggedIn ? (<Redirect to="/games" />) : (<Redirect to="/" />)
-                    )} exact />
+                    <Route path="/login" component={Login} exact />
+                    <Route path="/register" render={() => <Devs devs={this.state.devs} />} exact />
+                    
                 </Switch>
 
             </main>
