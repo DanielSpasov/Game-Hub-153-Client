@@ -18,3 +18,17 @@
     font-size: 15px;
     color: #a970ff;
 }
+
+.follow-div {
+    padding: 5px;
+    margin: 5px;
+    background-color: #a970ff;
+    border: none;
+    border-radius: 10px;
+}
+
+.follow-link {
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}

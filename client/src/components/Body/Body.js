@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 
 import './Body.css'
 
@@ -8,7 +8,7 @@ import genreService from '../../services/genreService'
 import devsService from '../../services/devsService'
 
 import HomePage from './HomePage/HomePage.js'
-
+import FollowGames from './FollowGames/FollowGames'
 import Games from './Games/Games'
 import Genres from './Genres/Genres'
 import Devs from './Devs/Devs'
@@ -39,16 +39,22 @@ class Body extends Component {
     }
 
     render() {
+
+        let isLoggedIn = true
+
         return (
             <main className="main-container">
 
                 <Switch>
-                    <Route path="/" render={() => <HomePage />} exact />
-                    <Route path="/games" render={() => <Games games={this.state.games} />} exact />
+                    <Route path="/" component={HomePage} exact />
+                    <Route path="/followGames" render={() => <FollowGames games={this.state.games} />} exact />
                     <Route path="/genres" render={() => <Genres genres={this.state.genres} />} exact />
+                    <Route path="/games" render={() => <Games games={this.state.games} />} exact />
                     <Route path="/devs" render={() => <Devs devs={this.state.devs} />} exact />
 
-                    <Route path="/games/:game" render={() => <Games games={this.state.games} />} exact />
+                    <Route path="/games/:game" render={() => (
+                        isLoggedIn ? (<Redirect to="/games" />) : (<Redirect to="/" />)
+                    )} exact />
                 </Switch>
 
             </main>
