@@ -5,11 +5,13 @@ import './Body.css'
 
 import gamesService from '../../services/gamesService'
 import genreService from '../../services/genreService'
+import devsService from '../../services/devsService'
 
 import HomePage from './HomePage/HomePage.js'
 
 import Games from './Games/Games'
 import Genres from './Genres/Genres'
+import Devs from './Devs/Devs'
 
 
 class Body extends Component {
@@ -18,7 +20,9 @@ class Body extends Component {
         super(props)
 
         this.state = {
-            games: []
+            games: [],
+            genres: [],
+            devs: [],
         }
     }
 
@@ -28,6 +32,9 @@ class Body extends Component {
             .catch(err => console.log(err))
         genreService.getAll()
             .then(data => this.setState({ genres: data }))
+            .catch(err => console.log(err))
+        devsService.getAll()
+            .then(data => this.setState({ devs: data }))
             .catch(err => console.log(err))
     }
 
@@ -39,6 +46,7 @@ class Body extends Component {
                     <Route path="/" render={() => <HomePage />} exact />
                     <Route path="/games" render={() => <Games games={this.state.games} />} exact />
                     <Route path="/genres" render={() => <Genres genres={this.state.genres} />} exact />
+                    <Route path="/devs" render={() => <Devs devs={this.state.devs} />} exact />
 
                     <Route path="/games/:game" render={() => <Games games={this.state.games} />} exact />
                 </Switch>

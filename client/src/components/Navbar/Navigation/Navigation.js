@@ -8,7 +8,7 @@ function Navigation() {
             <Item href="/followGames" text="Follow Games" id="follow-games" />
             <Item href="/genres" text="Genres" id="genres" />
             <Item href="/games" text="Games" id="games" />
-            <Item href="/developers" text="Developers" id="developers" />
+            <Item href="/devs" text="Developers" id="devs" />
         </div>
     )
 }
