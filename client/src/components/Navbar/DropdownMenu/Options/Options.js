@@ -19,7 +19,7 @@ function Options() {
                 <Item href="/followGames">Follow Games</Item>
                 <Item href="/genres">Genres</Item>
                 <Item href="/games">Games</Item>
-                <Item href="/developers">Developers</Item>
+                <Item href="/devs">Developers</Item>
             </ul>
 
             <h1 className="list-title">TODO: Misc</h1>
