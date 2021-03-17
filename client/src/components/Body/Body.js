@@ -13,6 +13,7 @@ import Games from './Games/Games'
 import Genres from './Genres/Genres'
 import Devs from './Devs/Devs'
 import Login from './Login/Login'
+import Register from './Register/Register'
 
 
 class Body extends Component {
@@ -52,7 +53,7 @@ class Body extends Component {
                     <Route path="/devs" render={() => <Devs devs={this.state.devs} />} exact />
 
                     <Route path="/login" component={Login} exact />
-                    <Route path="/register" render={() => <Devs devs={this.state.devs} />} exact />
+                    <Route path="/register" component={Register} exact />
                     
                 </Switch>
 

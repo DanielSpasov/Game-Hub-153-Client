@@ -1,8 +1,8 @@
-.login-section {
+.register-section {
     padding-bottom: 599px;
 }
 
-.login-section-title {
+.register-section-title {
     font-size: 30px;
     padding: 15px;
 }
@@ -12,7 +12,7 @@
     display: block;
 }
 
-.login-field {
+.register-field {
     background-color: #464649;
     border: 2px solid #464649;
     border-radius: 10px;
@@ -23,13 +23,13 @@
     margin: 10px
 }
 
-.login-field:hover {
+.register-field:hover {
     outline: none;
     border: 2px solid #aeaeb0;
     color: white;
 }
 
-.login-field:focus {
+.register-field:focus {
     outline: none;
     border: 2px solid #a970ff;
     color: white;
