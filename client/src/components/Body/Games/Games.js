@@ -1,7 +1,9 @@
-import './Games.css'
+import { Link } from 'react-router-dom'
 
 import Game from '../../Common/Game/Game'
-import SearchBox from '../../Common/SearchBox/SearchBox'
+import Searchbar from './Searchbar/Searchbar'
+
+import './Games.css'
 
 function Games({
     games
@@ -9,9 +11,22 @@ function Games({
     return (
         <div className="games-section">
 
-            <h1 className="games-section-title">Search Games:</h1>
-        
-            <SearchBox />
+            <h1>Search Games:</h1>
+
+            <div className="games-nav-container" >
+
+                <div className="games-button-div">
+                    <Link to="/games/follow" className="games-redirect-link">Follow Games</Link>
+                </div>
+
+                <Searchbar />
+
+                <div className="games-button-div">
+                    <Link to="/games/add" className="games-redirect-link">Add Games</Link>
+                </div>
+
+            </div>
+
 
             <div className="games-container">
                 {games?.map(x =>

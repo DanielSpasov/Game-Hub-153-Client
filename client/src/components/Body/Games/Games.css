@@ -4,12 +4,37 @@
     text-align: center;
 }
 
-.games-section-title {
-    font-size: 25px;
-    margin: 15px;
-}
-
 .games-container {
     text-align: center;
     max-width: 1250px;
+}
+
+.games-nav-container {
+    padding: 10px;
+    display: inline-table;
+}
+
+.games-button-div {
+    background-color: #464649;
+    border-radius: 10px;
+    width: 200px;
+    margin: 10px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.games-redirect-link {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.games-redirect-link:hover {
+    color: #a970ff;
+}
+
+@media screen and (max-width: 1000px) {
+    .games-button-div {
+        display: none;
+    }
 }

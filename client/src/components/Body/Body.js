@@ -8,7 +8,7 @@ import genreService from '../../services/genreService'
 import devsService from '../../services/devsService'
 
 import HomePage from './HomePage/HomePage.js'
-import FollowGames from './FollowGames/FollowGames'
+import FollowGames from './Games/FollowGames/FollowGames'
 import Games from './Games/Games'
 import Genres from './Genres/Genres'
 import Devs from './Devs/Devs'
@@ -47,10 +47,11 @@ class Body extends Component {
                 <Switch>
 
                     <Route path="/" component={HomePage} exact />
-                    <Route path="/followGames" render={() => <FollowGames games={this.state.games} />} exact />
                     <Route path="/genres" render={() => <Genres genres={this.state.genres} />} exact />
                     <Route path="/games" render={() => <Games games={this.state.games} />} exact />
                     <Route path="/devs" render={() => <Devs devs={this.state.devs} />} exact />
+
+                    <Route path="/games/follow" render={() => <FollowGames games={this.state.games} />} exact />
 
                     <Route path="/login" component={Login} exact />
                     <Route path="/register" component={Register} exact />

@@ -1,7 +1,7 @@
-import './FollowGames.css'
+import Game from '../../../Common/Game/Game'
+import Searchbar from '../Searchbar/Searchbar'
 
-import Game from '../../Common/Game/Game'
-import SearchBox from '../../Common/SearchBox/SearchBox'
+import './FollowGames.css'
 
 function FollowGames({
     games
@@ -9,9 +9,13 @@ function FollowGames({
     return (
         <div className="games-section">
 
-            <h1 className="games-section-title">Search Games:</h1>
+            <h1>Search Games to follow:</h1>
 
-            <SearchBox />
+            <div className="games-nav-container" >
+
+                <Searchbar />
+
+            </div>
 
             <div className="games-container">
                 {games?.map(x =>
