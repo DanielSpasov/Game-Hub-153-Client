@@ -1,7 +1,13 @@
 const Game = require('../Models/Game')
 
-function getAll() {
-    return Game.find({}).lean()
+async function getAll(query) {
+    let games = await Game.find({}).lean()
+    
+    if(query.search) {
+        games = games.filter(x => x.title.toLowerCase().includes(query.search.toLowerCase()))
+    }
+
+    return games
 }
 
 async function getTopFive() {

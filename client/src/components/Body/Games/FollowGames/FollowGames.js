@@ -1,5 +1,4 @@
 import Game from '../../../Common/Game/Game'
-import Searchbar from '../Searchbar/Searchbar'
 
 import './FollowGames.css'
 
@@ -13,7 +12,7 @@ function FollowGames({
 
             <div className="games-nav-container" >
 
-                <Searchbar />
+
 
             </div>
 

@@ -3,7 +3,7 @@ const router = require('express').Router()
 const gameService = require('../services/gameService')
 
 router.get('/getAll', (req, res) => {
-    gameService.getAll()
+    gameService.getAll(req.query)
         .then(data => res.send(JSON.stringify(data)))
         .catch(err => console.log(err))
 })

@@ -1,9 +1,8 @@
 import { Component } from 'react'
-import { Route, Switch, Redirect } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 
 import './Body.css'
 
-import gamesService from '../../services/gamesService'
 import genreService from '../../services/genreService'
 import devsService from '../../services/devsService'
 
@@ -29,9 +28,6 @@ class Body extends Component {
     }
 
     componentDidMount() {
-        gamesService.getAll()
-            .then(data => this.setState({ games: data }))
-            .catch(err => console.log(err))
         genreService.getAll()
             .then(data => this.setState({ genres: data }))
             .catch(err => console.log(err))

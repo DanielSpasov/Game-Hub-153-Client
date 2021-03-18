@@ -1,45 +1,87 @@
+import { Component } from 'react'
 import { Link } from 'react-router-dom'
 
+import gamesService from '../../../services/gamesService'
+
 import Game from '../../Common/Game/Game'
-import Searchbar from './Searchbar/Searchbar'
 
 import './Games.css'
 
-function Games({
-    games
-}) {
-    return (
-        <div className="games-section">
+class Games extends Component {
 
-            <h1>Search Games:</h1>
+    constructor(props) {
+        super(props)
 
-            <div className="games-nav-container" >
+        this.state = {
+            games: [],
+            value: ''
+        }
 
-                <div className="games-button-div">
-                    <Link to="/games/follow" className="games-redirect-link">Follow Games</Link>
+        this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
+    }
+
+    componentDidMount() {
+        gamesService.getAll('')
+            .then(games => this.setState({ games }))
+            .catch(err => console.log(err))
+    }
+
+    handleChange(e) {
+        this.setState({ value: e.target.value })
+    }
+
+    handleSubmit(e) {
+        e.preventDefault()
+        gamesService.getAll(this.state.value)
+            .then(games => this.setState({ games }))
+            .catch(err => console.log(err))
+    }
+
+    render() {
+        return (
+            <div className="games-section">
+
+                <h1>Search Games:</h1>
+
+                <div className="games-nav-container" >
+
+                    <div className="games-button-div">
+                        <Link to="/games/follow" className="games-redirect-link">Follow Games</Link>
+                    </div>
+
+                    <div className="games-search-form">
+                        <form onSubmit={this.handleSubmit}>
+                            <input
+                                className="search-field"
+                                placeholder="Search"
+                                type="text"
+                                value={this.state.value}
+                                onChange={this.handleChange}
+                            />
+                        </form>
+                    </div>
+
+                    <div className="games-button-div">
+                        <Link to="/games/add" className="games-redirect-link">Add Games</Link>
+                    </div>
+
                 </div>
 
-                <Searchbar />
 
-                <div className="games-button-div">
-                    <Link to="/games/add" className="games-redirect-link">Add Games</Link>
+                <div className="games-container">
+                    {this.state.games.map(x =>
+                        <Game
+                            key={x._id}
+                            title={x.title}
+                            imageUrl={x.imageUrl}
+                        />
+                    )}
                 </div>
 
             </div>
-
-
-            <div className="games-container">
-                {games?.map(x =>
-                    <Game
-                        key={x._id}
-                        title={x.title}
-                        imageUrl={x.imageUrl}
-                    />
-                )}
-            </div>
-
-        </div>
-    )
+        )
+    }
 }
 
 export default Games
