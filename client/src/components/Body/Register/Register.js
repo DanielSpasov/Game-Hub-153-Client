@@ -2,7 +2,7 @@ import './Register.css'
 
 function Register() {
     return (
-        <div className="register-section">
+        <div>
 
             <h1 className="register-section-title">Register</h1>
 
