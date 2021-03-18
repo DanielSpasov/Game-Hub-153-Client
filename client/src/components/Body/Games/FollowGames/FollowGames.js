@@ -1,9 +1,9 @@
 import { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 import Game from '../../../Common/Game/Game'
 import gamesService from '../../../../services/gamesService'
 
-import './FollowGames.css'
 
 class FollowGames extends Component {
 
@@ -43,6 +43,11 @@ class FollowGames extends Component {
                 <h1>Search Games to follow:</h1>
 
                 <div className="games-nav-container" >
+
+                    <div className="games-button-div">
+                        <Link to="/games" className="games-redirect-link">Games</Link>
+                    </div>
+
                     <div className="games-search-form">
                         <form onSubmit={this.handleSubmit}>
                             <input
@@ -54,6 +59,11 @@ class FollowGames extends Component {
                             />
                         </form>
                     </div>
+
+                    <div className="games-button-div">
+                        <Link to="/games/add" className="games-redirect-link">Add Games</Link>
+                    </div>
+
                 </div>
 
                 <div className="games-container">
