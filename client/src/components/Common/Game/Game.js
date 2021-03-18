@@ -12,7 +12,7 @@ function Game({
 
     const button = page === 'followGames' ?
         <div className="follow-div">
-            <Link to={`/followGames/${title}`} className="follow-link">Follow</Link>
+            <Link to={`/games/follow/${title}`} className="follow-link">Follow</Link>
         </div>
         : null
 

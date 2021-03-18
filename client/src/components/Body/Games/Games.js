@@ -1,9 +1,8 @@
 import { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-import gamesService from '../../../services/gamesService'
-
 import Game from '../../Common/Game/Game'
+import gamesService from '../../../services/gamesService'
 
 import './Games.css'
 
@@ -67,7 +66,6 @@ class Games extends Component {
                     </div>
 
                 </div>
-
 
                 <div className="games-container">
                     {this.state.games.map(x =>
