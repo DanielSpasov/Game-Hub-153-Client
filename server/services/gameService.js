@@ -19,7 +19,13 @@ async function getTopFive() {
     return games
 }
 
+function create(data) {
+    let game = new Game(data)
+    return game.save()
+}
+
 module.exports = {
     getAll,
     getTopFive,
+    create,
 }

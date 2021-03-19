@@ -15,7 +15,9 @@ router.get('/getTopFive', (req, res) => {
 })
 
 router.post('/addGame', (req, res) => {
-    console.log(req.body)
+    gameService.create(req.body)
+        .then(res => console.log(res))
+        .catch(err => console.log(err))
 })
 
 
