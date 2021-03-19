@@ -21,10 +21,11 @@
     color: white;
 }
 
-.add-game-div {
+.add-game-button {
     background-color: #464649;
     border: 3px solid #464649;
     border-radius: 10px;
+    color: white;
     margin: auto;
     margin-top: 10px;
     width: 200px;
@@ -34,11 +35,6 @@
     font-size: 15px;
 }
 
-.add-game-div a {
-    color: white;
-    text-decoration: none;
-}
-
-.add-game-div a:hover {
+.add-game-button:hover {
     color: #a970ff;
 }

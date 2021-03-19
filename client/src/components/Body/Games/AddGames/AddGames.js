@@ -41,9 +41,7 @@ class AddGames extends Component {
         let imageUrlIsHttps = this.state.imageUrl.slice(0, 8) === 'https://'
 
         if (this.state.title !== '' && (imageUrlIsHttp || imageUrlIsHttps)) {
-            addGameButton = <div className="add-game-div">
-                <button onClick={this.handleSubmit}>Add Game</button>
-            </div>
+            addGameButton = <button className="add-game-button" onClick={this.handleSubmit}>Add Game</button>
         }
 
         return (
