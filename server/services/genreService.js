@@ -1,7 +1,13 @@
 const Genre = require('../Models/Genre')
 
-function getAll() {
-    return Genre.find({}).lean()
+async function getAll(query) {
+    let genres = await Genre.find({}).lean()
+
+    if(query.search) {
+        genres = genres.filter(x => x.name.toLowerCase().includes(query.search.toLowerCase()))
+    }
+
+    return genres
 }
 
 async function getTopFive() {

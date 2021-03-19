@@ -3,7 +3,7 @@ const router = require('express').Router()
 const genreService = require('../services/genreService')
 
 router.get('/getAll', (req, res) => {
-    genreService.getAll()
+    genreService.getAll(req.query)
         .then(data => res.send(JSON.stringify(data)))
         .catch(err => console.log(err))
 })

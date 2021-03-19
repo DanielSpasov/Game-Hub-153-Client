@@ -1,8 +1,9 @@
 import { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-import Game from '../../Common/Game/Game'
 import gamesService from '../../../services/gamesService'
+
+import Game from '../../Common/Game/Game'
 
 import './Games.css'
 

@@ -37,9 +37,6 @@ class Body extends Component {
     }
 
     componentDidMount() {
-        genreService.getAll()
-            .then(data => this.setState({ genres: data }))
-            .catch(err => console.log(err))
         devsService.getAll()
             .then(data => this.setState({ devs: data }))
             .catch(err => console.log(err))
@@ -57,7 +54,7 @@ class Body extends Component {
                     <Route path="/games/follow" component={FollowGames} exact />
                     <Route path="/games/add" component={AddGames} exact />
 
-                    <Route path="/genres" render={() => <Genres genres={this.state.genres} />} exact />
+                    <Route path="/genres" component={Genres} exact />
 
                     <Route path="/devs" render={() => <Devs devs={this.state.devs} />} exact />
 
