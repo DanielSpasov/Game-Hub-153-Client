@@ -4,7 +4,6 @@ import { Route, Switch } from 'react-router-dom'
 import './Body.css'
 
 // Services
-import genreService from '../../services/genreService'
 import devsService from '../../services/devsService'
 
 
@@ -16,6 +15,7 @@ import FollowGames from './Games/FollowGames/FollowGames'
 import AddGames from './Games/AddGames/AddGames'
 
 import Genres from './Genres/Genres'
+import FollowGenres from './Genres/FollowGenres/FollowGenres'
 
 import Devs from './Devs/Devs'
 
@@ -55,6 +55,8 @@ class Body extends Component {
                     <Route path="/games/add" component={AddGames} exact />
 
                     <Route path="/genres" component={Genres} exact />
+                    <Route path="/genres/follow" component={FollowGenres} exact />
+                    {/* <Route path="/genres/add" component={AddGenres} exact /> */}
 
                     <Route path="/devs" render={() => <Devs devs={this.state.devs} />} exact />
 
