@@ -8,7 +8,8 @@ const app = express()
 
 require('./config/mongoose')
 
-app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
 
 app.use((req, res, next) => {
     res.append('Access-Control-Allow-Origin', ['*'])

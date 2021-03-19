@@ -4,8 +4,6 @@ const { DB_URI } = require('./index')
 const dbOptions = {
     useNewUrlParser: true,
     useUnifiedTopology: true,
-    useCreateIndex: true,
-    useFindAndModify: false
 }
 
 mongoose.connect(DB_URI, dbOptions)
