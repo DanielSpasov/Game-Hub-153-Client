@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-import genreService from '../../../services/genreService'
+import genresService from '../../../services/genresService'
 
 import Genre from '../../Common/Genre/Genre'
 
@@ -22,7 +22,7 @@ class Genres extends Component {
     }
 
     componentDidMount() {
-        genreService.getAll('')
+        genresService.getAll('')
             .then(genres => this.setState({ genres }))
             .catch(err => console.log(err))
     }
@@ -33,7 +33,7 @@ class Genres extends Component {
 
     handleSubmit(e) {
         e.preventDefault()
-        genreService.getAll(this.state.value)
+        genresService.getAll(this.state.value)
             .then(genres => this.setState({ genres }))
             .catch(err => console.log(err))
     }

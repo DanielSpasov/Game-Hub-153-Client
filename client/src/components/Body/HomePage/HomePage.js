@@ -1,7 +1,7 @@
 import { Component } from 'react'
 
 import gameService from '../../../services/gamesService'
-import genreService from '../../../services/genreService'
+import genresService from '../../../services/genresService'
 import devsService from '../../../services/devsService'
 
 import TopFiveGames from './TopFiveGames/TopFiveGames'
@@ -27,7 +27,7 @@ class HomePage extends Component {
         gameService.getTopFive()
             .then(games => this.setState({ games }))
             .catch(err => console.log(err))
-        genreService.getTopFive()
+        genresService.getTopFive()
             .then(genres => this.setState({ genres }))
             .catch(err => console.log(err))
         devsService.getTopFive()

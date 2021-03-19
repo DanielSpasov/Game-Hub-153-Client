@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-import genreService from '../../../../services/genreService'
+import genresService from '../../../../services/genresService'
 
 import './AddGenres.css'
 
@@ -30,7 +30,7 @@ class AddGenres extends Component {
 
     handleSubmit(e) {
         e.preventDefault()
-        genreService.addGenre(this.state)
+        genresService.addGenre(this.state)
     }
 
     render() {
