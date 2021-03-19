@@ -15,7 +15,7 @@ router.get('/getTopFive', (req, res) => {
 })
 
 router.post('/addGenre', (req, res) => {
-    console.log('Genre ' + req.body)
+    console.log(req.body)
 })
 
 

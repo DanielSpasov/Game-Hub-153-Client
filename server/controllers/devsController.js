@@ -15,7 +15,7 @@ router.get('/getTopFive', (req, res) => {
 })
 
 router.post('/addDev', (req, res) => {
-    console.log('Dev ' + req.body)
+    console.log(req.body)
 })
 
 
