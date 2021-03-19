@@ -69,13 +69,17 @@ class Games extends Component {
                 </div>
 
                 <div className="games-container">
-                    {this.state.games.map(x =>
-                        <Game
-                            key={x._id}
-                            title={x.title}
-                            imageUrl={x.imageUrl}
-                        />
-                    )}
+                    {
+                        this.state.games ?
+                            <h2>No games are currently available</h2> :
+                            this.state.games.map(x =>
+                                <Game
+                                    key={x._id}
+                                    title={x.title}
+                                    imageUrl={x.imageUrl}
+                                />
+                            )
+                    }
                 </div>
 
             </div>
