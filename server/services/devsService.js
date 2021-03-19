@@ -1,7 +1,13 @@
 const Dev = require('../Models/Dev')
 
-function getAll() {
-    return Dev.find({}).lean()
+async function getAll(query) {
+    let devs = await Dev.find({}).lean()
+    
+    if(query.search) {
+        devs = devs.filter(x => x.orgName.toLowerCase().includes(query.search.toLowerCase()))
+    }
+
+    return devs
 }
 
 async function getTopFive() {

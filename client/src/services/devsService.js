@@ -1,7 +1,7 @@
 import config from '../config/index'
 
-function getAll() {
-    return fetch(`${config.DB_URI}/api/devs/getAll`)
+function getAll(search) {
+    return fetch(`${config.DB_URI}/api/devs/getAll?search=${search}`)
         .then(res => res.json())
         .catch(err => console.log(err))
 }

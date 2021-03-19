@@ -1,11 +1,6 @@
-import { Component } from 'react'
 import { Route, Switch } from 'react-router-dom'
 
 import './Body.css'
-
-// Services
-import devsService from '../../services/devsService'
-
 
 // Components
 import HomePage from './HomePage/HomePage.js'
@@ -24,52 +19,32 @@ import Login from './Login/Login'
 import Register from './Register/Register'
 
 
+function Body() {
+    return (
+        <main className="main-container">
 
-class Body extends Component {
+            <Switch>
 
-    constructor(props) {
-        super(props)
+                <Route path="/" component={HomePage} exact />
 
-        this.state = {
-            games: [],
-            genres: [],
-            devs: [],
-        }
-    }
+                <Route path="/games" component={Games} exact />
+                <Route path="/games/follow" component={FollowGames} exact />
+                <Route path="/games/add" component={AddGames} exact />
 
-    componentDidMount() {
-        devsService.getAll()
-            .then(data => this.setState({ devs: data }))
-            .catch(err => console.log(err))
-    }
+                <Route path="/genres" component={Genres} exact />
+                <Route path="/genres/follow" component={FollowGenres} exact />
+                <Route path="/genres/add" component={AddGenres} exact />
 
-    render() {
-        return (
-            <main className="main-container">
-
-                <Switch>
-
-                    <Route path="/" component={HomePage} exact />
-
-                    <Route path="/games" component={Games} exact />
-                    <Route path="/games/follow" component={FollowGames} exact />
-                    <Route path="/games/add" component={AddGames} exact />
-
-                    <Route path="/genres" component={Genres} exact />
-                    <Route path="/genres/follow" component={FollowGenres} exact />
-                    <Route path="/genres/add" component={AddGenres} exact />
-
-                    <Route path="/devs" render={() => <Devs devs={this.state.devs} />} exact />
+                <Route path="/devs" component={Devs} exact />
 
 
-                    <Route path="/login" component={Login} exact />
-                    <Route path="/register" component={Register} exact />
-                    
-                </Switch>
+                <Route path="/login" component={Login} exact />
+                <Route path="/register" component={Register} exact />
 
-            </main>
-        )
-    }
+            </Switch>
+
+        </main>
+    )
 }
 
 export default Body
