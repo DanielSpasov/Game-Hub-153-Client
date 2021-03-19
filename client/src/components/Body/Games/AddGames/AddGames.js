@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 import gamesService from '../../../../services/gamesService'
 
@@ -31,9 +31,21 @@ class AddGames extends Component {
     handleSubmit(e) {
         e.preventDefault()
         gamesService.addGame(this.state)
+        this.props.history.push('/games')
     }
 
     render() {
+
+        let addGameButton
+        let imageUrlIsHttp = this.state.imageUrl.slice(0, 7) === 'http://'
+        let imageUrlIsHttps = this.state.imageUrl.slice(0, 8) === 'https://'
+
+        if (this.state.title !== '' && (imageUrlIsHttp || imageUrlIsHttps)) {
+            addGameButton = <div className="add-game-div">
+                <button onClick={this.handleSubmit}>Add Game</button>
+            </div>
+        }
+
         return (
             <div className="games-section">
 
@@ -55,9 +67,12 @@ class AddGames extends Component {
 
                 <div className="games-container">
                     <form onSubmit={this.handleSubmit}>
+
                         <input className="add-game-field" type="text" placeholder="Title" value={this.state.title} onChange={this.handleTitleChange} />
                         <input className="add-game-field" type="text" placeholder="Image Url" value={this.state.imageUrl} onChange={this.handleImageUrlChange} /><br></br>
-                        <button type="submit" className="submit-button">Add Game</button>
+
+                        {addGameButton}
+
                     </form>
                 </div>
 
@@ -66,4 +81,4 @@ class AddGames extends Component {
     }
 }
 
-export default AddGames
+export default withRouter(AddGames)
