@@ -16,6 +16,7 @@ import AddGames from './Games/AddGames/AddGames'
 
 import Genres from './Genres/Genres'
 import FollowGenres from './Genres/FollowGenres/FollowGenres'
+import AddGenres from './Genres/AddGenres/AddGenres'
 
 import Devs from './Devs/Devs'
 
@@ -56,7 +57,7 @@ class Body extends Component {
 
                     <Route path="/genres" component={Genres} exact />
                     <Route path="/genres/follow" component={FollowGenres} exact />
-                    {/* <Route path="/genres/add" component={AddGenres} exact /> */}
+                    <Route path="/genres/add" component={AddGenres} exact />
 
                     <Route path="/devs" render={() => <Devs devs={this.state.devs} />} exact />
 

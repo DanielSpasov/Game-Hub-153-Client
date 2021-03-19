@@ -14,5 +14,9 @@ router.get('/getTopFive', (req, res) => {
         .catch(err => console.log(err))
 })
 
+router.post('/addGenre', (req, res) => {
+    console.log(req.body)
+})
+
 
 module.exports = router
