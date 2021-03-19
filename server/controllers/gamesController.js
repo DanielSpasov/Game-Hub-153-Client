@@ -15,7 +15,7 @@ router.get('/getTopFive', (req, res) => {
 })
 
 router.post('/addGame', (req, res) => {
-    console.log(req.body)
+    console.log('Game ' + req.body)
 })
 
 

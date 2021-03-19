@@ -15,6 +15,7 @@ import AddGenres from './Genres/AddGenres/AddGenres'
 
 import Devs from './Devs/Devs'
 import FollowDevs from './Devs/FollowDevs/FollowDevs'
+import AddDevs from './Devs/AddDevs/AddDevs'
 
 import Login from './Login/Login'
 import Register from './Register/Register'
@@ -38,6 +39,7 @@ function Body() {
 
                 <Route path="/devs" component={Devs} exact />
                 <Route path="/devs/follow" component={FollowDevs} exact />
+                <Route path="/devs/add" component={AddDevs} exact />
 
 
                 <Route path="/login" component={Login} exact />

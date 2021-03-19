@@ -14,5 +14,10 @@ router.get('/getTopFive', (req, res) => {
         .catch(err => console.log(err))
 })
 
+router.post('/addDev', (req, res) => {
+    console.log('Dev ' + req.body)
+})
+
+
 
 module.exports = router

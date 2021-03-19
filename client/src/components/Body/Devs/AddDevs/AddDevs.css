@@ -1,0 +1,44 @@
+.add-dev-field {
+    background-color: #464649;
+    border: 2px solid #464649;
+    border-radius: 10px;
+    padding: 8px;
+    margin: 10px;
+    font-size: 15px;
+    color: white;
+    width: 50%;
+}
+
+.add-dev-field:hover {
+    outline: none;
+    border: 2px solid #aeaeb0;
+    color: white;
+}
+
+.add-dev-field:focus {
+    outline: none;
+    border: 2px solid #a970ff;
+    color: white;
+}
+
+.submit-button {
+    background-color: #464649;
+    border: 3px solid #464649;
+    border-radius: 10px;
+    width: 200px;
+    margin: 10px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    color: white;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.submit-button:hover {
+    color: #a970ff;
+    outline: none;
+}
+
+.submit-button:focus {
+    outline: none;
+}
