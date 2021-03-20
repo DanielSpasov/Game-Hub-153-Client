@@ -19,7 +19,13 @@ async function getTopFive() {
     return devs
 }
 
+function create(data) {
+    let dev = new Dev(data)
+    return dev.save()
+}
+
 module.exports = {
     getAll,
     getTopFive,
+    create,
 }

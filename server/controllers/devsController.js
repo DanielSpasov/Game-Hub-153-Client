@@ -15,7 +15,8 @@ router.get('/getTopFive', (req, res) => {
 })
 
 router.post('/addDev', (req, res) => {
-    console.log(req.body)
+    devsService.create(req.body)
+        .catch(err => console.log(err))
 })
 
 

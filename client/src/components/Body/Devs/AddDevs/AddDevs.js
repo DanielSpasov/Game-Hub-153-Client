@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, withRouter } from 'react-router-dom'
 
 import devsService from '../../../../services/devsService'
 
@@ -31,9 +31,19 @@ class AddDevs extends Component {
     handleSubmit(e) {
         e.preventDefault()
         devsService.addDev(this.state)
+        this.props.history.push('/devs')
     }
 
     render() {
+
+        let addDevButton
+        let imageUrlIsHttp = this.state.imageUrl.slice(0, 7) === 'http://'
+        let imageUrlIsHttps = this.state.imageUrl.slice(0, 8) === 'https://'
+
+        if (this.state.orgName !== '' && (imageUrlIsHttp || imageUrlIsHttps)) {
+            addDevButton = <button className="add-dev-button" onClick={this.handleSubmit}>Add Developer</button>
+        }
+
         return (
             <div className="devs-section">
 
@@ -57,7 +67,9 @@ class AddDevs extends Component {
                     <form onSubmit={this.handleSubmit}>
                         <input className="add-game-field" type="text" placeholder="Org Name" value={this.state.orgName} onChange={this.handleOrgNameChange} />
                         <input className="add-game-field" type="text" placeholder="Image Url" value={this.state.imageUrl} onChange={this.handleImageUrlChange} /><br></br>
-                        <button type="submit" className="submit-button">Add Developers</button>
+
+                        {addDevButton}
+
                     </form>
                 </div>
 
@@ -66,4 +78,4 @@ class AddDevs extends Component {
     }
 }
 
-export default AddDevs
+export default withRouter(AddDevs)

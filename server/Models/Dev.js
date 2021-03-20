@@ -1,11 +1,21 @@
 const mongoose = require('mongoose')
 
 const devSchema = new mongoose.Schema({
-    name: {
+    orgName: {
+        type: String,
+        unique: true,
+        required: true,
+        maxLength: 25,
+    },
+    imageUrl: {
         type: String,
         required: true,
-        maxLength: 30,
-    }
+        validate: /^https?:\/\//,
+    },
+    upvotes: {
+        type: Number,
+        default: 0,
+    },
 })
 
 module.exports = mongoose.model('Dev', devSchema)
