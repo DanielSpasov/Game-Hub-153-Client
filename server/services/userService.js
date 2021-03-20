@@ -1,9 +1,15 @@
 const User = require('../Models/User')
 
-function register() {
+function register(data) {
+    const { username, password } = data
+
+    User.create({ username, password })
+        .then(createdUser => console.log(createdUser))
+        .catch(err => console.log(err))
 }
 
-function login() {
+function login(data) {
+    console.log(data)
 }
 
 module.exports = {

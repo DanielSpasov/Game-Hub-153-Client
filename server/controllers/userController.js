@@ -4,11 +4,11 @@ const userService = require('../services/userService')
 
 
 router.post('/register', (req, res) => {
-    console.log(req.body)
+    userService.register(req.body)
 })
 
 router.post('/login', (req, res) => {
-    console.log(req.body)
+    userService.login(req.body)
 })
 
 

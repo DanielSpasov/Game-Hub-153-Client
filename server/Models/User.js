@@ -1,4 +1,6 @@
 const mongoose = require('mongoose')
+const bcrypt = require('bcrypt')
+const { SALT_ROUNDS } = require('../config/index')
 
 const userSchema = new mongoose.Schema({
     username: {
@@ -11,6 +13,26 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     }
+})
+
+userSchema.methods = {
+    matchPassword: function (password) {
+        return bcrypt.compare(password, this.password)
+    }
+}
+
+userSchema.pre('save', function (next) {
+    if (this.isModified('password')) {
+        bcrypt.genSalt(SALT_ROUNDS, (err, salt) => {
+            bcrypt.hash(this.password, salt, (err, hash) => {
+                if (err) { next(err); return }
+                this.password = hash
+                next()
+            })
+        })
+        return
+    }
+    next()
 })
 
 module.exports = mongoose.model('User', userSchema)
