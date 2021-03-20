@@ -5,8 +5,8 @@ import Item from './Item/Item'
 function Navigation() {
     return (
         <div className="user-navigation">
-            <Item href="/login" text="Login" id="login" />
-            <Item href="/register" text="Register" id="register" />
+            <Item href="/user/login" text="Login" id="login" />
+            <Item href="/user/register" text="Register" id="register" />
         </div>
     )
 }

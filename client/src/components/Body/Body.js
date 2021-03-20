@@ -42,8 +42,8 @@ function Body() {
                 <Route path="/devs/add" component={AddDevs} exact />
 
 
-                <Route path="/login" component={Login} exact />
-                <Route path="/register" component={Register} exact />
+                <Route path="/user/login" component={Login} exact />
+                <Route path="/user/register" component={Register} exact />
 
             </Switch>
 
