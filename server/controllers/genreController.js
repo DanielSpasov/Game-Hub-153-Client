@@ -15,7 +15,8 @@ router.get('/getTopFive', (req, res) => {
 })
 
 router.post('/addGenre', (req, res) => {
-    console.log(req.body)
+    genreService.create(req.body)
+        .catch(err => console.log(err))
 })
 
 

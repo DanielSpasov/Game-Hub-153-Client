@@ -19,7 +19,13 @@ async function getTopFive() {
     return genres
 }
 
+function create(data) {
+    let genre = new Genre(data)
+    return genre.save()
+}
+
 module.exports = {
     getAll,
     getTopFive,
+    create,
 }
