@@ -45,7 +45,7 @@ class Login extends Component {
         if (username !== '' && password !== '') {
             loginButton = <button className="login-button" onClick={this.handleSubmit}>Login</button>
         }
-        console.log(this.props.cookies)
+        
         return (
             <div>
 
