@@ -7,7 +7,7 @@ function Profile() {
     return (
         <div className="profile-pic">
             <NavLink to="/profile">
-                <img alt="Home" src="user.jpg" width="40px" height="40px" />
+                <img alt="Profile" src="user.jpg" width="40px" height="40px" />
             </NavLink>
         </div>
     )
