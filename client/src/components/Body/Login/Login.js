@@ -1,23 +1,74 @@
+import { Component } from 'react'
+import { withCookies, Cookies } from 'react-cookie'
+
+import userService from '../../../services/userService'
+
 import './Login.css'
 
-function Login() {
-    return (
-        <div>
+class Login extends Component {
 
-            <h1 className="login-section-title">Login</h1>
+    constructor(props) {
+        super(props)
 
-            <form action="/login">
+        this.state = {
+            username: '',
+            password: '',
+        }
 
-                <label htmlFor="username" className="field-label">Username</label>
-                <input className="login-field" type="text" name="username" id="username" />
+        this.handleUsernameChange = this.handleUsernameChange.bind(this)
+        this.handlePasswordChange = this.handlePasswordChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
+    }
 
-                <label htmlFor="password" className="field-label">Password</label>
-                <input className="login-field" type="password" name="password" id="password" />
-                
-            </form>
+    handleUsernameChange(e) {
+        this.setState({ username: e.target.value })
+    }
 
-        </div>
-    )
+    handlePasswordChange(e) {
+        this.setState({ password: e.target.value })
+    }
+
+    handleSubmit(e) {
+        e.preventDefault()
+        const { cookies } = this.props
+        userService.login(this.state.username, this.state.password)
+            .then(token => cookies.set('auth-token', token))
+            .then(() => this.props.history.push('/'))
+            .catch(err => console.log(err))
+    }
+
+    render() {
+
+        let loginButton
+        let username = this.state.username
+        let password = this.state.password
+
+        if (username !== '' && password !== '') {
+            loginButton = <button className="login-button" onClick={this.handleSubmit}>Login</button>
+        }
+
+        return (
+            <div>
+
+                <h1 className="login-section-title">Login</h1>
+
+                <form onSubmit={this.handleSubmit}>
+
+                    <label className="field-label">Username</label>
+                    <input className="login-field" type="text" value={this.state.username} onChange={this.handleUsernameChange} />
+
+                    <label className="field-label">Password</label>
+                    <input className="login-field" type="password" value={this.state.password} onChange={this.handlePasswordChange} /><br></br>
+
+                    {loginButton}
+
+                </form>
+
+            </div>
+        )
+
+    }
+
 }
 
-export default Login
+export default withCookies(Login)

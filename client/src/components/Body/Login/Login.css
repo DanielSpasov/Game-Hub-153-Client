@@ -30,3 +30,33 @@
     border: 2px solid #a970ff;
     color: white;
 }
+
+.register-field:hover {
+    outline: none;
+    border: 2px solid #aeaeb0;
+    color: white;
+}
+
+.register-field:focus {
+    outline: none;
+    border: 2px solid #a970ff;
+    color: white;
+}
+
+.login-button {
+    background-color: #464649;
+    border: 3px solid #464649;
+    border-radius: 10px;
+    color: white;
+    margin: auto;
+    margin-top: 10px;
+    width: 200px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.login-button:hover {
+    color: #a970ff;
+}
