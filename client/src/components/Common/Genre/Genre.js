@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom'
 
 import Image from '../Image/Image'
+
 import './Genre.css'
 
-
-function Genre({
+const Genre = ({
     name,
     imageUrl,
     page
-}) {
+}) => {
 
     const button = page === 'followGenres' ?
         <div className="follow-div">

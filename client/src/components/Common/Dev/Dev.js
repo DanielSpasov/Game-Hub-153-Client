@@ -1,14 +1,14 @@
 import { Link } from 'react-router-dom'
 
 import Image from '../Image/Image'
+
 import './Dev.css'
 
-
-function Dev({
+const Dev = ({
     orgName,
     imageUrl,
     page
-}) {
+}) => {
 
     const button = page === 'followDevs' ?
         <div className="follow-div">
