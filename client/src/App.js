@@ -6,7 +6,7 @@ import Sidebar from './components/Sidebar/Sidebar'
 import Body from './components/Body/Body'
 // import Footer from './components/Footer/Footer'
 
-function App() {
+const App = () => {
     return (
         <div className="app">
 
