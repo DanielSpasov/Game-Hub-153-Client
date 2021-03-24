@@ -4,7 +4,6 @@ import { ToastContainer, toast } from 'react-toastify'
 
 import gamesService from '../../../../services/gamesService'
 
-import 'react-toastify/dist/ReactToastify.css';
 import './AddGames.css'
 
 class AddGames extends Component {
