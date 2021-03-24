@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify'
 
 import genresService from '../../../../services/genresService'
 
@@ -30,20 +31,19 @@ class AddGenres extends Component {
 
     handleSubmit(e) {
         e.preventDefault()
+
+        let imageUrlIsHttp = this.state.imageUrl.slice(0, 7) === 'http://'
+        let imageUrlIsHttps = this.state.imageUrl.slice(0, 8) === 'https://'
+
+        if (this.state.name === '') return toast.error('You have to provide a genre name.')
+        if (!imageUrlIsHttp) if(!imageUrlIsHttps) return toast.error('Invalid image Url.')
+        if (this.state.name.length > 25) return toast.error('The name is too long.')
+
         genresService.addGenre(this.state)
         this.props.history.push('/genres')
     }
 
     render() {
-
-        let addGenreButton
-        let imageUrlIsHttp = this.state.imageUrl.slice(0, 7) === 'http://'
-        let imageUrlIsHttps = this.state.imageUrl.slice(0, 8) === 'https://'
-
-        if (this.state.name !== '' && (imageUrlIsHttp || imageUrlIsHttps)) {
-            addGenreButton = <button className="add-genre-button" onClick={this.handleSubmit}>Add Genre</button>
-        }
-
         return (
             <div className="genres-section">
 
@@ -68,11 +68,11 @@ class AddGenres extends Component {
                         <input className="add-genre-field" type="text" placeholder="Name" value={this.state.name} onChange={this.handleNameChange} />
                         <input className="add-genre-field" type="text" placeholder="Image Url" value={this.state.imageUrl} onChange={this.handleImageUrlChange} /><br></br>
                     
-                        {addGenreButton}
+                        <button className="add-genre-button" onClick={this.handleSubmit}>Add Genre</button>
 
                     </form>
                 </div>
-
+                <ToastContainer />
             </div>
         )
     }
