@@ -36,9 +36,9 @@ class AddGames extends Component {
         let imageUrlIsHttp = this.state.imageUrl.slice(0, 7) === 'http://'
         let imageUrlIsHttps = this.state.imageUrl.slice(0, 8) === 'https://'
 
-        if (this.state.title === '') return toast.error('You have to provide a Title.')
-        if (!imageUrlIsHttp) if(!imageUrlIsHttps) return toast.error('This is not a valid image Url.')
-        if (this.state.title.length > 25) return toast.error('Title is too long.')
+        if (this.state.title === '') return toast.error('You have to provide a game title.')
+        if (!imageUrlIsHttp) if(!imageUrlIsHttps) return toast.error('Invalid image Url.')
+        if (this.state.title.length > 25) return toast.error('The title is too long.')
 
         gamesService.addGame(this.state)
         this.props.history.push('/games')
