@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify'
 
 import devsService from '../../../../services/devsService'
 
@@ -30,20 +31,19 @@ class AddDevs extends Component {
 
     handleSubmit(e) {
         e.preventDefault()
+
+        let imageUrlIsHttp = this.state.imageUrl.slice(0, 7) === 'http://'
+        let imageUrlIsHttps = this.state.imageUrl.slice(0, 8) === 'https://'
+
+        if (this.state.orgName === '') return toast.error('You have to provide an organization name.')
+        if (!imageUrlIsHttp) if(!imageUrlIsHttps) return toast.error('Invalid image Url.')
+        if (this.state.orgName.length > 25) return toast.error('The organization name is too long.')
+
         devsService.addDev(this.state)
         this.props.history.push('/devs')
     }
 
     render() {
-
-        let addDevButton
-        let imageUrlIsHttp = this.state.imageUrl.slice(0, 7) === 'http://'
-        let imageUrlIsHttps = this.state.imageUrl.slice(0, 8) === 'https://'
-
-        if (this.state.orgName !== '' && (imageUrlIsHttp || imageUrlIsHttps)) {
-            addDevButton = <button className="add-dev-button" onClick={this.handleSubmit}>Add Developer</button>
-        }
-
         return (
             <div className="devs-section">
 
@@ -68,11 +68,11 @@ class AddDevs extends Component {
                         <input className="add-game-field" type="text" placeholder="Org Name" value={this.state.orgName} onChange={this.handleOrgNameChange} />
                         <input className="add-game-field" type="text" placeholder="Image Url" value={this.state.imageUrl} onChange={this.handleImageUrlChange} /><br></br>
 
-                        {addDevButton}
+                        <button className="add-dev-button" onClick={this.handleSubmit}>Add Developer</button>
 
                     </form>
                 </div>
-
+                <ToastContainer />
             </div>
         )
     }

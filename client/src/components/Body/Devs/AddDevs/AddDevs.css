@@ -38,3 +38,7 @@
 .add-dev-button:hover {
     color: #a970ff;
 }
+
+.add-genre-button:focus {
+    outline: none;
+}
