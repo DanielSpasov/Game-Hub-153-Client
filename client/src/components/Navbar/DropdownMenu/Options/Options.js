@@ -2,7 +2,7 @@ import './Options.css'
 
 import Item from './Item/Item'
 
-function Options() {
+const Options = () => {
     return (
         <div className="dropdown-content">
 

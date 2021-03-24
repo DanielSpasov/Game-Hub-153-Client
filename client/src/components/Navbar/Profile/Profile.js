@@ -2,8 +2,7 @@ import { NavLink } from 'react-router-dom'
 
 import './Profile.css'
 
-
-function Profile() {
+const Profile = () => {
     return (
         <div className="profile-pic">
             <NavLink to="/profile">

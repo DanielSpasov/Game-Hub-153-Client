@@ -2,7 +2,7 @@ import './Navigation.css'
 
 import Item from './Item/Item'
 
-function Navigation() {
+const Navigation = () => {
     return (
         <div className="navigation">
             <Item href="/games" text="Games" id="games" />

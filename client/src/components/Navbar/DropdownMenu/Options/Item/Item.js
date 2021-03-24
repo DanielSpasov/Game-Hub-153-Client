@@ -2,10 +2,10 @@ import { Link } from 'react-router-dom'
 
 import './Item.css'
 
-function Item({
+const Item = ({
     href,
     children
-}) {
+}) => {
     return (
         <li className="list-item">
             <Link to={href}>{children}</Link>

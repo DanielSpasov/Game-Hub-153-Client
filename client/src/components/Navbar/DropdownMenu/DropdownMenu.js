@@ -1,31 +1,17 @@
-import { Component } from 'react'
+import Options from './Options/Options'
 
 import './DropdownMenu.css'
 
-import Options from './Options/Options'
+const DropdownMenu = () => {
+    return (
+        <div className="dropdown">
 
-class DropdownMenu extends Component {
+            <span className="dots">...</span>
 
-    constructor(props) {
-        super(props)
+            <Options />
 
-        this.state = {
-            menuIsOpen: false
-        }
-    }
-
-
-    render() {
-        return (
-            <div className="dropdown">
-
-                <span className="dots">...</span>
-
-                <Options />
-
-            </div>
-        )
-    }
+        </div>
+    )
 }
 
 export default DropdownMenu

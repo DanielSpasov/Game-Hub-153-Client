@@ -6,7 +6,7 @@ import UserNavigation from './UserNavigation/UserNavigation'
 import Profile from './Profile/Profile'
 import DropdownMenu from './DropdownMenu/DropdownMenu'
 
-function Navbar() {
+const Navbar = () => {
     return (
         <nav className="navbar">
 

@@ -2,7 +2,7 @@ import './Logo.css'
 
 import { NavLink } from 'react-router-dom'
 
-function Logo() {
+const Logo = () => {
     return (
         <div className="logo">
             <NavLink to="/">

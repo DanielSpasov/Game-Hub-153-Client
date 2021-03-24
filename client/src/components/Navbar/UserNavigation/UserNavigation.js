@@ -2,7 +2,7 @@ import './UserNavigation.css'
 
 import Item from './Item/Item'
 
-function Navigation() {
+const Navigation = () => {
     return (
         <div className="user-navigation">
             <Item href="/user/login" text="Login" id="login" />
