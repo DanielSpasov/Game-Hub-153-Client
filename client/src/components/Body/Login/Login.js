@@ -1,5 +1,7 @@
 import { Component } from 'react'
 import { withCookies } from 'react-cookie'
+import { ToastContainer, toast } from 'react-toastify'
+
 import userService from '../../../services/userService'
 
 import './Login.css'
@@ -30,22 +32,17 @@ class Login extends Component {
     handleSubmit(e) {
         e.preventDefault()
         const { cookies } = this.props
+
+        if (this.state.username === '') return toast.error('Username cannot be none.')
+        if (this.state.password === '') return toast.error('Password cannot be none.')
+
         userService.login(this.state.username, this.state.password)
             .then(token => cookies.set('auth-token', token))
             .then(() => this.props.history.push('/'))
-            .catch(err => console.log(err))
+            .catch(toast.error('Wrong username or password.'))
     }
 
     render() {
-
-        let loginButton
-        let username = this.state.username
-        let password = this.state.password
-
-        if (username !== '' && password !== '') {
-            loginButton = <button className="login-button" onClick={this.handleSubmit}>Login</button>
-        }
-        
         return (
             <div>
 
@@ -59,10 +56,10 @@ class Login extends Component {
                     <label className="field-label">Password</label>
                     <input className="login-field" type="password" value={this.state.password} onChange={this.handlePasswordChange} /><br></br>
 
-                    {loginButton}
+                    <button className="login-button" onClick={this.handleSubmit}>Login</button>
 
                 </form>
-
+                <ToastContainer />
             </div>
         )
 
