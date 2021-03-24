@@ -1,5 +1,5 @@
 import { Component } from 'react'
-
+import { ToastContainer, toast } from 'react-toastify'
 
 import userService from '../../../services/userService'
 
@@ -36,21 +36,17 @@ class Register extends Component {
 
     handleSubmit(e) {
         e.preventDefault()
+
+        if (this.state.username === '') return toast.error('Username cannot be none.')
+        if (this.state.password === '') return toast.error('Password cannot be none.')
+        if (this.state.password !== this.state.rePassword) return toast.error('Passwords doesn\'t match.')
+        if (this.state.username.length > 25) return toast.error('Username is too long.')
+
         userService.register(this.state.username, this.state.password)
         this.props.history.push('/')
     }
 
     render() {
-
-        let registerButton
-        let username = this.state.username
-        let password = this.state.password
-        let rePassword = this.state.rePassword
-
-        if (username !== '' && password !== '' && rePassword !== '' && password === rePassword) {
-            registerButton = <button className="register-button" onClick={this.handleSubmit}>Register</button>
-        }
-
         return (
             <div>
 
@@ -67,10 +63,10 @@ class Register extends Component {
                     <label htmlFor="repeat-password" className="field-label">Repeat Password</label>
                     <input className="register-field" type="password" value={this.state.rePassword} onChange={this.handleRePasswordChange} /><br></br>
 
-                    {registerButton}
+                    <button className="register-button" onClick={this.handleSubmit}>Register</button>
 
                 </form>
-
+                <ToastContainer />
             </div>
         )
     }
