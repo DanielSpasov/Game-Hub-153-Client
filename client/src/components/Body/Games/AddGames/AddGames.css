@@ -38,3 +38,7 @@
 .add-game-button:hover {
     color: #a970ff;
 }
+
+.add-game-button:focus {
+    outline: none;
+}

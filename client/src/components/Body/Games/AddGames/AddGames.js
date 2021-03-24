@@ -1,8 +1,10 @@
 import { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify'
 
 import gamesService from '../../../../services/gamesService'
 
+import 'react-toastify/dist/ReactToastify.css';
 import './AddGames.css'
 
 class AddGames extends Component {
@@ -30,20 +32,19 @@ class AddGames extends Component {
 
     handleSubmit(e) {
         e.preventDefault()
+
+        let imageUrlIsHttp = this.state.imageUrl.slice(0, 7) === 'http://'
+        let imageUrlIsHttps = this.state.imageUrl.slice(0, 8) === 'https://'
+
+        if (this.state.title === '') return toast.error('You have to provide a Title.')
+        if (!imageUrlIsHttp) if(!imageUrlIsHttps) return toast.error('This is not a valid image Url.')
+        if (this.state.title.length > 25) return toast.error('Title is too long.')
+
         gamesService.addGame(this.state)
         this.props.history.push('/games')
     }
 
     render() {
-
-        let addGameButton
-        let imageUrlIsHttp = this.state.imageUrl.slice(0, 7) === 'http://'
-        let imageUrlIsHttps = this.state.imageUrl.slice(0, 8) === 'https://'
-
-        if (this.state.title !== '' && (imageUrlIsHttp || imageUrlIsHttps)) {
-            addGameButton = <button className="add-game-button" onClick={this.handleSubmit}>Add Game</button>
-        }
-
         return (
             <div className="games-section">
 
@@ -69,11 +70,11 @@ class AddGames extends Component {
                         <input className="add-game-field" type="text" placeholder="Title" value={this.state.title} onChange={this.handleTitleChange} />
                         <input className="add-game-field" type="text" placeholder="Image Url" value={this.state.imageUrl} onChange={this.handleImageUrlChange} /><br></br>
 
-                        {addGameButton}
+                        <button className="add-game-button" onClick={this.handleSubmit}>Add Game</button>
 
                     </form>
                 </div>
-
+                <ToastContainer />
             </div>
         )
     }
