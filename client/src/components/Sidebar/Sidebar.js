@@ -2,7 +2,7 @@ import './Sidebar.css'
 
 import FollowedGames from './FollowedGames/FollowedGames'
 
-function Sidebar() {
+const Sidebar = () => {
     return (
         <aside className="sidebar">
 
