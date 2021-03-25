@@ -37,7 +37,7 @@ class Login extends Component {
         if (this.state.password === '') return toast.error('Password cannot be none.')
 
         userService.login(this.state.username, this.state.password)
-            .then(token => cookies.set('auth-token', token))
+            .then(token => cookies.set('x-auth-token', token.token))
             .then(() => this.props.history.push('/'))
             .catch(toast.error('Wrong username or password.'))
     }

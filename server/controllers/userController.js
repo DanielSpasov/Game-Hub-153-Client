@@ -1,6 +1,5 @@
 const router = require('express').Router()
 
-const { AUTH_COOKIE } = require('../config/index')
 const User = require('../Models/User')
 const jwt = require('../utils/jwt')
 
@@ -23,10 +22,16 @@ router.use('/login', (req, res, next) => {
                 return
             }
 
-            const token = jwt.createToken({ id: user._id })
+            const token = jwt.createToken({ id: user._id, username: user.username })
             res.send({ token })
         })
         .catch(next)
+})
+
+router.use('/verifyToken', (req, res, next) => {
+    jwt.verifyToken(req.body.token)
+        .then(data => res.send(data))
+        .catch(err => console.log(err))
 })
 
 
