@@ -45,6 +45,11 @@ function Body() {
                 <Route path="/user/login" component={Login} exact />
                 <Route path="/user/register" component={Register} exact />
 
+
+                <Route path="*">
+                    <h1>404 Not Found</h1>
+                </Route>
+
             </Switch>
 
         </main>
