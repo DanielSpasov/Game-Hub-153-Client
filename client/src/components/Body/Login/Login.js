@@ -44,6 +44,7 @@ class Login extends Component {
                         this.props.setAppState({ id: userInfo.id, username: userInfo.username })
                     }
                 }))
+            .then(() => toast.success('Successful Login.'))
             // .then(() => this.props.history.push('/'))
             .catch(err => { console.log(err); toast.error('Wrong username or password.') })
     }
