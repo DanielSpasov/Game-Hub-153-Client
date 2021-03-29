@@ -6,15 +6,21 @@ import UserNavigation from './UserNavigation/UserNavigation'
 import Profile from './Profile/Profile'
 import DropdownMenu from './DropdownMenu/DropdownMenu'
 
-const Navbar = () => {
+const Navbar = ({ isAuth }) => {
+    console.log('In Navbar: ', isAuth)
+
+    let userNav = isAuth ? null : <UserNavigation />
+    let dropdown = isAuth ? <DropdownMenu /> : null
+    let profile = isAuth ? <Profile /> : null
+
     return (
         <nav className="navbar">
 
             <Logo />
-            <Navigation />
-            <Profile />
-            <DropdownMenu />
-            <UserNavigation />
+            <Navigation isAuth={isAuth} />
+            {profile}
+            {dropdown}
+            {userNav}
 
         </nav>
     )

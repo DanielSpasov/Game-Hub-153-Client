@@ -21,7 +21,8 @@ import Login from './Login/Login'
 import Register from './Register/Register'
 
 
-function Body() {
+function Body({ setAppState }) {
+
     return (
         <main className="main-container">
 
@@ -42,7 +43,7 @@ function Body() {
                 <Route path="/devs/add" component={AddDevs} exact />
 
 
-                <Route path="/user/login" component={Login} exact />
+                <Route path="/user/login" render={() => <Login setAppState={setAppState} />} exact />
                 <Route path="/user/register" component={Register} exact />
 
 

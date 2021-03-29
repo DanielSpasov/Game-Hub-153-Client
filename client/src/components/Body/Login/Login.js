@@ -38,8 +38,14 @@ class Login extends Component {
 
         userService.login(this.state.username, this.state.password)
             .then(token => cookies.set('x-auth-token', token.token))
-            .then(() => this.props.history.push('/'))
-            .catch(toast.error('Wrong username or password.'))
+            .then(() => userService.verifyToken(document.cookie.split('x-auth-token=')[1])
+                .then(userInfo => {
+                    if (userInfo) {
+                        this.props.setAppState({ id: userInfo.id, username: userInfo.username })
+                    }
+                }))
+            // .then(() => this.props.history.push('/'))
+            .catch(err => { console.log(err); toast.error('Wrong username or password.') })
     }
 
     render() {

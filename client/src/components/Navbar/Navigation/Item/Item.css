@@ -35,3 +35,21 @@
         display: none;
     }
 }
+
+@media screen and (max-width: 630px) {
+    .nav-item#addGames {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 770px) {
+    .nav-item#addGenres {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .nav-item#addDevs {
+        display: none;
+    }
+}

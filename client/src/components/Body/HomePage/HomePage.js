@@ -3,6 +3,7 @@ import { Component } from 'react'
 import gameService from '../../../services/gamesService'
 import genresService from '../../../services/genresService'
 import devsService from '../../../services/devsService'
+import userService from '../../../services/userService'
 
 import TopFiveGames from './TopFiveGames/TopFiveGames'
 import TopFiveGenres from './TopFiveGenres/TopFiveGenres'
