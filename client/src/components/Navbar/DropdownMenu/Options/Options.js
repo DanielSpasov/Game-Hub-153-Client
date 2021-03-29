@@ -6,25 +6,24 @@ const Options = () => {
     return (
         <div className="dropdown-content">
 
-            <h1 className="list-title">TODO: Users</h1>
+            <h1 className="list-title">Look at:</h1>
             <ul className="list">
-                <Item href="/profile">Profile Settings</Item>
-                <Item href="/register">Register</Item>
-                <Item href="/login">Login</Item>
-                <Item href="/logout">Logout</Item>
-            </ul>
-
-            <h1 className="list-title">TODO: Functionality</h1>
-            <ul className="list">
-                <Item href="/followGames">Follow Games</Item>
-                <Item href="/genres">Genres</Item>
                 <Item href="/games">Games</Item>
-                <Item href="/devs">Developers</Item>
+                <Item href="/genres">Genres</Item>
+                <Item href="/devs">Devs</Item>
             </ul>
 
-            <h1 className="list-title">TODO: Misc</h1>
+            <h1 className="list-title">Add:</h1>
             <ul className="list">
-                <Item href="#">Light Mode</Item>
+                <Item href="/games/add">Add Games</Item>
+                <Item href="/genres/add">Add Genres</Item>
+                <Item href="/devs/add">Add Devs</Item>
+            </ul>
+
+            <h1 className="list-title">User Settings:</h1>
+            <ul className="list">
+                <Item href="/profile">Profile</Item>
+                <Item href="/logout">Logout</Item>
             </ul>
 
         </div>
