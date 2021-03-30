@@ -23,7 +23,7 @@ class Image extends Component {
     render() {
         return (
             <div className="image-box" style={{backgroundColor: this.state.bgColor}}>
-                <Link to={`/${this.props.type}/${this.props.title}`}>
+                <Link to={`/${this.props.type}/${this.props.id}`}>
                     <img
                         className="game-image"
                         width="200px"

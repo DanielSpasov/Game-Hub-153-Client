@@ -1,5 +1,4 @@
 import { Component } from 'react'
-import { Link } from 'react-router-dom'
 
 import gamesService from '../../../services/gamesService'
 
@@ -45,11 +44,6 @@ class Games extends Component {
                 <h1>Search Games:</h1>
 
                 <div className="games-nav-container" >
-
-                    <div className="games-button-div">
-                        <Link to="/games/follow" className="games-redirect-link">Follow Games</Link>
-                    </div>
-
                     <div className="games-search-form">
                         <form onSubmit={this.handleSubmit}>
                             <input
@@ -61,11 +55,6 @@ class Games extends Component {
                             />
                         </form>
                     </div>
-
-                    <div className="games-button-div">
-                        <Link to="/games/add" className="games-redirect-link">Add Games</Link>
-                    </div>
-
                 </div>
 
                 <div className="games-container">
@@ -74,6 +63,7 @@ class Games extends Component {
                             key={x._id}
                             title={x.title}
                             imageUrl={x.imageUrl}
+                            id={x._id}
                         />
                     )}
                 </div>
