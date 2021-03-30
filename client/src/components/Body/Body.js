@@ -7,7 +7,7 @@ import HomePage from './HomePage/HomePage.js'
 
 import Games from './Games/Games'
 import AddGames from './Games/AddGames/AddGames'
-import Details from './Games/Details/Details'
+import GameDetails from './Games/GameDetails/GameDetails'
 
 import Genres from './Genres/Genres'
 import AddGenres from './Genres/AddGenres/AddGenres'
@@ -31,7 +31,7 @@ function Body({ setAppState }) {
 
                 <Route path="/games" component={Games} exact />
                 <Route path="/games/add" component={AddGames} exact />
-                <Route path="/games/:gameId" component={Details} exact />
+                <Route path="/games/:gameId" component={GameDetails} exact />
 
                 <Route path="/genres" component={Genres} exact />
                 <Route path="/genres/add" component={AddGenres} exact />
