@@ -1,5 +1,4 @@
 import { Component } from 'react'
-import { Link } from 'react-router-dom'
 
 import genresService from '../../../services/genresService'
 
@@ -45,11 +44,6 @@ class Genres extends Component {
                 <h1>Search Genres:</h1>
 
                 <div className="genres-nav-container" >
-
-                    <div className="genres-button-div">
-                        <Link to="/genres/follow" className="genres-redirect-link">Follow Genres</Link>
-                    </div>
-
                     <div className="genres-search-form">
                         <form onSubmit={this.handleSubmit}>
                             <input
@@ -61,11 +55,6 @@ class Genres extends Component {
                             />
                         </form>
                     </div>
-
-                    <div className="genres-button-div">
-                        <Link to="/genres/add" className="genres-redirect-link">Add Genres</Link>
-                    </div>
-
                 </div>
 
                 <div className="genres-container">
@@ -74,6 +63,7 @@ class Genres extends Component {
                             key={x._id}
                             name={x.name}
                             imageUrl={x.imageUrl}
+                            id={x._id}
                         />
                     )}
                 </div>

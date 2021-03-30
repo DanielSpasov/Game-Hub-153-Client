@@ -11,6 +11,7 @@ import Details from './Games/Details/Details'
 
 import Genres from './Genres/Genres'
 import AddGenres from './Genres/AddGenres/AddGenres'
+import GenreDetails from './Genres/GenreDetails/GenreDetails'
 
 import Devs from './Devs/Devs'
 import AddDevs from './Devs/AddDevs/AddDevs'
@@ -34,6 +35,7 @@ function Body({ setAppState }) {
 
                 <Route path="/genres" component={Genres} exact />
                 <Route path="/genres/add" component={AddGenres} exact />
+                <Route path="/genres/:genreId" component={GenreDetails} exact />
 
                 <Route path="/devs" component={Devs} exact />
                 <Route path="/devs/add" component={AddDevs} exact />

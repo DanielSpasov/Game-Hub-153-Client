@@ -7,20 +7,12 @@ import './Genre.css'
 const Genre = ({
     name,
     imageUrl,
-    page
+    id
 }) => {
-
-    const button = page === 'followGenres' ?
-        <div className="follow-div">
-            <Link to={`/genres/follow/${name}`} className="follow-link">Follow</Link>
-        </div>
-        : null
-
     return (
         <div className="genre-card">
-            <Image title={name} imageUrl={imageUrl} type='genres' />
-            <Link to={'/genres/' + name} className="genre-title">{name}</Link>
-            {button}
+            <Image id={id} title={name} imageUrl={imageUrl} type='genres' />
+            <Link to={'/genres/' + id} className="genre-title">{name}</Link>
         </div>
     )
 }
