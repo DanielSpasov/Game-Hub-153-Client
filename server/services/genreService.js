@@ -13,7 +13,7 @@ async function getAll(query) {
 async function getTopFive() {
     let genres = await Genre.find({}).lean()
 
-    genres = genres.sort((a, b) => (b.upvotes - a.upvotes))
+    genres = genres.sort((a, b) => (b.follows - a.follows))
     genres = genres.slice(0, 5)
 
     return genres

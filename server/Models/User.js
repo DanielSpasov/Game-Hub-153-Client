@@ -12,6 +12,18 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
+    },
+    followedGames: {
+        type: Array,
+        default: []
+    },
+    followedGenres: {
+        type: Array,
+        default: []
+    },
+    followedDevs: {
+        type: Array,
+        default: []
     }
 })
 

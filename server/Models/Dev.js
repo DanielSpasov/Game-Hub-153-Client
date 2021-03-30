@@ -12,7 +12,7 @@ const devSchema = new mongoose.Schema({
         required: true,
         validate: /^https?:\/\//,
     },
-    upvotes: {
+    follows: {
         type: Number,
         default: 0,
     },
