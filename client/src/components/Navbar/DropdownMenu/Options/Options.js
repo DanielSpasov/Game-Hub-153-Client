@@ -1,8 +1,18 @@
+import Item from './Item/Item'
+import { useHistory } from 'react-router-dom'
+
 import './Options.css'
 
-import Item from './Item/Item'
 
 const Options = () => {
+
+    const history = useHistory()
+
+    const logout = () => {
+        document.cookie = `x-auth-token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`
+        history.push('/')
+    }
+
     return (
         <div className="dropdown-content">
 
@@ -23,7 +33,7 @@ const Options = () => {
             <h1 className="list-title">User Settings:</h1>
             <ul className="list">
                 <Item href="/profile">Profile</Item>
-                <Item href="/logout">Logout</Item>
+                <button className="logoutBtn" onClick={logout}>Logout</button>
             </ul>
 
         </div>

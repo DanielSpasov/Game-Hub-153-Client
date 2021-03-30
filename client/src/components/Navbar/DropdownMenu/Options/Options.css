@@ -22,3 +22,20 @@
     font-weight: bold;
     text-align: center;
 }
+
+.logoutBtn {
+    color: #a970ff;
+    margin-left: -40px;
+    background-color: #18181b;
+    border: 3px solid #18181b;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.logoutBtn:hover {
+    color: red;
+}
+
+.logoutBtn:focus {
+    outline: none;
+}
