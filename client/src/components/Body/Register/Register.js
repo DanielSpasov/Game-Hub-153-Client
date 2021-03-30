@@ -43,7 +43,7 @@ class Register extends Component {
         if (this.state.username.length > 25) return toast.error('Username is too long.')
 
         userService.register(this.state.username, this.state.password)
-            .then(() => this.props.history.push('/'))
+            .then(() => this.props.history.push('/user/login'))
     }
 
     render() {
