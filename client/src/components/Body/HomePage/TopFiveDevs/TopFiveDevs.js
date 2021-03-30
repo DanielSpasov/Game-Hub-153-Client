@@ -7,7 +7,7 @@ function TopFiveDevs({
     return (
         <div>
 
-            <h2>Our top 5 most loved game developers</h2>
+            <h2>Our top 5 most followed game developers</h2>
 
             <div>
                 {devs?.map(x =>

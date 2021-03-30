@@ -7,7 +7,7 @@ function TopFiveGames({
     return (
         <div>
 
-            <h2>Our top 5 most upvoted games</h2>
+            <h2>Our top 5 most followed games</h2>
 
             <div>
                 {games?.map(x =>

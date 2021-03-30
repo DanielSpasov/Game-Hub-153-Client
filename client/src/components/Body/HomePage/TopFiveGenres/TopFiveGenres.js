@@ -7,7 +7,7 @@ function TopFiveGenres({
     return (
         <div>
 
-            <h2>Our top 5 most played genres</h2>
+            <h2>Our top 5 most followed genres</h2>
 
             <div>
                 {genres?.map(x =>
