@@ -15,6 +15,7 @@ import GenreDetails from './Genres/GenreDetails/GenreDetails'
 
 import Devs from './Devs/Devs'
 import AddDevs from './Devs/AddDevs/AddDevs'
+import DevDetails from './Devs/DevDetails/DevDetails'
 
 import Login from './Login/Login'
 import Register from './Register/Register'
@@ -39,6 +40,7 @@ function Body({ setAppState }) {
 
                 <Route path="/devs" component={Devs} exact />
                 <Route path="/devs/add" component={AddDevs} exact />
+                <Route path="/devs/:devId" component={DevDetails} exact />
 
 
                 <Route path="/user/login" render={() => <Login setAppState={setAppState} />} exact />

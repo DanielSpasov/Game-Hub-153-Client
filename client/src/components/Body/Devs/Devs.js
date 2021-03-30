@@ -1,5 +1,4 @@
 import { Component } from 'react'
-import { Link } from 'react-router-dom'
 
 import devsService from '../../../services/devsService'
 
@@ -45,11 +44,6 @@ class Devs extends Component {
                 <h1>Search Game Developers:</h1>
 
                 <div className="devs-nav-container" >
-
-                    <div className="devs-button-div">
-                        <Link to="/devs/follow" className="devs-redirect-link">Follow Game Developers</Link>
-                    </div>
-
                     <div className="devs-search-form">
                         <form onSubmit={this.handleSubmit}>
                             <input
@@ -61,11 +55,6 @@ class Devs extends Component {
                             />
                         </form>
                     </div>
-
-                    <div className="devs-button-div">
-                        <Link to="/devs/add" className="devs-redirect-link">Add Developers</Link>
-                    </div>
-
                 </div>
 
                 <div className="devs-container">
@@ -74,6 +63,7 @@ class Devs extends Component {
                             key={x._id}
                             orgName={x.orgName}
                             imageUrl={x.imageUrl}
+                            id={x._id}
                         />
                     )}
                 </div>
