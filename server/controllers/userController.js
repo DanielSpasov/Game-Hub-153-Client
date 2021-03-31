@@ -29,9 +29,9 @@ router.use('/login', (req, res, next) => {
 })
 
 router.use('/verifyToken', (req, res, next) => {
-    jwt.verifyToken(req.body.token)
-        .then(data => res.send(data))
-        .catch(err => console.log(err))
+    // jwt.verifyToken(req.body.token)
+    //     .then(data => res.send(data))
+    //     .catch(err => console.log(err))
 })
 
 

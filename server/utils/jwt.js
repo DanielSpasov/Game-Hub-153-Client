@@ -5,16 +5,16 @@ function createToken(data) {
     return jwt.sign(data, SECRET)
 }
 
-function verifyToken(token) {
-    return new Promise((resolve, reject) => {
-        jwt.verify(token, SECRET, (err, data) => {
-            if (err) { reject(err); return }
-            resolve(data)
-        })
-    })
-}
+// function verifyToken(token) {
+//     return new Promise((resolve, reject) => {
+//         jwt.verify(token, SECRET, (err, data) => {
+//             if (err) { reject(err); return }
+//             resolve(data)
+//         })
+//     })
+// }
 
 module.exports = {
     createToken,
-    verifyToken
+    // verifyToken
 }
