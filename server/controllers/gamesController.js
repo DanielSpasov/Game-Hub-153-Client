@@ -19,5 +19,11 @@ router.post('/addGame', (req, res) => {
         .catch(err => console.log(err))
 })
 
+router.get('/getOne/:id', (req, res) => {
+    gameService.getOne(req.params.id)
+        .then(data => res.send(JSON.stringify(data)))
+        .catch(err => console.log(err))
+})
+
 
 module.exports = router

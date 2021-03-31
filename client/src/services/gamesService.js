@@ -22,10 +22,17 @@ function addGame(data) {
     })
 }
 
+function getOne(id) {
+    return fetch(`${config.DB_URI}/api/games/getOne/${id}`)
+        .then(res => res.json())
+        .catch(err => console.log(err))
+}
+
 const functions = {
     getAll,
     getTopFive,
     addGame,
+    getOne
 }
 
 export default functions

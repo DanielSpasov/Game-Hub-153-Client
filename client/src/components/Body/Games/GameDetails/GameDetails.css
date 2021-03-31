@@ -1,0 +1,24 @@
+.header-div {
+    color: white;
+}
+
+.header-div h1 {
+    display: inline-block;
+}
+
+.header-div a {
+    display: inline-block;
+    width: 200px;
+    padding: 10px;
+    margin: 50px;
+    color: white;
+    background-color: #464649;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.header-div a:hover {
+    color: #a970ff;
+}
