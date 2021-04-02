@@ -7,14 +7,12 @@ import './Body.css'
 import HomePage from './HomePage/HomePage.js'
 
 import List from './List/List'
+
 import AddGames from './AddGames/AddGames'
 import GameDetails from './GameDetails/GameDetails'
 
-import Genres from './Genres/Genres'
-import AddGenres from './Genres/AddGenres/AddGenres'
-import GenreDetails from './Genres/GenreDetails/GenreDetails'
+import AddGenres from './AddGenres/AddGenres'
 
-import Devs from './Devs/Devs'
 import AddDevs from './Devs/AddDevs/AddDevs'
 import DevDetails from './Devs/DevDetails/DevDetails'
 
@@ -37,11 +35,11 @@ function Body({
                 <Route path="/games/add" component={AddGames} exact />
                 <Route path="/games/:gameId" render={() => <GameDetails email={email} isAuth={isAuth} />} exact />
 
-                <Route path="/genres" component={Genres} exact />
+                <Route path="/genres" render={() => <List category="genres" />} exact />
                 <Route path="/genres/add" component={AddGenres} exact />
-                <Route path="/genres/:genreId" component={GenreDetails} exact />
+                {/* <Route path="/genres/:genreId" component={GameDetails} exact /> */}
 
-                <Route path="/devs" component={Devs} exact />
+                <Route path="/devs" render={() => <List category="devs" />} exact />
                 <Route path="/devs/add" component={AddDevs} exact />
                 <Route path="/devs/:devId" component={DevDetails} exact />
 
