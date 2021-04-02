@@ -17,7 +17,6 @@ const GameDetails = ({
 
     useEffect(() => {
         gameService.getOne(match.params.gameId).then(item => setGame(item))
-        console.log('gg')
     }, [match.params.gameId])
 
     const handleUpvote = () => {
