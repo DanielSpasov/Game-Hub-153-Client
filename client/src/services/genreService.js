@@ -43,7 +43,7 @@ const upvote = (id, email) => {
             db.collection('genres')
                 .doc(id)
                 .set(upvotedGame)
-                .then(() => toast.success('Game upvoted.'))
+                .then(() => toast.success('Genre upvoted.'))
                 .catch(errorHandler)
         })
         .catch(errorHandler)

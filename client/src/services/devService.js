@@ -34,7 +34,7 @@ const upvote = (id, email) => {
         .doc(id)
         .get()
         .then(res => {
-            if (res.data().usersUpvoted.includes(email)) throw toast.warning('You have already upvoted this genre.')
+            if (res.data().usersUpvoted.includes(email)) throw toast.warning('You have already upvoted these developers.')
             res = { ...res.data(), upvotes: res.data().upvotes + 1 }
             res.usersUpvoted.push(email)
             return res

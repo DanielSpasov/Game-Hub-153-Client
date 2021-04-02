@@ -9,7 +9,7 @@ import HomePage from './HomePage/HomePage.js'
 import List from './List/List'
 
 import AddGames from './AddGames/AddGames'
-import GameDetails from './GameDetails/GameDetails'
+import Details from './Details/Details'
 
 import AddGenres from './AddGenres/AddGenres'
 
@@ -32,15 +32,15 @@ function Body({
 
                 <Route path="/games" render={() => <List category="games" />} exact />
                 <Route path="/games/add" component={AddGames} exact />
-                <Route path="/games/:gameId" render={() => <GameDetails email={email} isAuth={isAuth} />} exact />
+                <Route path="/games/:gameId" render={() => <Details email={email} isAuth={isAuth} category="game" />} exact />
 
                 <Route path="/genres" render={() => <List category="genres" />} exact />
                 <Route path="/genres/add" component={AddGenres} exact />
-                {/* <Route path="/genres/:genreId" component={GameDetails} exact /> */}
+                <Route path="/genres/:genreId" render={() => <Details email={email} isAuth={isAuth} category="genre" />} exact />
 
                 <Route path="/devs" render={() => <List category="devs" />} exact />
                 <Route path="/devs/add" component={AddDevs} exact />
-                {/* <Route path="/devs/:devId" component={DevDetails} exact /> */}
+                <Route path="/devs/:devId" render={() => <Details email={email} isAuth={isAuth} category="dev" />} exact />
 
 
                 <Route path="/user/login" component={Login} exact />
