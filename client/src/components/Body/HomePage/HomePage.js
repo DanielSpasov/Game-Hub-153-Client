@@ -4,6 +4,7 @@ import TopFive from './TopFive'
 
 import gameService from '../../../services/gameService'
 import genreService from '../../../services/genreService'
+import devService from '../../../services/devService'
 
 import './HomePage.css'
 
@@ -17,6 +18,7 @@ const HomePage = () => {
     useEffect(() => {
         gameService.getTopFive().then(items => setGames(items))
         genreService.getTopFive().then(items => setGenres(items))
+        devService.getTopFive().then(items => setDevs(items))
     }, [])
 
     return (
