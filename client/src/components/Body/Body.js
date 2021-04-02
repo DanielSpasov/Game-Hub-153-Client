@@ -13,8 +13,7 @@ import GameDetails from './GameDetails/GameDetails'
 
 import AddGenres from './AddGenres/AddGenres'
 
-import AddDevs from './Devs/AddDevs/AddDevs'
-import DevDetails from './Devs/DevDetails/DevDetails'
+import AddDevs from './AddDevs/AddDevs'
 
 import Login from './Login/Login'
 import Register from './Register/Register'
@@ -41,7 +40,7 @@ function Body({
 
                 <Route path="/devs" render={() => <List category="devs" />} exact />
                 <Route path="/devs/add" component={AddDevs} exact />
-                <Route path="/devs/:devId" component={DevDetails} exact />
+                {/* <Route path="/devs/:devId" component={DevDetails} exact /> */}
 
 
                 <Route path="/user/login" component={Login} exact />

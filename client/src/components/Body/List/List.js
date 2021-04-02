@@ -6,6 +6,7 @@ import Dev from '../../Common/Dev/Dev'
 
 import gameService from '../../../services/gameService'
 import genreService from '../../../services/genreService'
+import devService from '../../../services/devService'
 
 import './List.css'
 
@@ -19,13 +20,11 @@ const List = ({
     const [genres, setGenres] = useState(null)
     const [devs, setDevs] = useState(null)
 
-
     let title
     let items
 
     if (category === 'games') {
         title = <h1>Search Games:</h1>
-
         items = games?.map(x => <Game key={x.id} title={x.title} imageUrl={x.imageUrl} id={x.id} />)
     }
 
@@ -42,6 +41,7 @@ const List = ({
     useEffect(() => {
         gameService.getAll().then(items => setGames(items))
         genreService.getAll().then(items => setGenres(items))
+        devService.getAll().then(items => setDevs(items))
     }, [])
 
     const onSearchSubmitHandler = (e) => {
