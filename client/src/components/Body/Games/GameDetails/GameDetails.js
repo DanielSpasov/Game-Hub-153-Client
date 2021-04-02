@@ -8,7 +8,8 @@ import { getOne, upvote } from '../../../../services/gameService'
 import './GameDetails.css'
 
 const GameDetails = ({
-    email
+    email,
+    isAuth
 }) => {
 
     const match = useRouteMatch()
@@ -22,13 +23,16 @@ const GameDetails = ({
         upvote(match.params.gameId, email)
     }
 
+    let upvoteBtn = isAuth ? <button onClick={handleUpvote}>Upvote</button> : null
+    let additionalInfoBtn = isAuth ? <Link to={`/games/${game?.id}/addInfo`}>Add Additional Info</Link> : null
+
     return (
         <div>
 
             <div className="header-div">
-                <button onClick={handleUpvote}>Upvote</button>
+                {upvoteBtn}
                 <h1>{game?.title}</h1>
-                <Link to={`/games/${game?.id}/addInfo`}>Add Additional Info</Link>
+                {additionalInfoBtn}
             </div>
 
             <div>

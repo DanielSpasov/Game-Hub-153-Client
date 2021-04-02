@@ -35,7 +35,7 @@ function Body({
 
                 <Route path="/games" component={Games} exact />
                 <Route path="/games/add" component={AddGames} exact />
-                <Route path="/games/:gameId" render={() => <GameDetails email={email} />} exact />
+                <Route path="/games/:gameId" render={() => <GameDetails email={email} isAuth={isAuth} />} exact />
 
                 <Route path="/genres" component={Genres} exact />
                 <Route path="/genres/add" component={AddGenres} exact />
