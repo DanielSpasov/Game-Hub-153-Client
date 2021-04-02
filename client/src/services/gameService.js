@@ -23,7 +23,7 @@ const getOne = async (id) => {
     return game
 }
 
-const addGame = (game) => {
+const add = (game) => {
     db.collection('games')
         .add(game)
         .catch(errorHandler)
@@ -66,7 +66,7 @@ const getTopFive = async () => {
 const gameService = {
     getAll,
     getOne,
-    addGame,
+    add,
     getTopFive,
     upvote,
 }

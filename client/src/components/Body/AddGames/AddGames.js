@@ -24,7 +24,7 @@ const AddGames = ({
         if (!imageUrlIsHttp && !imageUrlIsHttps) return toast.error('Invalid image address.')
         if (!intro) return toast.error('Intro is required.')
 
-        gameService.addGame({ title, imageUrl, intro, upvotes: 0, usersUpvoted: [] })
+        gameService.add({ title, imageUrl, intro, upvotes: 0, usersUpvoted: [] })
         history.push('/games')
     }
 
