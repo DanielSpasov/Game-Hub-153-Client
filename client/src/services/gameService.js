@@ -44,3 +44,16 @@ export const upvote = (id, email) => {
         })
         .catch(errorHandler)
 }
+
+export const getTopFive = async () => {
+    let games = await db.collection('games')
+        .get()
+        .then(res =>
+            res.docs
+                .map(x => x = { id: x.id, ...x.data() })
+                .sort((a, b) => b.upvotes - a.upvotes)
+                .slice(0, 5)
+        )
+        .catch(errorHandler)
+    return games
+}
