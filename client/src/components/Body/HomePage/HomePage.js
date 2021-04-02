@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import TopFive from './TopFive'
 
 import gameService from '../../../services/gameService'
+import genreService from '../../../services/genreService'
 
 import './HomePage.css'
 
@@ -15,6 +16,7 @@ const HomePage = () => {
 
     useEffect(() => {
         gameService.getTopFive().then(items => setGames(items))
+        genreService.getTopFive().then(items => setGenres(items))
     }, [])
 
     return (
