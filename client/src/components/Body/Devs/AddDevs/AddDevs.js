@@ -2,8 +2,6 @@ import { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
 
-import devsService from '../../../../services/devsService'
-
 import './AddDevs.css'
 
 class AddDevs extends Component {
@@ -39,7 +37,6 @@ class AddDevs extends Component {
         if (!imageUrlIsHttp) if(!imageUrlIsHttps) return toast.error('Invalid image Url.')
         if (this.state.orgName.length > 25) return toast.error('The organization name is too long.')
 
-        devsService.addDev(this.state)
         this.props.history.push('/devs')
     }
 

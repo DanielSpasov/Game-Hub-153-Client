@@ -1,4 +1,5 @@
-import { Route, Switch } from 'react-router-dom'
+import { Redirect, Route, Switch } from 'react-router-dom'
+import { auth } from '../../utils/firebase'
 
 import './Body.css'
 
@@ -21,8 +22,10 @@ import Login from './Login/Login'
 import Register from './Register/Register'
 
 
-function Body({ setAppState }) {
-
+function Body({
+    email,
+    isAuth
+}) {
     return (
         <main className="main-container">
 
@@ -32,7 +35,7 @@ function Body({ setAppState }) {
 
                 <Route path="/games" component={Games} exact />
                 <Route path="/games/add" component={AddGames} exact />
-                <Route path="/games/:gameId" component={GameDetails} exact />
+                <Route path="/games/:gameId" render={() => <GameDetails email={email} />} exact />
 
                 <Route path="/genres" component={Genres} exact />
                 <Route path="/genres/add" component={AddGenres} exact />
@@ -43,8 +46,12 @@ function Body({ setAppState }) {
                 <Route path="/devs/:devId" component={DevDetails} exact />
 
 
-                <Route path="/user/login" render={() => <Login setAppState={setAppState} />} exact />
+                <Route path="/user/login" component={Login} exact />
                 <Route path="/user/register" component={Register} exact />
+                <Route path="/user/logout" render={() => {
+                    auth.signOut()
+                    return <Redirect to="/" />
+                }} exact />
 
 
                 <Route path="*">

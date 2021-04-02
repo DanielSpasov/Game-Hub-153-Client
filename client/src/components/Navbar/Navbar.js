@@ -1,26 +1,51 @@
+import { NavLink } from 'react-router-dom'
+
 import './Navbar.css'
 
-import Logo from './Logo/Logo'
-import Navigation from './Navigation/Navigation'
-import UserNavigation from './UserNavigation/UserNavigation'
-import Profile from './Profile/Profile'
-import DropdownMenu from './DropdownMenu/DropdownMenu'
+const Navbar = ({
+    email,
+    isAuth
+}) => {
+    let loggedInLinks = isAuth ?
+        <>
+            <NavLink id="addGames" activeStyle={{ 'color': '#a970ff' }} to="/games/add">Add Games</NavLink>
+            <NavLink id="addGenres" activeStyle={{ 'color': '#a970ff' }} to="/genres/add">Add Genres</NavLink>
+            <NavLink id="addDevs" activeStyle={{ 'color': '#a970ff' }} to="/devs/add">Add Devs</NavLink>
+        </> : null
 
-const Navbar = ({ isAuth }) => {
-    console.log('In Navbar: ', isAuth)
+    let authLinks = isAuth ?
+        <>
+            <NavLink activeStyle={{ 'color': '#a970ff' }} to="/user/logout">Logout</NavLink>
+            <span>Welcome, {email}</span>
+        </> :
+        <>
+            <NavLink activeStyle={{ 'color': '#a970ff' }} to="/user/login">Login</NavLink>
+            <NavLink activeStyle={{ 'color': '#a970ff' }} to="/user/register">Register</NavLink>
+        </>
 
-    let userNav = isAuth ? null : <UserNavigation />
-    let dropdown = isAuth ? <DropdownMenu /> : null
-    let profile = isAuth ? <Profile /> : null
 
     return (
         <nav className="navbar">
 
-            <Logo />
-            <Navigation isAuth={isAuth} />
-            {profile}
-            {dropdown}
-            {userNav}
+            <div className="logo">
+                <NavLink to="/">
+                    <img alt="Home" src="/logo-white512.png" width="40px" height="40px" />
+                </NavLink>
+                <NavLink to="/">
+                    <img alt="Home" src="/logo-purple512.png" width="40px" height="40px" className="img-top" />
+                </NavLink>
+            </div>
+
+            <div className="navigation">
+                <NavLink id="games" activeStyle={{ 'color': '#a970ff' }} to="/games">Games</NavLink>
+                <NavLink id="genres" activeStyle={{ 'color': '#a970ff' }} to="/genres">Genres</NavLink>
+                <NavLink id="devs" activeStyle={{ 'color': '#a970ff' }} to="/devs">Devs</NavLink>
+                {loggedInLinks}
+            </div>
+
+            <div className="user-navigation">
+                {authLinks}
+            </div>
 
         </nav>
     )

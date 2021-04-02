@@ -22,3 +22,26 @@
 .header-div a:hover {
     color: #a970ff;
 }
+
+
+.header-div button {
+    display: inline-block;
+    width: 200px;
+    padding: 10px;
+    margin: 50px;
+    color: white;
+    background-color: #464649;
+    border: 2px solid #464649;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.header-div button:hover {
+    color: #a970ff;
+}
+
+.header-div button:focus {
+    outline: none;
+}

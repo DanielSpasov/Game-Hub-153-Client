@@ -1,75 +1,52 @@
-import { Component } from 'react'
 import { ToastContainer, toast } from 'react-toastify'
+import {auth} from '../../../utils/firebase'
 
-import userService from '../../../services/userService'
+import errorHandler from '../../../utils/errorHandler'
 
 import './Register.css'
 
-class Register extends Component {
+const Register = ({
+    history
+}) => {
 
-    constructor(props){
-        super(props)
-
-        this.state = {
-            username: '',
-            password: '',
-            rePassword: '',
-        }
-
-        this.handleUsernameChange = this.handleUsernameChange.bind(this)
-        this.handlePasswordChange = this.handlePasswordChange.bind(this)
-        this.handleRePasswordChange = this.handleRePasswordChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
-    }
-
-    handleUsernameChange(e) {
-        this.setState({ username: e.target.value })
-    }
-
-    handlePasswordChange(e) {
-        this.setState({ password: e.target.value })
-    }
-
-    handleRePasswordChange(e) {
-        this.setState({ rePassword: e.target.value })
-    }
-
-    handleSubmit(e) {
+    const onRegisterFormSubmitHandler = (e) => {
         e.preventDefault()
 
-        if (this.state.username === '') return toast.error('Username cannot be none.')
-        if (this.state.password === '') return toast.error('Password cannot be none.')
-        if (this.state.password !== this.state.rePassword) return toast.error('Passwords doesn\'t match.')
-        if (this.state.username.length > 25) return toast.error('Username is too long.')
+        const email = e.target.email.value
+        const password = e.target.password.value
+        const rePassword = e.target.rePassword.value
 
-        userService.register(this.state.username, this.state.password)
-            .then(() => this.props.history.push('/user/login'))
+        if(password !== rePassword) return toast.error('Passwords doesn\'t match.')
+
+        auth.createUserWithEmailAndPassword(email, password)
+            .then(() => history.push('/'))
+            .catch(errorHandler)
     }
 
-    render() {
-        return (
-            <div>
+    return (
+        <div>
 
-                <h1 className="register-section-title">Register</h1>
+            <h1 className="register-section-title">Register</h1>
 
-                <form onSubmit={this.handleSubmit}>
+            <form onSubmit={onRegisterFormSubmitHandler}>
 
-                    <label htmlFor="username" className="field-label">Username</label>
-                    <input className="register-field" type="text" value={this.state.username} onChange={this.handleUsernameChange} />
+                <label htmlFor="email" className="field-label">Email</label>
+                <input className="register-field" type="text" name="email" placeholder="Email" />
 
-                    <label htmlFor="password" className="field-label">Password</label>
-                    <input className="register-field" type="password" value={this.state.password} onChange={this.handlePasswordChange} />
+                <label htmlFor="password" className="field-label">Password</label>
+                <input className="register-field" type="password" name="password" placeholder="Password" />
 
-                    <label htmlFor="repeat-password" className="field-label">Repeat Password</label>
-                    <input className="register-field" type="password" value={this.state.rePassword} onChange={this.handleRePasswordChange} /><br></br>
+                <label htmlFor="repeat-password" className="field-label">Repeat Password</label>
+                <input className="register-field" type="password" name="rePassword" placeholder="Repeat Password" />
 
-                    <button className="register-button" onClick={this.handleSubmit}>Register</button>
+                <br></br>
 
-                </form>
-                <ToastContainer />
-            </div>
-        )
-    }
+                <button className="register-button">Register</button>
+
+            </form>
+            <ToastContainer />
+        </div>
+    )
 }
 
 export default Register

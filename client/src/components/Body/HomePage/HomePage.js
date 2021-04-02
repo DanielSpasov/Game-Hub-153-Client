@@ -1,9 +1,5 @@
 import { Component } from 'react'
 
-import genresService from '../../../services/genresService'
-import devsService from '../../../services/devsService'
-import gamesService from '../../../services/gamesService'
-
 import TopFive from './TopFive'
 
 import './HomePage.css'
@@ -19,18 +15,6 @@ class HomePage extends Component {
             genres: [],
             devs: [],
         }
-    }
-
-    componentDidMount() {
-        gamesService.getTopFive()
-            .then(games => this.setState({ games }))
-            .catch(err => console.log(err))
-        genresService.getTopFive()
-            .then(genres => this.setState({ genres }))
-            .catch(err => console.log(err))
-        devsService.getTopFive()
-            .then(devs => this.setState({ devs }))
-            .catch(err => console.log(err))
     }
 
     render() {

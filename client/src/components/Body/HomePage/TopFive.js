@@ -9,15 +9,15 @@ const TopFive = ({ category, items }) => {
 
     if (category === 'games') {
         title = <h2>Our top 5 most followed games</h2>
-        itemsContainer = <div>{items.map(x => <Game id={x._id} key={x._id} title={x.title} imageUrl={x.imageUrl} />)}</div>
+        itemsContainer = <div>{items?.map(x => <Game id={x._id} key={x._id} title={x.title} imageUrl={x.imageUrl} />)}</div>
     }
     if (category === 'genres') {
         title = <h2>Our top 5 most followed genres</h2>
-        itemsContainer = <div>{items.map(x => <Genre id={x._id} key={x._id} name={x.name} imageUrl={x.imageUrl} />)}</div>
+        itemsContainer = <div>{items?.map(x => <Genre id={x._id} key={x._id} name={x.name} imageUrl={x.imageUrl} />)}</div>
     }
     if (category === 'devs') {
         title = <h2>Our top 5 most followed game developers</h2>
-        itemsContainer = <div>{items.map(x => <Dev id={x._id} key={x._id} orgName={x.orgName} imageUrl={x.imageUrl} />)}</div>
+        itemsContainer = <div>{items?.map(x => <Dev id={x._id} key={x._id} orgName={x.orgName} imageUrl={x.imageUrl} />)}</div>
     }
 
 

@@ -1,47 +1,57 @@
-import { Component } from 'react'
+import { useEffect, useState } from 'react'
+import { toast, ToastContainer } from 'react-toastify'
+import { useRouteMatch } from 'react-router-dom'
 import { Link } from 'react-router-dom';
 
-import gamesService from '../../../../services/gamesService'
+import { getOne, upvote } from '../../../../services/gameService'
 
 import './GameDetails.css'
 
-class GameDetails extends Component {
+const GameDetails = ({
+    email
+}) => {
 
-    constructor(props) {
-        super(props)
+    const match = useRouteMatch()
+    const [game, setGame] = useState(null)
 
-        this.state = {
-            game: []
-        }
+    useEffect(() => {
+        getOne(match.params.gameId).then(item => setGame(item))
+    }, [])
+
+    const handleUpvote = () => {
+        upvote(match.params.gameId, email)
     }
 
-    componentDidMount() {
-        gamesService.getOne(this.props.match.params.gameId)
-            .then(game => this.setState({ game }))
-            .catch(err => console.log(err))
-    }
+    return (
+        <div>
 
-    render() {
-        return (
-            <div>
-
-                <div className="header-div">
-                    <Link to={`/games/${this.state.game._id}/follow`}>Follow</Link>
-                    <h1>{this.state.game.title}</h1>
-                    <Link to={`/games/${this.state.game._id}/addInfo`}>Add Additional Info</Link>
-                </div>
-
-                <img src={this.state.game.imageUrl} alt={this.state.game.title} height="500px" width="400px" />
-
-                <p>Intro to the game</p>
-
-                <p>Genre</p>
-                
-                <p>Developers</p>
-
+            <div className="header-div">
+                <button onClick={handleUpvote}>Upvote</button>
+                <h1>{game?.title}</h1>
+                <Link to={`/games/${game?.id}/addInfo`}>Add Additional Info</Link>
             </div>
-        )
-    }
+
+            <div>
+                <img src={game?.imageUrl} alt={game?.title} height="500px" width="380px" />
+            </div>
+
+            <div>
+                <h2>Intro</h2>
+                <p>{game?.intro}</p>
+            </div>
+
+            <div>
+                <h2>Genres</h2>
+                <p></p>
+            </div>
+
+            <div>
+                <h2>Developers</h2>
+                <p></p>
+            </div>
+            <ToastContainer />
+        </div>
+    )
 }
 
 export default GameDetails

@@ -1,7 +1,5 @@
 import { Component } from 'react'
 
-import genresService from '../../../services/genresService'
-
 import Genre from '../../Common/Genre/Genre'
 
 import './Genres.css'
@@ -15,26 +13,6 @@ class Genres extends Component {
             genres: [],
             value: ''
         }
-
-        this.handleChange = this.handleChange.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
-    }
-
-    componentDidMount() {
-        genresService.getAll('')
-            .then(genres => this.setState({ genres }))
-            .catch(err => console.log(err))
-    }
-
-    handleChange(e) {
-        this.setState({ value: e.target.value })
-    }
-
-    handleSubmit(e) {
-        e.preventDefault()
-        genresService.getAll(this.state.value)
-            .then(genres => this.setState({ genres }))
-            .catch(err => console.log(err))
     }
 
     render() {
@@ -58,7 +36,7 @@ class Genres extends Component {
                 </div>
 
                 <div className="genres-container">
-                    {this.state.genres.map(x =>
+                    {this.state.genres?.map(x =>
                         <Genre
                             key={x._id}
                             name={x.name}

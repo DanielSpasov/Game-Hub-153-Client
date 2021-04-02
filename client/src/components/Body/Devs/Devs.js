@@ -1,7 +1,5 @@
 import { Component } from 'react'
 
-import devsService from '../../../services/devsService'
-
 import Dev from '../../Common/Dev/Dev'
 
 import './Devs.css'
@@ -20,21 +18,12 @@ class Devs extends Component {
         this.handleSubmit = this.handleSubmit.bind(this)
     }
 
-    componentDidMount() {
-        devsService.getAll('')
-            .then(devs => this.setState({ devs }))
-            .catch(err => console.log(err))
-    }
-
     handleChange(e) {
         this.setState({ value: e.target.value })
     }
 
     handleSubmit(e) {
         e.preventDefault()
-        devsService.getAll(this.state.value)
-            .then(devs => this.setState({ devs }))
-            .catch(err => console.log(err))
     }
 
     render() {
@@ -58,7 +47,7 @@ class Devs extends Component {
                 </div>
 
                 <div className="devs-container">
-                    {this.state.devs.map(x =>
+                    {this.state.devs?.map(x =>
                         <Dev
                             key={x._id}
                             orgName={x.orgName}
