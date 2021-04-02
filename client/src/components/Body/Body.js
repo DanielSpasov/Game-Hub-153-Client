@@ -6,7 +6,7 @@ import './Body.css'
 // Components
 import HomePage from './HomePage/HomePage.js'
 
-import Games from './Games/Games'
+import List from './List/List'
 import AddGames from './AddGames/AddGames'
 import GameDetails from './GameDetails/GameDetails'
 
@@ -33,7 +33,7 @@ function Body({
 
                 <Route path="/" component={HomePage} exact />
 
-                <Route path="/games" component={Games} exact />
+                <Route path="/games" render={() => <List category="games" />} exact />
                 <Route path="/games/add" component={AddGames} exact />
                 <Route path="/games/:gameId" render={() => <GameDetails email={email} isAuth={isAuth} />} exact />
 

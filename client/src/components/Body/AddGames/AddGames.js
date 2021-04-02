@@ -1,6 +1,6 @@
 import { ToastContainer, toast } from 'react-toastify'
 
-import { addGame } from '../../../services/gameService'
+import gameService from '../../../services/gameService'
 
 import './AddGames.css'
 
@@ -24,7 +24,7 @@ const AddGames = ({
         if (!imageUrlIsHttp && !imageUrlIsHttps) return toast.error('Invalid image address.')
         if (!intro) return toast.error('Intro is required.')
 
-        addGame({ title, imageUrl, intro, upvotes: 0, usersUpvoted: [] })
+        gameService.addGame({ title, imageUrl, intro, upvotes: 0, usersUpvoted: [] })
         history.push('/games')
     }
 

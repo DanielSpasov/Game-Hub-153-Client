@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 import TopFive from './TopFive'
 
-import { getTopFive } from '../../../services/gameService'
+import gameService from '../../../services/gameService'
 
 import './HomePage.css'
 
@@ -14,7 +14,7 @@ const HomePage = () => {
     const [devs, setDevs] = useState(null)
 
     useEffect(() => {
-        getTopFive().then(items => setGames(items))
+        gameService.getTopFive().then(items => setGames(items))
     }, [])
 
     return (

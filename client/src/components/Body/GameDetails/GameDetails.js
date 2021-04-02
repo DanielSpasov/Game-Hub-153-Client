@@ -3,7 +3,7 @@ import { ToastContainer } from 'react-toastify'
 import { useRouteMatch } from 'react-router-dom'
 import { Link } from 'react-router-dom';
 
-import { getOne, upvote } from '../../../services/gameService'
+import gameService from '../../../services/gameService'
 
 import './GameDetails.css'
 
@@ -16,12 +16,12 @@ const GameDetails = ({
     const [game, setGame] = useState(null)
 
     useEffect(() => {
-        getOne(match.params.gameId).then(item => setGame(item))
+        gameService.getOne(match.params.gameId).then(item => setGame(item))
         console.log('gg')
     }, [match.params.gameId])
 
     const handleUpvote = () => {
-        upvote(match.params.gameId, email)
+        gameService.upvote(match.params.gameId, email)
     }
 
     let upvoteBtn = isAuth ? <button onClick={handleUpvote}>Upvote</button> : null

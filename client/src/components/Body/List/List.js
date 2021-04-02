@@ -1,28 +1,30 @@
 import { useEffect, useState } from 'react'
 
 import Game from '../../Common/Game/Game'
-import { getAll } from '../../../services/gameService'
+import gameService from '../../../services/gameService'
 
-import './Games.css'
+import './List.css'
 
-const Games = () => {
+const List = ({
+    category
+}) => {
 
     const [games, setGames] = useState(null)
     const [search, setSearch] = useState('')
 
     useEffect(() => {
-        getAll().then(items => setGames(items))
+        gameService.getAll().then(items => setGames(items))
     }, [])
 
     const onSearchSubmitHandler = (e) => {
         e.preventDefault()
-        getAll(search).then(items => setGames(items))
+        gameService.getAll(search).then(items => setGames(items))
     }
 
     const onSearchChangeHandler = (e) => {
         setSearch(e.target.value)
-        if (e.target.value !== '') getAll(e.target.value).then(items => setGames(items))
-        if (e.target.value === '') getAll('').then(items => setGames(items))
+        if (e.target.value !== '') gameService.getAll(e.target.value).then(items => setGames(items))
+        if (e.target.value === '') gameService.getAll('').then(items => setGames(items))
     }
 
     return (
@@ -60,4 +62,4 @@ const Games = () => {
     )
 }
 
-export default Games
+export default List
