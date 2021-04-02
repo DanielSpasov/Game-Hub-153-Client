@@ -2,10 +2,14 @@ import { db } from '../utils/firebase'
 import errorHandler from '../utils/errorHandler'
 import { toast } from 'react-toastify'
 
-export const getAll = async () => {
+export const getAll = async (query = '') => {
     let games = await db.collection('games')
         .get()
-        .then(res => res.docs.map(x => x = { id: x.id, ...x.data() }))
+        .then(res =>
+            res.docs
+                .map(x => x = { id: x.id, ...x.data() })
+                .filter(x => x.title.toLowerCase().includes(query.toLowerCase()))
+        )
         .catch(errorHandler)
     return games
 }
