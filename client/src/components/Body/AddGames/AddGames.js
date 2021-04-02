@@ -1,6 +1,6 @@
 import { ToastContainer, toast } from 'react-toastify'
 
-import { addGame } from '../../../../services/gameService'
+import { addGame } from '../../../services/gameService'
 
 import './AddGames.css'
 

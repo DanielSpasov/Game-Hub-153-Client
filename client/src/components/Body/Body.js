@@ -7,8 +7,8 @@ import './Body.css'
 import HomePage from './HomePage/HomePage.js'
 
 import Games from './Games/Games'
-import AddGames from './Games/AddGames/AddGames'
-import GameDetails from './Games/GameDetails/GameDetails'
+import AddGames from './AddGames/AddGames'
+import GameDetails from './GameDetails/GameDetails'
 
 import Genres from './Genres/Genres'
 import AddGenres from './Genres/AddGenres/AddGenres'

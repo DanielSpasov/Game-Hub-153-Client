@@ -3,7 +3,7 @@ import { ToastContainer } from 'react-toastify'
 import { useRouteMatch } from 'react-router-dom'
 import { Link } from 'react-router-dom';
 
-import { getOne, upvote } from '../../../../services/gameService'
+import { getOne, upvote } from '../../../services/gameService'
 
 import './GameDetails.css'
 
