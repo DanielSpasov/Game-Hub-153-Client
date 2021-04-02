@@ -51,8 +51,19 @@ const List = ({
 
     const onSearchChangeHandler = (e) => {
         setSearch(e.target.value)
-        if (e.target.value !== '') gameService.getAll(e.target.value).then(items => setGames(items))
-        if (e.target.value === '') gameService.getAll('').then(items => setGames(items))
+
+        if (category === 'games') {
+            if (e.target.value !== '') gameService.getAll(e.target.value).then(items => setGames(items))
+            if (e.target.value === '') gameService.getAll('').then(items => setGames(items))
+        }
+        if(category === 'genres') {
+            if (e.target.value !== '') genreService.getAll(e.target.value).then(items => setGenres(items))
+            if (e.target.value === '') genreService.getAll('').then(items => setGenres(items))
+        }
+        if(category === 'devs') {
+            if (e.target.value !== '') devService.getAll(e.target.value).then(items => setDevs(items))
+            if (e.target.value === '') devService.getAll('').then(items => setDevs(items))
+        }
     }
 
     return (
