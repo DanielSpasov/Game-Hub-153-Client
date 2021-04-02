@@ -60,7 +60,7 @@ const Details = ({
     let createdGames
     if (category === 'dev') {
         title = <h1>{dev?.orgName}</h1>
-        createdGames = <div><h1>Games this Developers have created:</h1><p></p></div>
+        createdGames = <div><h2>Games this Developers have created:</h2><p></p></div>
         image = <div><img src={dev?.imageUrl} alt={dev?.title} height="400px" width="400px" /></div>
     }
 
