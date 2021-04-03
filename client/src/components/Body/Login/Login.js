@@ -12,10 +12,10 @@ const Login = ({
     const onLoginFormSubmitHandler = (e) => {
         e.preventDefault()
 
-        const username = e.target.username.value
+        const email = e.target.email.value
         const password = e.target.password.value
 
-        auth.signInWithEmailAndPassword(username, password)
+        auth.signInWithEmailAndPassword(email, password)
             .then(() => history.push('/'))
             .catch(errorHandler)
     }
@@ -27,11 +27,11 @@ const Login = ({
 
             <form onSubmit={onLoginFormSubmitHandler}>
 
-                <label className="field-label">Username</label>
-                <input className="login-field" type="text" name="username" />
+                <label className="field-label">Email</label>
+                <input className="login-field" type="text" name="email" placeholder="Email" />
 
                 <label className="field-label">Password</label>
-                <input className="login-field" type="password" name="password" />
+                <input className="login-field" type="password" name="password" placeholder="Repeat Password" />
 
                 <br></br>
 
