@@ -28,24 +28,24 @@ function Body({
 
             <Switch>
 
-                <Route path="/" component={HomePage} exact />
+                <Route exact path="/" component={HomePage} />
 
-                <Route path="/games" render={() => <List category="games" />} exact />
-                <Route path="/games/add" component={AddGames} exact />
-                <Route path="/games/:gameId" render={() => <Details email={email} isAuth={isAuth} category="game" />} exact />
+                <Route exact path="/games" render={() => <List category="games" />} />
+                <Route exact path="/games/add" render={() => (isAuth ? (<AddGames />) : (<Redirect to="/user/login" />) )} />
+                <Route exact path="/games/:gameId" render={() => <Details email={email} isAuth={isAuth} category="game" />} />
 
-                <Route path="/genres" render={() => <List category="genres" />} exact />
-                <Route path="/genres/add" component={AddGenres} exact />
-                <Route path="/genres/:genreId" render={() => <Details email={email} isAuth={isAuth} category="genre" />} exact />
+                <Route exact path="/genres" render={() => <List category="genres" />} />
+                <Route exact path="/genres/add" render={() => (isAuth ? (<AddGenres />) : (<Redirect to="/user/login" />) )} />
+                <Route exact path="/genres/:genreId" render={() => <Details email={email} isAuth={isAuth} category="genre" />} />
 
-                <Route path="/devs" render={() => <List category="devs" />} exact />
-                <Route path="/devs/add" component={AddDevs} exact />
-                <Route path="/devs/:devId" render={() => <Details email={email} isAuth={isAuth} category="dev" />} exact />
+                <Route exact path="/devs" render={() => <List category="devs" />} />
+                <Route exact path="/devs/add" render={() => (isAuth ? (<AddDevs />) : (<Redirect to="/user/login" />) )} />
+                <Route exact path="/devs/:devId" render={() => <Details email={email} isAuth={isAuth} category="dev" />} />
 
 
-                <Route path="/user/login" component={Login} exact />
-                <Route path="/user/register" component={Register} exact />
-                <Route path="/user/logout" render={() => {
+                <Route exact path="/user/login" render={() => (isAuth ? (<Redirect to="/" />) : (<Login />) )} />
+                <Route exact path="/user/register" render={() => (isAuth ? (<Redirect to="/" />) : (<Register />) )} />
+                <Route exact path="/user/logout" render={() => {
                     auth.signOut()
                     return <Redirect to="/" />
                 }} exact />
