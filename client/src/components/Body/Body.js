@@ -7,16 +7,16 @@ import './Body.css'
 import HomePage from './HomePage/HomePage.js'
 
 import List from './List/List'
-
-import AddGames from './AddGames/AddGames'
 import Details from './Details/Details'
 
+import AddGames from './AddGames/AddGames'
 import AddGenres from './AddGenres/AddGenres'
-
 import AddDevs from './AddDevs/AddDevs'
 
 import Login from './Login/Login'
 import Register from './Register/Register'
+
+import InvalidPage from '../Common/InvalidPage/InvalidPage'
 
 
 function Body({
@@ -51,9 +51,7 @@ function Body({
                 }} exact />
 
 
-                <Route path="*">
-                    <h1>404 Not Found</h1>
-                </Route>
+                <Route path="*" component={InvalidPage} />
 
             </Switch>
 
