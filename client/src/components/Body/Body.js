@@ -48,7 +48,7 @@ function Body({
                 <Route exact path="/user/logout" render={() => {
                     auth.signOut()
                     return <Redirect to="/" />
-                }} exact />
+                }} />
 
 
                 <Route path="*" component={InvalidPage} />

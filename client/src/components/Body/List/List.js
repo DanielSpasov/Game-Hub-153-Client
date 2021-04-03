@@ -23,19 +23,21 @@ const List = ({
     let title
     let items
 
-    if (category === 'games') {
-        title = <h1>Search Games:</h1>
-        items = games?.map(x => <Game key={x.id} title={x.title} imageUrl={x.imageUrl} id={x.id} />)
-    }
-
-    if (category === 'genres') {
-        title = <h1>Search Genres:</h1>
-        items = genres?.map(x => <Genre key={x.id} name={x.name} imageUrl={x.imageUrl} id={x.id} />)
-    }
-
-    if (category === 'devs') {
-        title = <h1>Search Game Developers:</h1>
-        items = devs?.map(x => <Dev key={x.id} orgName={x.orgName} imageUrl={x.imageUrl} id={x.id} />)
+    switch (category) {
+        case 'games':
+            title = <h1>Search Games:</h1>
+            items = games?.map(x => <Game key={x.id} title={x.title} imageUrl={x.imageUrl} id={x.id} />)
+            break
+        case 'genres':
+            title = <h1>Search Genres:</h1>
+            items = genres?.map(x => <Genre key={x.id} name={x.name} imageUrl={x.imageUrl} id={x.id} />)
+            break
+        case 'devs':
+            title = <h1>Search Game Developers:</h1>
+            items = devs?.map(x => <Dev key={x.id} orgName={x.orgName} imageUrl={x.imageUrl} id={x.id} />)
+            break
+        default:
+            break
     }
 
     useEffect(() => {
@@ -46,23 +48,26 @@ const List = ({
 
     const onSearchSubmitHandler = (e) => {
         e.preventDefault()
-        gameService.getAll(search).then(items => setGames(items))
     }
 
     const onSearchChangeHandler = (e) => {
         setSearch(e.target.value)
 
-        if (category === 'games') {
-            if (e.target.value !== '') gameService.getAll(e.target.value).then(items => setGames(items))
-            if (e.target.value === '') gameService.getAll('').then(items => setGames(items))
-        }
-        if(category === 'genres') {
-            if (e.target.value !== '') genreService.getAll(e.target.value).then(items => setGenres(items))
-            if (e.target.value === '') genreService.getAll('').then(items => setGenres(items))
-        }
-        if(category === 'devs') {
-            if (e.target.value !== '') devService.getAll(e.target.value).then(items => setDevs(items))
-            if (e.target.value === '') devService.getAll('').then(items => setDevs(items))
+        switch (category) {
+            case 'games':
+                if (e.target.value !== '') gameService.getAll(e.target.value).then(items => setGames(items))
+                if (e.target.value === '') gameService.getAll('').then(items => setGames(items))
+                break
+            case 'genres':
+                if (e.target.value !== '') genreService.getAll(e.target.value).then(items => setGenres(items))
+                if (e.target.value === '') genreService.getAll('').then(items => setGenres(items))
+                break
+            case 'devs':
+                if (e.target.value !== '') devService.getAll(e.target.value).then(items => setDevs(items))
+                if (e.target.value === '') devService.getAll('').then(items => setDevs(items))
+                break
+            default:
+                break
         }
     }
 
