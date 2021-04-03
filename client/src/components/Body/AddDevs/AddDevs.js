@@ -27,13 +27,11 @@ const AddDevs = ({
     }
 
     return (
-        <div className="devs-section">
+        <div className="main-section">
 
-            <div className="devs-nav-container" >
-                <h1>Add Developer</h1>
-            </div>
+            <h1>Add Developer</h1>
 
-            <div className="devs-container">
+            <div className="items-container">
                 <form onSubmit={onAddDevSubmitHandler}>
 
                     <input className="add-game-field" type="text" name="orgName" placeholder="Org Name" />

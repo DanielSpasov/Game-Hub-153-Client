@@ -1,12 +1,13 @@
 .add-genre-field {
+    display: block;
     background-color: #464649;
     border: 2px solid #464649;
     border-radius: 10px;
     padding: 8px;
-    margin: 10px;
+    margin-top: 10px;
     font-size: 15px;
     color: white;
-    width: 50%;
+    width: 500px;
 }
 
 .add-genre-field:hover {
@@ -26,11 +27,9 @@
     border: 3px solid #464649;
     border-radius: 10px;
     color: white;
-    margin: auto;
     margin-top: 10px;
     width: 200px;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding: 8px;
     font-weight: bold;
     font-size: 15px;
 }

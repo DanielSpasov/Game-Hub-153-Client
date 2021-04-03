@@ -29,13 +29,11 @@ const AddGames = ({
     }
 
     return (
-        <div className="games-section">
+        <div className="main-section">
 
-            <div className="games-nav-container" >
-                <h1>Add Game</h1>
-            </div>
+            <h1>Add Game</h1>
 
-            <div className="games-container">
+            <div className="items-container">
                 <form onSubmit={onAddGameSubmitHandler}>
 
                     <input className="add-game-field" type="text" name="title" placeholder="Title" />

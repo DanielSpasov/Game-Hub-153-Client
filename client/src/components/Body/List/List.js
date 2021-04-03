@@ -72,12 +72,12 @@ const List = ({
     }
 
     return (
-        <div className="games-section">
+        <div className="main-section">
 
             {title}
 
-            <div className="games-nav-container" >
-                <div className="games-search-form">
+            <div className="nav-container" >
+                <div className="search-form-div">
                     <form onSubmit={onSearchSubmitHandler}>
                         <input
                             className="search-field"
@@ -91,7 +91,7 @@ const List = ({
                 </div>
             </div>
 
-            <div className="games-container">
+            <div className="items-container">
                 {items}
             </div>
 

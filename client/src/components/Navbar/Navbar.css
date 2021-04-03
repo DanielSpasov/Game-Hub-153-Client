@@ -99,7 +99,20 @@
     }
 }
 
+@media screen and (max-width: 1165px) {
+    .user-navigation a#logout {
+        display: none;
+    }
+    .user-navigation span {
+        padding-top: 4px;
+    }
+}
 
+@media screen and (max-width: 1100px) {
+    .user-navigation span {
+        display: none;
+    }
+}
 
 @media screen and (max-width: 300px) {
     .navigation a#games {

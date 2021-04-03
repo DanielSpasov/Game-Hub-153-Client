@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { auth } from './utils/firebase'
 
 import Navbar from './components/Navbar/Navbar'
-import Sidebar from './components/Sidebar/Sidebar'
 import Body from './components/Body/Body'
 // import Footer from './components/Footer/Footer'
 
@@ -28,7 +27,6 @@ const App = () => {
     return (
         <div className="app">
             <Navbar email={user?.email} isAuth={Boolean(user)} />
-            <Sidebar />
             <Body email={user?.email} isAuth={Boolean(user)} />
             {/* <Footer /> */}
         </div>

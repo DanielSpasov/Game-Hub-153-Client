@@ -15,12 +15,12 @@ const Navbar = ({
 
     let authLinks = isAuth ?
         <>
-            <NavLink activeStyle={{ 'color': '#a970ff' }} to="/user/logout">Logout</NavLink>
+            <NavLink id="logout" activeStyle={{ 'color': '#a970ff' }} to="/user/logout">Logout</NavLink>
             <span>Welcome, {email}</span>
         </> :
         <>
-            <NavLink activeStyle={{ 'color': '#a970ff' }} to="/user/login">Login</NavLink>
-            <NavLink activeStyle={{ 'color': '#a970ff' }} to="/user/register">Register</NavLink>
+            <NavLink id="login" activeStyle={{ 'color': '#a970ff' }} to="/user/login">Login</NavLink>
+            <NavLink id="register" activeStyle={{ 'color': '#a970ff' }} to="/user/register">Register</NavLink>
         </>
 
 
