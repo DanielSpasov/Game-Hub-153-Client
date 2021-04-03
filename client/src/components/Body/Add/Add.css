@@ -1,4 +1,4 @@
-.add-genre-field {
+.input-field {
     display: block;
     background-color: #464649;
     border: 2px solid #464649;
@@ -10,19 +10,41 @@
     width: 500px;
 }
 
-.add-genre-field:hover {
+.input-field:hover {
     outline: none;
     border: 2px solid #aeaeb0;
     color: white;
 }
 
-.add-genre-field:focus {
+.input-field:focus {
     outline: none;
     border: 2px solid #a970ff;
     color: white;
 }
 
-.add-genre-button {
+.intro-textarea {
+    display: block;
+    background-color: #464649;
+    border: 2px solid #464649;
+    font-size: 15px;
+    color: white;
+    border-radius: 10px;
+    width: 500px;
+    padding: 8px;
+    margin-top: 10px;
+    resize: none;
+}
+
+.intro-textarea:hover {
+    border: 2px solid #aeaeb0;
+}
+
+.intro-textarea:focus {
+    border: 2px solid #a970ff;
+    outline: none;
+}
+
+.add-button {
     background-color: #464649;
     border: 3px solid #464649;
     border-radius: 10px;
@@ -34,10 +56,10 @@
     font-size: 15px;
 }
 
-.add-genre-button:hover {
+.add-button:hover {
     color: #a970ff;
 }
 
-.add-genre-button:focus {
+.add-button:focus {
     outline: none;
 }

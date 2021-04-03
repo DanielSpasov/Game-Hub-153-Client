@@ -1,14 +1,15 @@
 import { ToastContainer, toast } from 'react-toastify'
+import { useHistory } from 'react-router-dom'
 
 import genreService from '../../../services/genreService'
 
-import './AddGenres.css'
+import './Add.css'
 
-const AddGenres = ({
-    history
-}) => {
+const AddGenres = () => {
 
-    const onGenreSubmitHandler = (e) => {
+    const history = useHistory()
+
+    const onAddGenreSubmitHandler = (e) => {
         e.preventDefault()
 
         let name = e.target.name.value
@@ -32,12 +33,12 @@ const AddGenres = ({
             <h1>Add Genre</h1>
 
             <div className="items-container">
-                <form onSubmit={onGenreSubmitHandler}>
+                <form onSubmit={onAddGenreSubmitHandler}>
 
-                    <input className="add-genre-field" type="text" name="name" placeholder="Name" />
-                    <input className="add-genre-field" type="text" name="imageUrl" placeholder="Image Url" />
+                    <input className="input-field" type="text" name="name" placeholder="Name" />
+                    <input className="input-field" type="text" name="imageUrl" placeholder="Image Url" />
 
-                    <button className="add-genre-button">Add Genre</button>
+                    <button className="add-button">Add Genre</button>
 
                 </form>
             </div>

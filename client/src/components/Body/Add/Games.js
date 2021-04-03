@@ -1,12 +1,13 @@
 import { ToastContainer, toast } from 'react-toastify'
+import { useHistory } from 'react-router-dom'
 
 import gameService from '../../../services/gameService'
 
-import './AddGames.css'
+import './Add.css'
 
-const AddGames = ({
-    history
-}) => {
+const AddGames = () => {
+
+    const history = useHistory()
 
     const onAddGameSubmitHandler = (e) => {
         e.preventDefault()
@@ -36,11 +37,11 @@ const AddGames = ({
             <div className="items-container">
                 <form onSubmit={onAddGameSubmitHandler}>
 
-                    <input className="add-game-field" type="text" name="title" placeholder="Title" />
-                    <input className="add-game-field" type="text" name="imageUrl" placeholder="Image Url" />
+                    <input className="input-field" type="text" name="title" placeholder="Title" />
+                    <input className="input-field" type="text" name="imageUrl" placeholder="Image Url" />
                     <textarea className="intro-textarea" type="text" name="intro" placeholder="Intro to the game"></textarea>
 
-                    <button className="add-game-button">Add Game</button>
+                    <button className="add-button">Add Game</button>
 
                 </form>
             </div>

@@ -8,9 +8,9 @@ const Navbar = ({
 }) => {
     let loggedInLinks = isAuth ?
         <>
-            <NavLink id="addGames" activeStyle={{ 'color': '#a970ff' }} to="/games/add">Add Games</NavLink>
-            <NavLink id="addGenres" activeStyle={{ 'color': '#a970ff' }} to="/genres/add">Add Genres</NavLink>
-            <NavLink id="addDevs" activeStyle={{ 'color': '#a970ff' }} to="/devs/add">Add Devs</NavLink>
+            <NavLink id="addGames" activeStyle={{ 'color': '#a970ff' }} to="/add/games">Add Games</NavLink>
+            <NavLink id="addGenres" activeStyle={{ 'color': '#a970ff' }} to="/add/genres">Add Genres</NavLink>
+            <NavLink id="addDevs" activeStyle={{ 'color': '#a970ff' }} to="/add/devs">Add Devs</NavLink>
         </> : null
 
     let authLinks = isAuth ?
