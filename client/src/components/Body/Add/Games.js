@@ -57,7 +57,7 @@ const AddGames = () => {
 
                     <input className="input-field" type="text" name="title" placeholder="Title" />
                     <input className="input-field" type="text" name="imageUrl" placeholder="Image Url" />
-                    <textarea className="intro-textarea" type="text" name="intro" placeholder="Intro to the game"></textarea>
+                    <textarea className="textarea" type="text" name="intro" placeholder="Intro to the game"></textarea>
 
                     <div>
                         <div className="select-form">

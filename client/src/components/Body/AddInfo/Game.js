@@ -94,7 +94,7 @@ const AddGameInfo = () => {
                         onChange={onImageUrlChangeHandler}
                     />
                     <textarea
-                        className="intro-textarea"
+                        className="textarea"
                         type="text"
                         name="intro"
                         placeholder="Intro to the game"
@@ -102,7 +102,7 @@ const AddGameInfo = () => {
                         onChange={onIntroChangeHandler}
                     ></textarea>
                     <textarea
-                        className="intro-textarea"
+                        className="textarea"
                         type="text"
                         name="moreInfo"
                         placeholder="More information"
