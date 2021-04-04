@@ -62,7 +62,7 @@ const Details = ({
     }
 
     return (
-        <div className="main-section">
+        <div className="details-section">
 
             <div className="header-div">
                 {upvoteBtn}
