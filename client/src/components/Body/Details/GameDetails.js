@@ -20,7 +20,7 @@ const GameDetails = ({
         devService.getOne(game?.dev).then(res => setDev(res)).catch(errorHandler)
     }, [game?.genre, game?.dev])
 
-    let embedVideoUrl = `https://www.youtube.com/embed/${game?.videoUrl.slice(32, game?.videoUrl.length)}`
+    let embedVideoUrl = `https://www.youtube.com/embed/${game?.videoUrl?.slice(32, game?.videoUrl.length)}`
     let video = game?.videoUrl ? <div><h3>Trailer of the game:</h3><iframe width="920" height="520" src={embedVideoUrl} title={game?.title} frameBorder="0" /></div> : null
     let moreInfo = game?.moreInfo ? <div><h3>More information about the game:</h3><p>{game?.moreInfo}</p></div> : null
     let intro = game?.intro ? <div><h3>Intro:</h3><p>{game?.intro}</p></div> : null
