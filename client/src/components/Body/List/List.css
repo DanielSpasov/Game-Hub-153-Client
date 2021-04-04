@@ -10,7 +10,7 @@
 
 .items-container {
     text-align: center;
-    width: 1250px;
+    max-width: 1250px;
 }
 
 .search-form-div {
@@ -24,7 +24,7 @@
     padding: 8px;
     font-size: 15px;
     color: white;
-    width: 50%;
+    width: 350px;
 }
 
 .search-field:hover {
