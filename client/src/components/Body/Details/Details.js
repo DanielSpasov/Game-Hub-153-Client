@@ -7,7 +7,11 @@ import gameService from '../../../services/gameService'
 import genreService from '../../../services/genreService'
 import devService from '../../../services/devService'
 
+import GameDetails from './GameDetails'
+import GenreDetails from './GenreDetails'
+
 import './Details.css'
+import DevDetails from './DevDetails';
 
 const Details = ({
     email,
@@ -32,45 +36,33 @@ const Details = ({
         if (category === 'dev') devService.upvote(match.params.devId, email)
     }
 
-    let title
-    let image
-
-    let intro
-    let interstingInfo
-    let gameplayVideo
-    let gameGenres
-    let gameDevelopers
-    if (category === 'game') {
-        title = <h1>{game?.title}</h1>
-        interstingInfo = <div><h2>Interesting information about the game:</h2><p></p></div>
-        gameplayVideo = <div><h2>Video with gameplay of the game:</h2><p></p></div>
-        gameGenres = <div><h2>Genres this game falls into:</h2><p></p></div>
-        gameDevelopers = <div><h2>Developers who created the game:</h2><p></p></div>
-        intro = <div><h2>Intro:</h2><p>{game?.intro}</p></div>
-        image = <div><img src={game?.imageUrl} alt={game?.title} height="500px" width="380px" /></div>
-    }
-
-    let gamesInGenre
-    if (category === 'genre') {
-        title = <h1>{genre?.name}</h1>
-        gamesInGenre = <div><h2>Games in this genre:</h2><p></p></div>
-        image = <div><img src={genre?.imageUrl} alt={genre?.title} height="500px" width="380px" /></div>
-    }
-
-    let createdGames
-    if (category === 'dev') {
-        title = <h1>{dev?.orgName}</h1>
-        createdGames = <div><h2>Games this Developers have created:</h2><p></p></div>
-        image = <div><img src={dev?.imageUrl} alt={dev?.title} height="400px" width="400px" /></div>
-    }
-
-
-
+    let additionalInfoBtn
     let upvoteBtn = isAuth ? <button onClick={handleUpvote}>Upvote</button> : null
-    let additionalInfoBtn = isAuth ? <Link to={`/games/${game?.id}/addInfo`}>Add Additional Info</Link> : null
+    let title
+    let info
+
+    switch (category) {
+        case 'game':
+            title = <h1>{game?.title}</h1>
+            additionalInfoBtn = isAuth ? <Link to={`/games/${game?.id}/addInfo`}>Add Additional Info</Link> : null
+            info = <GameDetails game={game} />
+            break
+        case 'genre':
+            title = <h1>{genre?.name}</h1>
+            additionalInfoBtn = isAuth ? <Link to={`/genres/${genre?.id}/addInfo`}>Add Additional Info</Link> : null
+            info = <GenreDetails genre={genre} />
+            break
+        case 'dev':
+            additionalInfoBtn = isAuth ? <Link to={`/devs/${dev?.id}/addInfo`}>Add Additional Info</Link> : null
+            title = <h1>{dev?.orgName}</h1>
+            info = <DevDetails dev={dev} />
+            break
+        default:
+            break
+    }
 
     return (
-        <div>
+        <div className="main-section">
 
             <div className="header-div">
                 {upvoteBtn}
@@ -78,18 +70,7 @@ const Details = ({
                 {additionalInfoBtn}
             </div>
 
-
-            {image}
-
-            {intro}
-            {interstingInfo}
-            {gameplayVideo}
-            {gameGenres}
-            {gameDevelopers}
-
-            {gamesInGenre}
-
-            {createdGames}
+            {info}
 
             <ToastContainer />
         </div>

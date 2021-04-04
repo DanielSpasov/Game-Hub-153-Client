@@ -62,6 +62,25 @@ const getTopFive = async () => {
     return games
 }
 
+const editOne = async (id, data) => {
+    db.collection('games')
+        .doc(id)
+        .get()
+        .then(res => {
+            res = res.data()
+            let { title, imageUrl, intro, moreInfo, videoUrl } = data
+            let editedGame = { title, imageUrl, intro, moreInfo, videoUrl, upvotes: res.upvotes, usersUpvoted: res.usersUpvoted }
+            return editedGame
+        })
+        .then(editedGame => {
+            db.collection('games')
+                .doc(id)
+                .set(editedGame)
+                .then(() => toast.success('Game edited.'))
+                .catch(errorHandler)
+        })
+        .catch(errorHandler)
+}
 
 const gameService = {
     getAll,
@@ -69,5 +88,6 @@ const gameService = {
     add,
     getTopFive,
     upvote,
+    editOne,
 }
 export default gameService
