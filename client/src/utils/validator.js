@@ -4,11 +4,23 @@ const validator = ({
     title,
     imageUrl,
     videoUrl,
+    orgName,
+    name,
 }) => {
 
     if (title !== undefined) {
         if (title === '') throw toast.error('Title is required.')
         if (title.length > 25) throw toast.error('Title is too long.')
+    }
+
+    if (orgName !== undefined) {
+        if (orgName === '') throw toast.error('Organization name is required.')
+        if (orgName.length > 25) throw toast.error('Organization name is too long.')
+    }
+
+    if (name !== undefined) {
+        if (name === '') throw toast.error('Genre name is required.')
+        if (name.length > 25) throw toast.error('Genre name is too long.')
     }
 
     if (imageUrl !== undefined) {

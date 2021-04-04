@@ -1,7 +1,9 @@
-import { ToastContainer, toast } from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
 import { useHistory } from 'react-router-dom'
 
 import devService from '../../../services/devService'
+import errorHandler from '../../../utils/errorHandler'
+import validator from '../../../utils/validator'
 
 import './Add.css'
 
@@ -15,15 +17,8 @@ const AddDevs = () => {
         let orgName = e.target.orgName.value
         let imageUrl = e.target.imageUrl.value
 
-        let imageUrlIsHttp = imageUrl.slice(0, 7) === 'http://'
-        let imageUrlIsHttps = imageUrl.slice(0, 8) === 'https://'
-
-        if (!orgName) return toast.error('Organization name is required.')
-        if (orgName > 25) return toast.error('Organization name cannot be more than 25 symbols.')
-        if (!imageUrl) return toast.error('Iamge address is required.')
-        if (!imageUrlIsHttp && !imageUrlIsHttps) return toast.error('Invalid image address.')
-
-        devService.add({ orgName, imageUrl, upvotes: 0, usersUpvoted: [] })
+        validator({orgName, imageUrl})
+        devService.add({ orgName, imageUrl, upvotes: 0, usersUpvoted: [] }).catch(errorHandler)
         history.push('/devs')
     }
 

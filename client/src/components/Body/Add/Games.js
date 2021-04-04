@@ -1,10 +1,11 @@
-import { ToastContainer, toast } from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
 import { useHistory } from 'react-router-dom'
 
 import gameService from '../../../services/gameService'
+import errorHandler from '../../../utils/errorHandler'
+import validator from '../../../utils/validator'
 
 import './Add.css'
-import validator from '../../../utils/validator'
 
 const AddGames = () => {
 
@@ -26,7 +27,7 @@ const AddGames = () => {
             videoUrl: '',
             upvotes: 0,
             usersUpvoted: []
-        })
+        }).catch(errorHandler)
         history.push('/games')
     }
 
