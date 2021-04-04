@@ -39,14 +39,9 @@ const AddGameInfo = () => {
                 setVideoUrl(game?.videoUrl)
                 setGenre(game?.genre)
                 setDev(game?.dev)
-            })
-            .catch(errorHandler)
-        genreService.getAll()
-            .then(res => setGenres(res))
-            .catch(errorHandler)
-        devService.getAll()
-            .then(res => setDevs(res))
-            .catch(errorHandler)
+            }).catch(errorHandler)
+        genreService.getAll().then(res => setGenres(res)).catch(errorHandler)
+        devService.getAll().then(res => setDevs(res)).catch(errorHandler)
     }, [match.params.gameId, game?.title, game?.imageUrl, game?.intro, game?.moreInfo, game?.videoUrl, game?.genre, game?.dev])
 
 
@@ -71,9 +66,7 @@ const AddGameInfo = () => {
             videoUrl,
             genre,
             dev
-        })
-            .then(() => history.push('/'))
-            .catch(errorHandler)
+        }).then(() => history.push('/games')).catch(errorHandler)
     }
 
     return (

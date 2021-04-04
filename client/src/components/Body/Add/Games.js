@@ -19,12 +19,8 @@ const AddGames = () => {
     const [devs, setDevs] = useState()
 
     useEffect(() => {
-        genreService.getAll()
-            .then(res => setGenres(res))
-            .catch(errorHandler)
-        devService.getAll()
-            .then(res => setDevs(res))
-            .catch(errorHandler)
+        genreService.getAll().then(res => setGenres(res)).catch(errorHandler)
+        devService.getAll().then(res => setDevs(res)).catch(errorHandler)
     }, [])
 
     const onAddGameSubmitHandler = (e) => {
@@ -80,10 +76,6 @@ const AddGames = () => {
                     <button className="add-button">Add Game</button>
 
                 </form>
-
-                <div>
-
-                </div>
             </div>
             <ToastContainer />
         </div>
