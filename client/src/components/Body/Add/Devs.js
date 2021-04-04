@@ -2,7 +2,6 @@ import { ToastContainer } from 'react-toastify'
 import { useHistory } from 'react-router-dom'
 
 import devService from '../../../services/devService'
-import errorHandler from '../../../utils/errorHandler'
 import validator from '../../../utils/validator'
 
 import './Add.css'
@@ -18,7 +17,7 @@ const AddDevs = () => {
         let imageUrl = e.target.imageUrl.value
 
         validator({orgName, imageUrl})
-        devService.add({ orgName, imageUrl, upvotes: 0, usersUpvoted: [] }).catch(errorHandler)
+        devService.add({ orgName, imageUrl, upvotes: 0, usersUpvoted: [] })
         history.push('/devs')
     }
 

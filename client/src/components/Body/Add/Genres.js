@@ -2,7 +2,6 @@ import { ToastContainer } from 'react-toastify'
 import { useHistory } from 'react-router-dom'
 
 import genreService from '../../../services/genreService'
-import errorHandler from '../../../utils/errorHandler'
 import validator from '../../../utils/validator'
 
 import './Add.css'
@@ -18,7 +17,7 @@ const AddGenres = () => {
         let imageUrl = e.target.imageUrl.value
 
         validator({name, imageUrl})
-        genreService.add({ name, imageUrl, upvotes: 0, usersUpvoted: [] }).catch(errorHandler)
+        genreService.add({ name, imageUrl, upvotes: 0, usersUpvoted: [] })
         history.push('/genres')
     }
 
