@@ -4,6 +4,7 @@ import { useRouteMatch, useHistory } from 'react-router-dom'
 
 import gameService from '../../../services/gameService'
 import errorHandler from '../../../utils/errorHandler'
+import validator from '../../../utils/validator'
 
 const AddGameInfo = () => {
 
@@ -41,6 +42,8 @@ const AddGameInfo = () => {
 
     const onAddInfoSubmitHandler = (e) => {
         e.preventDefault()
+
+        validator({title, imageUrl, videoUrl})
 
         gameService.editOne(match.params.gameId, {
             title,

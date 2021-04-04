@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import gameService from '../../../services/gameService'
 
 import './Add.css'
+import validator from '../../../utils/validator'
 
 const AddGames = () => {
 
@@ -16,16 +17,16 @@ const AddGames = () => {
         let imageUrl = e.target.imageUrl.value
         let intro = e.target.intro.value
 
-        let imageUrlIsHttp = imageUrl.slice(0, 7) === 'http://'
-        let imageUrlIsHttps = imageUrl.slice(0, 8) === 'https://'
-
-        if (!title) return toast.error('Title is required.')
-        if (title > 25) return toast.error('Title cannot be more than 25 symbols.')
-        if (!imageUrl) return toast.error('Iamge address is required.')
-        if (!imageUrlIsHttp && !imageUrlIsHttps) return toast.error('Invalid image address.')
-        if (!intro) return toast.error('Intro is required.')
-
-        gameService.add({ title, imageUrl, intro, upvotes: 0, usersUpvoted: [] })
+        validator({ title, imageUrl })
+        gameService.add({
+            title,
+            imageUrl,
+            intro,
+            moreInfo: '',
+            videoUrl: '',
+            upvotes: 0,
+            usersUpvoted: []
+        })
         history.push('/games')
     }
 
