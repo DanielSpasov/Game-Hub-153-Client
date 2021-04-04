@@ -68,8 +68,8 @@ const editOne = async (id, data) => {
         .get()
         .then(res => {
             res = res.data()
-            let { title, imageUrl, intro, moreInfo, videoUrl } = data
-            let editedGame = { title, imageUrl, intro, moreInfo, videoUrl, upvotes: res.upvotes, usersUpvoted: res.usersUpvoted }
+            let { title, imageUrl, intro, moreInfo, videoUrl, genre, dev } = data
+            let editedGame = { title, imageUrl, intro, moreInfo, videoUrl, genre, dev, upvotes: res.upvotes, usersUpvoted: res.usersUpvoted }
             return editedGame
         })
         .then(editedGame => {

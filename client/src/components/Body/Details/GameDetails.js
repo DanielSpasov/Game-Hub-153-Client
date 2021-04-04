@@ -1,6 +1,28 @@
+import { useState, useEffect } from 'react'
+
+import genreService from '../../../services/genreService'
+import devService from '../../../services/devService'
+
+import errorHandler from '../../../utils/errorHandler'
+
+import Genre from '../../Common/Genre/Genre'
+import Dev from '../../Common/Dev/Dev'
+
 const GameDetails = ({
     game
 }) => {
+
+    const [genre, setGenre] = useState(null)
+    const [dev, setDev] = useState(null)
+
+    useEffect(() => {
+        genreService.getOne(game?.genre)
+            .then(res => setGenre(res))
+            .catch(errorHandler)
+        devService.getOne(game?.dev)
+            .then(res => setDev(res))
+            .catch(errorHandler)
+    }, [game?.genre, game?.dev])
 
     let video = game?.videoUrl ?
         <div>
@@ -23,6 +45,18 @@ const GameDetails = ({
             <h3>Intro:</h3>
             <p>{game?.intro}</p>
         </div> : null
+    let genres = game?.genre ?
+        <div>
+            <h3>Game genre:</h3>
+            <Genre name={genre?.name} imageUrl={genre?.imageUrl} id={genre?.id} />
+        </div> : null
+    let devs = game?.dev ?
+        <div>
+            <h3>Game developers:</h3>
+            <Dev orgName={dev?.orgName} imageUrl={dev?.imageUrl} id={dev?.id} />
+        </div> : null
+
+
 
     return (
         <div>
@@ -32,14 +66,8 @@ const GameDetails = ({
             {intro}
             {moreInfo}
             {video}
-            <div>
-                <h3>Genres this game falls into:</h3>
-                <p></p>
-            </div>
-            <div>
-                <h3>Developers who created the game:</h3>
-                <p></p>
-            </div>
+            {genres}
+            {devs}
         </div>
     )
 }

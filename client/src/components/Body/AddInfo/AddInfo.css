@@ -63,3 +63,17 @@
 .add-button:focus {
     outline: none;
 }
+
+.select-form {
+    display: inline-block;
+    width: 250px;
+    margin-top: 10px;
+}
+
+.select-form select {
+    background-color: #464649;
+    border-radius: 10px;
+    padding: 10px;
+    width: 240px;
+    color: white;
+}

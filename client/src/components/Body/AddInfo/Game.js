@@ -3,8 +3,13 @@ import { useState, useEffect } from "react"
 import { useRouteMatch, useHistory } from 'react-router-dom'
 
 import gameService from '../../../services/gameService'
+import genreService from '../../../services/genreService'
+import devService from '../../../services/devService'
+
 import errorHandler from '../../../utils/errorHandler'
 import validator from '../../../utils/validator'
+
+import './AddInfo.css'
 
 const AddGameInfo = () => {
 
@@ -12,12 +17,16 @@ const AddGameInfo = () => {
     const history = useHistory()
 
     const [game, setGame] = useState(null)
+    const [genres, setGenres] = useState(null)
+    const [devs, setDevs] = useState(null)
 
     const [title, setTitle] = useState(null)
     const [imageUrl, setImageUrl] = useState(null)
     const [intro, setIntro] = useState(null)
     const [moreInfo, setMoreInfo] = useState(null)
     const [videoUrl, setVideoUrl] = useState(null)
+    const [genre, setGenre] = useState(null)
+    const [dev, setDev] = useState(null)
 
     useEffect(() => {
         gameService.getOne(match.params.gameId)
@@ -28,9 +37,17 @@ const AddGameInfo = () => {
                 setIntro(game?.intro)
                 setMoreInfo(game?.moreInfo)
                 setVideoUrl(game?.videoUrl)
+                setGenre(game?.genre)
+                setDev(game?.dev)
             })
-            .catch(err => console.log(err))
-    }, [match.params.gameId, game?.title, game?.imageUrl, game?.intro, game?.moreInfo, game?.videoUrl])
+            .catch(errorHandler)
+        genreService.getAll()
+            .then(res => setGenres(res))
+            .catch(errorHandler)
+        devService.getAll()
+            .then(res => setDevs(res))
+            .catch(errorHandler)
+    }, [match.params.gameId, game?.title, game?.imageUrl, game?.intro, game?.moreInfo, game?.videoUrl, game?.genre, game?.dev])
 
 
 
@@ -39,18 +56,21 @@ const AddGameInfo = () => {
     const onIntroChangeHandler = (e) => setIntro(e.target.value)
     const onMoreInfoChangeHandler = (e) => setMoreInfo(e.target.value)
     const onVideoUrlChangeHandler = (e) => setVideoUrl(e.target.value)
+    const onGenreChangeHandler = (e) => setGenre(e.target.value)
+    const onDevChangeHandler = (e) => setDev(e.target.value)
 
     const onAddInfoSubmitHandler = (e) => {
         e.preventDefault()
 
-        validator({title, imageUrl, videoUrl})
-
+        validator({ title, imageUrl, videoUrl })
         gameService.editOne(match.params.gameId, {
             title,
             imageUrl,
             intro,
             moreInfo,
-            videoUrl
+            videoUrl,
+            genre,
+            dev
         })
             .then(() => history.push('/'))
             .catch(errorHandler)
@@ -104,8 +124,28 @@ const AddGameInfo = () => {
                         defaultValue={game?.videoUrl}
                         onChange={onVideoUrlChangeHandler}
                     />
-                    <h3>Genres</h3>
-                    <h3>Developer</h3>
+
+                    <div>
+                        <div className="select-form">
+                            <select onChange={onGenreChangeHandler}>
+                                {genres?.map(x => (
+                                    game?.genre === x.id ?
+                                        <option key={x.id} value={x.id} selected>{x.name}</option> :
+                                        <option key={x.id} value={x.id}>{x.name}</option>
+                                ))}
+                            </select>
+                        </div>
+
+                        <div className="select-form">
+                            <select onChange={onDevChangeHandler}>
+                                {devs?.map(x => (
+                                    game?.dev === x.id ?
+                                        <option key={x.id} value={x.id} selected>{x.orgName}</option> :
+                                        <option key={x.id} value={x.id}>{x.orgName}</option>
+                                ))}
+                            </select>
+                        </div>
+                    </div>
 
                     <button className="add-button">Edit Info</button>
 

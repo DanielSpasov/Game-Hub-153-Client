@@ -30,11 +30,10 @@ const validator = ({
         if (!imageUrlIsHttp && !imageUrlIsHttps) throw toast.error('Invalid image address.')
     }
 
-    if (videoUrl !== undefined) {
+    if (videoUrl !== undefined && videoUrl !== '') {
         let videoUrlIsYoutubeUrl = videoUrl.slice(0, 32) === 'https://www.youtube.com/watch?v='
         if (!videoUrlIsYoutubeUrl) throw toast.error('Not a valid youtube video url. A valid youtube video url looks like this: https://www.youtube.com/watch?v=LembwKDo1Dk')
     }
-
 }
 
 export default validator

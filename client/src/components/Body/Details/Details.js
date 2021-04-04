@@ -44,16 +44,16 @@ const Details = ({
     switch (category) {
         case 'game':
             title = <h1>{game?.title}</h1>
-            additionalInfoBtn = isAuth ? <Link to={`/games/${game?.id}/addInfo`}>Add Additional Info</Link> : null
+            additionalInfoBtn = isAuth ? <Link to={`/games/${game?.id}/addInfo`}>Add or Edit Info</Link> : null
             info = <GameDetails game={game} />
             break
         case 'genre':
             title = <h1>{genre?.name}</h1>
-            additionalInfoBtn = isAuth ? <Link to={`/genres/${genre?.id}/addInfo`}>Add Additional Info</Link> : null
+            additionalInfoBtn = isAuth ? <Link to={`/genres/${genre?.id}/addInfo`}>Add or Edit Info</Link> : null
             info = <GenreDetails genre={genre} />
             break
         case 'dev':
-            additionalInfoBtn = isAuth ? <Link to={`/devs/${dev?.id}/addInfo`}>Add Additional Info</Link> : null
+            additionalInfoBtn = isAuth ? <Link to={`/devs/${dev?.id}/addInfo`}>Add or Edit Info</Link> : null
             title = <h1>{dev?.orgName}</h1>
             info = <DevDetails dev={dev} />
             break
