@@ -62,24 +62,13 @@ const getTopFive = async () => {
     return devs
 }
 
-const editOne = async (id, data) => {
-    db.collection('devs')
+const editOne = (id, data) => {
+    return db.collection('devs')
         .doc(id)
-        .get()
-        .then(res => {
-            res = res.data()
-            let { orgName, imageUrl } = data
-            let editedDev = { orgName, imageUrl, upvotes: res.upvotes, usersUpvoted: res.usersUpvoted }
-            return editedDev
-        })
-        .then(editedDev => {
-            db.collection('devs')
-                .doc(id)
-                .set(editedDev)
-                .catch(errorHandler)
-        })
+        .update(data)
         .catch(errorHandler)
 }
+
 
 
 const devService = {

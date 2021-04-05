@@ -14,10 +14,10 @@ import './App.css'
 
 const App = () => {
 
-    console.log(process.env.NODE_ENV)
+    console.log(`App is running in ${process.env.NODE_ENV} mode.`)
 
     const [user, setUser] = useState(null)
-
+    
     useEffect(() => {
         auth.onAuthStateChanged((authUser) => {
             if (authUser) {
@@ -26,8 +26,8 @@ const App = () => {
                 setUser(null)
             }
         })
-    })
-
+    }, [])
+    
     return (
         <div className="app">
             <UserContext.Provider value={{ email: user?.email, isAuth: Boolean(user) }}>

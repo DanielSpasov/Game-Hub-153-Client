@@ -62,24 +62,13 @@ const getTopFive = async () => {
     return genres
 }
 
-const editOne = async (id, data) => {
-    db.collection('genres')
+const editOne = (id, data) => {
+    return db.collection('genres')
         .doc(id)
-        .get()
-        .then(res => {
-            res = res.data()
-            let { name, imageUrl } = data
-            let editedGenre = { name, imageUrl, upvotes: res.upvotes, usersUpvoted: res.usersUpvoted }
-            return editedGenre
-        })
-        .then(editedGenre => {
-            db.collection('genres')
-                .doc(id)
-                .set(editedGenre)
-                .catch(errorHandler)
-        })
+        .update(data)
         .catch(errorHandler)
 }
+
 
 
 const genreService = {

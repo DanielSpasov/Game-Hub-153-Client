@@ -62,24 +62,14 @@ const getTopFive = async () => {
     return games
 }
 
-const editOne = async (id, data) => {
-    db.collection('games')
+const editOne = (id, data) => {
+    return db.collection('games')
         .doc(id)
-        .get()
-        .then(res => {
-            res = res.data()
-            let { title, imageUrl, intro, moreInfo, videoUrl, genre, dev } = data
-            let editedGame = { title, imageUrl, intro, moreInfo, videoUrl, genre, dev, upvotes: res.upvotes, usersUpvoted: res.usersUpvoted }
-            return editedGame
-        })
-        .then(editedGame => {
-            db.collection('games')
-                .doc(id)
-                .set(editedGame)
-                .catch(errorHandler)
-        })
+        .update(data)
         .catch(errorHandler)
 }
+
+
 
 const gameService = {
     getAll,
