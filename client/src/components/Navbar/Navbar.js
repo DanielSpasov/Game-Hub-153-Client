@@ -1,11 +1,14 @@
+import { useContext } from 'react'
 import { NavLink } from 'react-router-dom'
+
+import UserContext from '../../contexts/UserContext'
 
 import './Navbar.css'
 
-const Navbar = ({
-    email,
-    isAuth
-}) => {
+const Navbar = () => {
+
+    const { email, isAuth } = useContext(UserContext)
+
     let loggedInLinks = isAuth ?
         <>
             <NavLink id="addGames" activeStyle={{ 'color': '#a970ff' }} to="/add/games">Add Games</NavLink>
