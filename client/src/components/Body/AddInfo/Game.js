@@ -62,7 +62,7 @@ const AddGameInfo = () => {
         gameService.editOne(match.params.gameId, gameInfo)
             .then(() => {
                 toast.success('Game edited. Redirecting to games page.')
-                setTimeout(() => history.push('/games'), 3000)
+                setTimeout(() => history.push('/games'), 2500)
             })
             .catch(errorHandler)
     }

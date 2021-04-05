@@ -62,6 +62,25 @@ const getTopFive = async () => {
     return devs
 }
 
+const editOne = async (id, data) => {
+    db.collection('devs')
+        .doc(id)
+        .get()
+        .then(res => {
+            res = res.data()
+            let { orgName, imageUrl } = data
+            let editedDev = { orgName, imageUrl, upvotes: res.upvotes, usersUpvoted: res.usersUpvoted }
+            return editedDev
+        })
+        .then(editedDev => {
+            db.collection('devs')
+                .doc(id)
+                .set(editedDev)
+                .catch(errorHandler)
+        })
+        .catch(errorHandler)
+}
+
 
 const devService = {
     getAll,
@@ -69,5 +88,6 @@ const devService = {
     add,
     getTopFive,
     upvote,
+    editOne,
 }
 export default devService
