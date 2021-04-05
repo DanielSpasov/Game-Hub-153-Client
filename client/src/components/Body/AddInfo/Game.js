@@ -1,4 +1,4 @@
-import { ToastContainer } from 'react-toastify'
+import { toast, ToastContainer } from 'react-toastify'
 import { useState, useEffect } from "react"
 import { useRouteMatch, useHistory } from 'react-router-dom'
 
@@ -58,15 +58,13 @@ const AddGameInfo = () => {
         e.preventDefault()
 
         validator({ title, imageUrl, videoUrl })
-        gameService.editOne(match.params.gameId, {
-            title,
-            imageUrl,
-            intro,
-            moreInfo,
-            videoUrl,
-            genre,
-            dev
-        }).then(() => history.push('/games')).catch(errorHandler)
+        let gameInfo = { title, imageUrl, intro, moreInfo, videoUrl, genre, dev }
+        gameService.editOne(match.params.gameId, gameInfo)
+            .then(() => {
+                toast.success('Game edited. Redirecting to games page.')
+                setTimeout(() => history.push('/games'), 3000)
+            })
+            .catch(errorHandler)
     }
 
     return (

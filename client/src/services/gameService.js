@@ -76,7 +76,6 @@ const editOne = async (id, data) => {
             db.collection('games')
                 .doc(id)
                 .set(editedGame)
-                .then(() => toast.success('Game edited.'))
                 .catch(errorHandler)
         })
         .catch(errorHandler)
