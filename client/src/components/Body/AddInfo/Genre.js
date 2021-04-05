@@ -1,4 +1,4 @@
-import { ToastContainer } from 'react-toastify'
+import { toast, ToastContainer } from 'react-toastify'
 import { useState, useEffect } from 'react'
 import { useRouteMatch, useHistory } from 'react-router-dom'
 
@@ -36,7 +36,10 @@ const AddGenreInfo = () => {
 
         validator({ name, imageUrl })
         genreService.editOne(match.params.genreId, { name, imageUrl })
-            .then(() => history.push('/genres'))
+            .then(() => {
+                toast.success('Genre edited. Redirecting to genres page.')
+                setTimeout(() => history.push('/genres'), 3000)
+            })
             .catch(errorHandler)
     }
 
@@ -47,7 +50,7 @@ const AddGenreInfo = () => {
 
             <div className="form-container">
                 <form onSubmit={onAddGenreInfoSubmitHandler}>
-                    
+
                     <input
                         className="input-field"
                         type="text"
