@@ -62,6 +62,25 @@ const getTopFive = async () => {
     return genres
 }
 
+const editOne = async (id, data) => {
+    db.collection('genres')
+        .doc(id)
+        .get()
+        .then(res => {
+            res = res.data()
+            let { name, imageUrl } = data
+            let editedGenre = { name, imageUrl, upvotes: res.upvotes, usersUpvoted: res.usersUpvoted }
+            return editedGenre
+        })
+        .then(editedGenre => {
+            db.collection('genres')
+                .doc(id)
+                .set(editedGenre)
+                .catch(errorHandler)
+        })
+        .catch(errorHandler)
+}
+
 
 const genreService = {
     getAll,
@@ -69,5 +88,6 @@ const genreService = {
     add,
     getTopFive,
     upvote,
+    editOne,
 }
 export default genreService

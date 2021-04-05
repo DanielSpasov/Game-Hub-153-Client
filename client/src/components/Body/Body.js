@@ -14,6 +14,7 @@ import AddGenres from './Add/Genres'
 import AddDevs from './Add/Devs'
 
 import AddGameInfo from './AddInfo/Game'
+import AddGenreInfo from './AddInfo/Genre'
 
 import Login from './Login/Login'
 import Register from './Register/Register'
@@ -38,6 +39,7 @@ function Body({
 
                 <Route exact path="/genres" render={() => <List category="genres" />} />
                 <Route exact path="/genres/:genreId" render={() => <Details email={email} isAuth={isAuth} category="genre" />} />
+                <Route exact path="/genres/:genreId/addInfo" render={() => (isAuth ? (<AddGenreInfo />) : (<Redirect to="/user/login" />) )} />
 
                 <Route exact path="/devs" render={() => <List category="devs" />} />
                 <Route exact path="/devs/:devId" render={() => <Details email={email} isAuth={isAuth} category="dev" />} />
