@@ -12,6 +12,8 @@ import './App.css'
 
 const App = () => {
 
+    console.log(process.env.NODE_ENV)
+
     const [user, setUser] = useState(null)
 
     useEffect(() => {
