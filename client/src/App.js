@@ -6,6 +6,10 @@ import UserContext from './contexts/UserContext'
 
 import Navbar from './components/Navbar/Navbar'
 
+import HomePage from './components/HomePage/HomePage'
+
+
+
 import Register from './components/Register/Register'
 import Login from './components/Login/Login'
 
@@ -44,7 +48,7 @@ const App = () => {
                 <div className="main-container">
                     <Switch>
 
-                        {/* <Route exact path="/" component={HomePage} /> */}
+                        <Route exact path="/" component={HomePage} />
 
                         {/* <Route exact path="/games" component={List} /> */}
                         {/* <Route exact path="/games/:gameId" component={Details} /> */}

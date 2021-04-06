@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react'
 
 import TopFive from './TopFive'
 
-import gameService from '../../../services/gameService'
-import genreService from '../../../services/genreService'
-import devService from '../../../services/devService'
+import gameService from '../../services/gameService'
+import genreService from '../../services/genreService'
+import devService from '../../services/devService'
 
 import './HomePage.css'
 

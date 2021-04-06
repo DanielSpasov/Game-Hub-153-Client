@@ -1,6 +1,6 @@
-import Game from '../../Common/Game/Game'
-import Genre from '../../Common/Genre/Genre'
-import Dev from '../../Common/Dev/Dev'
+import Game from '../Common/Game/Game'
+import Genre from '../Common/Genre/Genre'
+import Dev from '../Common/Dev/Dev'
 
 const TopFive = ({
     category,
