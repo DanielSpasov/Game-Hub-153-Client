@@ -114,7 +114,7 @@ const AddGameInfo = () => {
                     />
 
                     <div>
-                        <div className="select-form">
+                        <div className="select-form-div">
                             <select onChange={onGenreChangeHandler}>
                                 {genres?.map(x => (
                                     game?.genre === x.id ?
@@ -124,7 +124,7 @@ const AddGameInfo = () => {
                             </select>
                         </div>
 
-                        <div className="select-form">
+                        <div className="select-form-div">
                             <select onChange={onDevChangeHandler}>
                                 {devs?.map(x => (
                                     game?.dev === x.id ?

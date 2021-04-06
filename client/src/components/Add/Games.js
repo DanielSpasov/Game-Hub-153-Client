@@ -60,13 +60,13 @@ const AddGames = () => {
                     <textarea className="textarea" type="text" name="intro" placeholder="Intro to the game"></textarea>
 
                     <div>
-                        <div className="select-form">
+                        <div className="select-form-div">
                             <select name="genre">
                                 {genres?.map(x => <option key={x.id} value={x.id}>{x.name}</option>)}
                             </select>
                         </div>
 
-                        <div className="select-form">
+                        <div className="select-form-div">
                             <select name="dev">
                                 {devs?.map(x => <option key={x.id} value={x.id}>{x.orgName}</option>)}
                             </select>
