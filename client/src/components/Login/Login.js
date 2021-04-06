@@ -1,7 +1,7 @@
 import { ToastContainer } from 'react-toastify'
-import { auth } from '../../../utils/firebase'
+import { auth } from '../../utils/firebase'
 
-import errorHandler from '../../../utils/errorHandler'
+import errorHandler from '../../utils/errorHandler'
 
 import './Login.css'
 
