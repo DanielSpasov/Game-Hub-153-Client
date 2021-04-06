@@ -1,9 +1,14 @@
 import { db } from '../utils/firebase'
-import errorHandler from '../utils/errorHandler'
 import { toast } from 'react-toastify'
 
-const getAll = async (query = '') => {
-    let devs = await db.collection('devs')
+import errorHandler from '../utils/errorHandler'
+
+import gameService from './gameService'
+
+
+
+const getAll = (query = '') => {
+    return db.collection('devs')
         .get()
         .then(res =>
             res.docs
@@ -11,16 +16,14 @@ const getAll = async (query = '') => {
                 .filter(x => x.orgName.toLowerCase().includes(query.toLowerCase()))
         )
         .catch(errorHandler)
-    return devs
 }
 
-const getOne = async (id) => {
-    let dev = await db.collection('devs')
+const getOne = (id) => {
+    return db.collection('devs')
         .doc(id)
         .get()
         .then(res => res = { id: res.id, ...res.data() })
         .catch(errorHandler)
-    return dev
 }
 
 const add = (dev) => {
@@ -49,8 +52,8 @@ const upvote = (id, email) => {
         .catch(errorHandler)
 }
 
-const getTopFive = async () => {
-    let devs = await db.collection('devs')
+const getTopFive = () => {
+    return db.collection('devs')
         .get()
         .then(res =>
             res.docs
@@ -59,7 +62,6 @@ const getTopFive = async () => {
                 .slice(0, 5)
         )
         .catch(errorHandler)
-    return devs
 }
 
 const editOne = (id, data) => {
@@ -69,7 +71,11 @@ const editOne = (id, data) => {
         .catch(errorHandler)
 }
 
-
+const getGames = (id) => {
+    return gameService.getAll()
+        .then(games => games = games.filter(x => x.dev === id))
+        .catch(errorHandler)
+}
 
 const devService = {
     getAll,
@@ -78,5 +84,6 @@ const devService = {
     getTopFive,
     upvote,
     editOne,
+    getGames,
 }
 export default devService
