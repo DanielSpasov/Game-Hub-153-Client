@@ -1,4 +1,4 @@
-import { toast, ToastContainer } from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
 import { useState, useEffect } from 'react'
 import { useRouteMatch, useHistory } from 'react-router-dom'
 
@@ -37,10 +37,7 @@ const AddGenreInfo = () => {
 
         validator({ name, imageUrl })
         genreService.editOne(match.params.genreId, { name, imageUrl })
-            .then(() => {
-                toast.success('Genre edited. Redirecting to genres page.')
-                setTimeout(() => history.push('/genres'), 2500)
-            })
+            .then(() => history.push(`/genres/${match.params.genreId}`))
             .catch(errorHandler)
     }
 

@@ -1,4 +1,4 @@
-import { toast, ToastContainer } from 'react-toastify'
+import { ToastContainer } from 'react-toastify'
 import { useState, useEffect } from 'react'
 import { useRouteMatch, useHistory } from 'react-router-dom'
 
@@ -37,10 +37,7 @@ const AddDevInfo = () => {
 
         validator({ orgName, imageUrl })
         devService.editOne(match.params.devId, { orgName, imageUrl })
-            .then(() => {
-                toast.success('Dev edited. Redirecting to devs page.')
-                setTimeout(() => history.push('/devs'), 2500)
-            })
+            .then(() => history.push(`/devs/${match.params.devId}`))
             .catch(errorHandler)
     }
 
