@@ -9,6 +9,9 @@ import Navbar from './components/Navbar/Navbar'
 import HomePage from './components/HomePage/HomePage'
 
 import List from './components/List/List'
+import AddGames from './components/Add/Games'
+import AddGenres from './components/Add/Genres'
+import AddDevs from './components/Add/Devs'
 
 import Register from './components/Register/Register'
 import Login from './components/Login/Login'
@@ -62,9 +65,9 @@ const App = () => {
                         {/* <Route exact path="/devs/:devId" component={Details} /> */}
                         {/* <Route exact path="/devs/:devId/addInfo" render={() => (isAuth ? (<AddDevInfo />) : (<Redirect to="/user/login" />))} /> */}
 
-                        {/* <Route exact path="/add/games" render={() => (isAuth ? (<AddGames />) : (<Redirect to="/user/login" />))} /> */}
-                        {/* <Route exact path="/add/genres" render={() => (isAuth ? (<AddGenres />) : (<Redirect to="/user/login" />))} /> */}
-                        {/* <Route exact path="/add/devs" render={() => (isAuth ? (<AddDevs />) : (<Redirect to="/user/login" />))} /> */}
+                        <Route exact path="/add/games" render={() => (isAuth ? (<AddGames />) : (<Redirect to="/user/login" />))} />
+                        <Route exact path="/add/genres" render={() => (isAuth ? (<AddGenres />) : (<Redirect to="/user/login" />))} />
+                        <Route exact path="/add/devs" render={() => (isAuth ? (<AddDevs />) : (<Redirect to="/user/login" />))} />
 
                         <Route exact path="/user/login" render={() => (isAuth ? (<Redirect to="/" />) : (<Login />))} />
                         <Route exact path="/user/register" render={() => (isAuth ? (<Redirect to="/" />) : (<Register />))} />

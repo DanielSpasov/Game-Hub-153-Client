@@ -1,8 +1,8 @@
 import { ToastContainer } from 'react-toastify'
 import { useHistory } from 'react-router-dom'
 
-import devService from '../../../services/devService'
-import validator from '../../../utils/validator'
+import devService from '../../services/devService'
+import validator from '../../utils/validator'
 
 import './Add.css'
 

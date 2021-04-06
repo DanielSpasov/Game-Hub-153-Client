@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react'
 import { ToastContainer } from 'react-toastify'
 import { useHistory } from 'react-router-dom'
 
-import gameService from '../../../services/gameService'
-import genreService from '../../../services/genreService'
-import devService from '../../../services/devService'
+import gameService from '../../services/gameService'
+import genreService from '../../services/genreService'
+import devService from '../../services/devService'
 
-import errorHandler from '../../../utils/errorHandler'
-import validator from '../../../utils/validator'
+import errorHandler from '../../utils/errorHandler'
+import validator from '../../utils/validator'
 
 import './Add.css'
 
