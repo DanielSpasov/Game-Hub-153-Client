@@ -16,6 +16,10 @@ import AddGames from './components/Add/Games'
 import AddGenres from './components/Add/Genres'
 import AddDevs from './components/Add/Devs'
 
+import AddGameInfo from './components/AddInfo/Game'
+import AddGenreInfo from './components/AddInfo/Genre'
+import AddDevInfo from './components/AddInfo/Dev'
+
 import Register from './components/Register/Register'
 import Login from './components/Login/Login'
 
@@ -58,15 +62,15 @@ const App = () => {
 
                         <Route exact path="/games" component={List} />
                         <Route exact path="/games/:gameId" component={Details} />
-                        {/* <Route exact path="/games/:gameId/addInfo" render={() => (isAuth ? (<AddGameInfo />) : (<Redirect to="/user/login" />))} /> */}
+                        <Route exact path="/games/:gameId/addInfo" render={() => (isAuth ? (<AddGameInfo />) : (<Redirect to="/user/login" />))} />
 
                         <Route exact path="/genres" component={List} />
                         <Route exact path="/genres/:genreId" component={Details} />
-                        {/* <Route exact path="/genres/:genreId/addInfo" render={() => (isAuth ? (<AddGenreInfo />) : (<Redirect to="/user/login" />))} /> */}
+                        <Route exact path="/genres/:genreId/addInfo" render={() => (isAuth ? (<AddGenreInfo />) : (<Redirect to="/user/login" />))} />
 
                         <Route exact path="/devs" component={List} />
                         <Route exact path="/devs/:devId" component={Details} />
-                        {/* <Route exact path="/devs/:devId/addInfo" render={() => (isAuth ? (<AddDevInfo />) : (<Redirect to="/user/login" />))} /> */}
+                        <Route exact path="/devs/:devId/addInfo" render={() => (isAuth ? (<AddDevInfo />) : (<Redirect to="/user/login" />))} />
 
                         <Route exact path="/add/games" render={() => (isAuth ? (<AddGames />) : (<Redirect to="/user/login" />))} />
                         <Route exact path="/add/genres" render={() => (isAuth ? (<AddGenres />) : (<Redirect to="/user/login" />))} />

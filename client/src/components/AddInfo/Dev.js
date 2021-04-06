@@ -2,42 +2,42 @@ import { ToastContainer } from 'react-toastify'
 import { useState, useEffect } from 'react'
 import { useRouteMatch, useHistory } from 'react-router-dom'
 
-import genreService from '../../../services/genreService'
+import devService from '../../services/devService'
 
-import errorHandler from '../../../utils/errorHandler'
-import validator from '../../../utils/validator'
+import errorHandler from '../../utils/errorHandler'
+import validator from '../../utils/validator'
 
 import './AddInfo.css'
 
-const AddGenreInfo = () => {
+const AddDevInfo = () => {
 
     const match = useRouteMatch()
     const history = useHistory()
 
-    const [genre, setGenre] = useState(null)
+    const [dev, setDev] = useState(null)
 
-    const [name, setName] = useState(null)
+    const [orgName, setOrgName] = useState(null)
     const [imageUrl, setImageUrl] = useState(null)
 
     useEffect(() => {
-        genreService.getOne(match.params.genreId)
-            .then(res => setGenre(res))
+        devService.getOne(match.params.devId)
+            .then(res => setDev(res))
             .then(() => {
-                setName(genre?.name)
-                setImageUrl(genre?.imageUrl)
+                setOrgName(dev?.orgName)
+                setImageUrl(dev?.imageUrl)
             })
             .catch(errorHandler)
-    }, [match.params.genreId, genre?.name, genre?.imageUrl])
+    }, [match.params.devId, dev?.orgName, dev?.imageUrl])
 
-    const onNameChangeHandler = (e) => setName(e.target.value)
+    const onOrgNameChangeHandler = (e) => setOrgName(e.target.value)
     const onImageUrlChangeHandler = (e) => setImageUrl(e.target.value)
 
     const onAddGenreInfoSubmitHandler = (e) => {
         e.preventDefault()
 
-        validator({ name, imageUrl })
-        genreService.editOne(match.params.genreId, { name, imageUrl })
-            .then(() => history.push(`/genres/${match.params.genreId}`))
+        validator({ orgName, imageUrl })
+        devService.editOne(match.params.devId, { orgName, imageUrl })
+            .then(() => history.push(`/devs/${match.params.devId}`))
             .catch(errorHandler)
     }
 
@@ -52,17 +52,17 @@ const AddGenreInfo = () => {
                     <input
                         className="input-field"
                         type="text"
-                        name="name"
-                        placeholder="Name"
-                        defaultValue={genre?.name}
-                        onChange={onNameChangeHandler}
+                        name="orgName"
+                        placeholder="Organization Name"
+                        defaultValue={dev?.orgName}
+                        onChange={onOrgNameChangeHandler}
                     />
                     <input
                         className="input-field"
                         type="text"
                         name="imageUrl"
                         placeholder="Image Url"
-                        defaultValue={genre?.imageUrl}
+                        defaultValue={dev?.imageUrl}
                         onChange={onImageUrlChangeHandler}
                     />
 
@@ -75,4 +75,4 @@ const AddGenreInfo = () => {
     )
 }
 
-export default AddGenreInfo
+export default AddDevInfo
