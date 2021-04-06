@@ -1,9 +1,12 @@
 import { db } from '../utils/firebase'
-import errorHandler from '../utils/errorHandler'
 import { toast } from 'react-toastify'
 
-const getAll = async (query = '') => {
-    let games = await db.collection('games')
+import errorHandler from '../utils/errorHandler'
+
+
+
+const getAll = (query = '') => {
+    return db.collection('games')
         .get()
         .then(res =>
             res.docs
@@ -11,16 +14,14 @@ const getAll = async (query = '') => {
                 .filter(x => x.title.toLowerCase().includes(query.toLowerCase()))
         )
         .catch(errorHandler)
-    return games
 }
 
-const getOne = async (id) => {
-    let game = await db.collection('games')
+const getOne = (id) => {
+    return db.collection('games')
         .doc(id)
         .get()
         .then(res => res = { id: res.id, ...res.data() })
         .catch(errorHandler)
-    return game
 }
 
 const add = (game) => {
@@ -49,8 +50,8 @@ const upvote = (id, email) => {
         .catch(errorHandler)
 }
 
-const getTopFive = async () => {
-    let games = await db.collection('games')
+const getTopFive = () => {
+    return db.collection('games')
         .get()
         .then(res =>
             res.docs
@@ -59,7 +60,6 @@ const getTopFive = async () => {
                 .slice(0, 5)
         )
         .catch(errorHandler)
-    return games
 }
 
 const editOne = (id, data) => {
@@ -68,8 +68,6 @@ const editOne = (id, data) => {
         .update(data)
         .catch(errorHandler)
 }
-
-
 
 const gameService = {
     getAll,
