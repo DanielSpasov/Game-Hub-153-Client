@@ -1,33 +1,29 @@
 import { useEffect, useState } from 'react'
 import { Redirect, Route, Switch } from 'react-router-dom'
 import { auth } from './utils/firebase'
+import './utils/firebase'
 
+// Contexts
 import UserContext from './contexts/UserContext'
 
+// Components 
 import Navbar from './components/Navbar/Navbar'
-
 import HomePage from './components/HomePage/HomePage'
-
 import List from './components/List/List'
-
 import Details from './components/Details/Details'
-
 import AddGames from './components/Add/Games'
 import AddGenres from './components/Add/Genres'
 import AddDevs from './components/Add/Devs'
-
 import AddGameInfo from './components/AddInfo/Game'
 import AddGenreInfo from './components/AddInfo/Genre'
 import AddDevInfo from './components/AddInfo/Dev'
-
 import Register from './components/Register/Register'
 import Login from './components/Login/Login'
-
 import InvalidPage from './components/Common/InvalidPage/InvalidPage'
 // import Footer from './components/Footer/Footer'
 
-import './utils/firebase'
 
+// css
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css'
 
