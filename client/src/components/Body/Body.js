@@ -28,7 +28,7 @@ import InvalidPage from '../Common/InvalidPage/InvalidPage'
 
 function Body() {
 
-    const { email, isAuth } = useContext(UserContext)
+    const { isAuth } = useContext(UserContext)
 
     return (
         <main className="main-container">
@@ -37,16 +37,16 @@ function Body() {
 
                 <Route exact path="/" component={HomePage} />
 
-                <Route exact path="/games" render={() => <List category="games" />} />
-                <Route exact path="/games/:gameId" render={() => <Details email={email} isAuth={isAuth} category="game" />} />
+                <Route exact path="/games" component={List} />
+                <Route exact path="/games/:gameId" component={Details} />
                 <Route exact path="/games/:gameId/addInfo" render={() => (isAuth ? (<AddGameInfo />) : (<Redirect to="/user/login" />))} />
 
-                <Route exact path="/genres" render={() => <List category="genres" />} />
-                <Route exact path="/genres/:genreId" render={() => <Details email={email} isAuth={isAuth} category="genre" />} />
+                <Route exact path="/genres" component={List} />
+                <Route exact path="/genres/:genreId" component={Details} />
                 <Route exact path="/genres/:genreId/addInfo" render={() => (isAuth ? (<AddGenreInfo />) : (<Redirect to="/user/login" />))} />
 
-                <Route exact path="/devs" render={() => <List category="devs" />} />
-                <Route exact path="/devs/:devId" render={() => <Details email={email} isAuth={isAuth} category="dev" />} />
+                <Route exact path="/devs" component={List} />
+                <Route exact path="/devs/:devId" component={Details} />
                 <Route exact path="/devs/:devId/addInfo" render={() => (isAuth ? (<AddDevInfo />) : (<Redirect to="/user/login" />))} />
 
                 <Route exact path="/add/games" render={() => (isAuth ? (<AddGames />) : (<Redirect to="/user/login" />))} />

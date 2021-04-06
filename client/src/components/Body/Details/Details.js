@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { ToastContainer } from 'react-toastify'
-import { useRouteMatch } from 'react-router-dom'
+import { useRouteMatch, useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom';
+
+import UserContext from '../../../contexts/UserContext'
 
 import gameService from '../../../services/gameService'
 import genreService from '../../../services/genreService'
@@ -9,17 +11,19 @@ import devService from '../../../services/devService'
 
 import GameDetails from './GameDetails'
 import GenreDetails from './GenreDetails'
-
-import './Details.css'
 import DevDetails from './DevDetails';
 
-const Details = ({
-    email,
-    isAuth,
-    category
-}) => {
+import './Details.css'
+
+const Details = () => {
 
     const match = useRouteMatch()
+    const location = useLocation().pathname.split('/')[1]
+
+    console.log(location)
+
+    const { email, isAuth } = useContext(UserContext)
+
     const [game, setGame] = useState(null)
     const [genre, setGenre] = useState(null)
     const [dev, setDev] = useState(null)
@@ -31,9 +35,9 @@ const Details = ({
     }, [match.params.gameId, match.params.genreId, match.params.devId])
 
     const handleUpvote = () => {
-        if (category === 'game') gameService.upvote(match.params.gameId, email)
-        if (category === 'genre') genreService.upvote(match.params.genreId, email)
-        if (category === 'dev') devService.upvote(match.params.devId, email)
+        if (location === 'games') gameService.upvote(match.params.gameId, email)
+        if (location === 'genres') genreService.upvote(match.params.genreId, email)
+        if (location === 'devs') devService.upvote(match.params.devId, email)
     }
 
     let additionalInfoBtn
@@ -41,18 +45,18 @@ const Details = ({
     let title
     let info
 
-    switch (category) {
-        case 'game':
+    switch (location) {
+        case 'games':
             title = <h1>{game?.title}</h1>
             additionalInfoBtn = isAuth ? <Link to={`/games/${game?.id}/addInfo`}>Add or Edit Info</Link> : null
             info = <GameDetails game={game} />
             break
-        case 'genre':
+        case 'genres':
             title = <h1>{genre?.name}</h1>
             additionalInfoBtn = isAuth ? <Link to={`/genres/${genre?.id}/addInfo`}>Add or Edit Info</Link> : null
             info = <GenreDetails genre={genre} />
             break
-        case 'dev':
+        case 'devs':
             additionalInfoBtn = isAuth ? <Link to={`/devs/${dev?.id}/addInfo`}>Add or Edit Info</Link> : null
             title = <h1>{dev?.orgName}</h1>
             info = <DevDetails dev={dev} />
