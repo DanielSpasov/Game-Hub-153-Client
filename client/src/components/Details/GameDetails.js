@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
 
-import genreService from '../../../services/genreService'
-import devService from '../../../services/devService'
+import genreService from '../../services/genreService'
+import devService from '../../services/devService'
 
-import errorHandler from '../../../utils/errorHandler'
+import errorHandler from '../../utils/errorHandler'
 
-import Genre from '../../Common/Genre/Genre'
-import Dev from '../../Common/Dev/Dev'
+import Genre from '../Common/Genre/Genre'
+import Dev from '../Common/Dev/Dev'
 
 const GameDetails = ({
     game

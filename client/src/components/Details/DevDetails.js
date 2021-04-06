@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 
-import Game from '../../Common/Game/Game'
+import Game from '../Common/Game/Game'
 
-import errorHandler from '../../../utils/errorHandler'
+import errorHandler from '../../utils/errorHandler'
 
-import devService from '../../../services/devService'
+import devService from '../../services/devService'
 
 
 const DevDetails = ({ dev }) => {

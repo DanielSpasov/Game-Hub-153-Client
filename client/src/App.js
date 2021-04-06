@@ -9,6 +9,9 @@ import Navbar from './components/Navbar/Navbar'
 import HomePage from './components/HomePage/HomePage'
 
 import List from './components/List/List'
+
+import Details from './components/Details/Details'
+
 import AddGames from './components/Add/Games'
 import AddGenres from './components/Add/Genres'
 import AddDevs from './components/Add/Devs'
@@ -54,15 +57,15 @@ const App = () => {
                         <Route exact path="/" component={HomePage} />
 
                         <Route exact path="/games" component={List} />
-                        {/* <Route exact path="/games/:gameId" component={Details} /> */}
+                        <Route exact path="/games/:gameId" component={Details} />
                         {/* <Route exact path="/games/:gameId/addInfo" render={() => (isAuth ? (<AddGameInfo />) : (<Redirect to="/user/login" />))} /> */}
 
                         <Route exact path="/genres" component={List} />
-                        {/* <Route exact path="/genres/:genreId" component={Details} /> */}
+                        <Route exact path="/genres/:genreId" component={Details} />
                         {/* <Route exact path="/genres/:genreId/addInfo" render={() => (isAuth ? (<AddGenreInfo />) : (<Redirect to="/user/login" />))} /> */}
 
                         <Route exact path="/devs" component={List} />
-                        {/* <Route exact path="/devs/:devId" component={Details} /> */}
+                        <Route exact path="/devs/:devId" component={Details} />
                         {/* <Route exact path="/devs/:devId/addInfo" render={() => (isAuth ? (<AddDevInfo />) : (<Redirect to="/user/login" />))} /> */}
 
                         <Route exact path="/add/games" render={() => (isAuth ? (<AddGames />) : (<Redirect to="/user/login" />))} />

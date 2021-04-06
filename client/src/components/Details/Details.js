@@ -3,11 +3,11 @@ import { ToastContainer } from 'react-toastify'
 import { useRouteMatch, useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom';
 
-import UserContext from '../../../contexts/UserContext'
+import UserContext from '../../contexts/UserContext'
 
-import gameService from '../../../services/gameService'
-import genreService from '../../../services/genreService'
-import devService from '../../../services/devService'
+import gameService from '../../services/gameService'
+import genreService from '../../services/genreService'
+import devService from '../../services/devService'
 
 import GameDetails from './GameDetails'
 import GenreDetails from './GenreDetails'
