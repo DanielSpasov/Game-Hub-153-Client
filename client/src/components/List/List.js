@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 
-import Game from '../../Common/Game/Game'
-import Genre from '../../Common/Genre/Genre'
-import Dev from '../../Common/Dev/Dev'
+import Game from '../Common/Game/Game'
+import Genre from '../Common/Genre/Genre'
+import Dev from '../Common/Dev/Dev'
 
-import gameService from '../../../services/gameService'
-import genreService from '../../../services/genreService'
-import devService from '../../../services/devService'
+import gameService from '../../services/gameService'
+import genreService from '../../services/genreService'
+import devService from '../../services/devService'
 
 import './List.css'
 
