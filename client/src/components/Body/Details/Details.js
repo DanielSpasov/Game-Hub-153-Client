@@ -20,8 +20,6 @@ const Details = () => {
     const match = useRouteMatch()
     const location = useLocation().pathname.split('/')[1]
 
-    console.log(location)
-
     const { email, isAuth } = useContext(UserContext)
 
     const [game, setGame] = useState(null)
