@@ -28,8 +28,8 @@ const AddGameInfo = () => {
     const [intro, setIntro] = useState(null)
     const [moreInfo, setMoreInfo] = useState(null)
     const [videoUrl, setVideoUrl] = useState(null)
-    const [genre, setGenre] = useState(null)
-    const [dev, setDev] = useState(null)
+    const [genre, setGenre] = useState('')
+    const [dev, setDev] = useState('')
 
     useEffect(() => {
         gameService.getOne(match.params.gameId)
@@ -85,13 +85,13 @@ const AddGameInfo = () => {
 
                     <div>
                         <div className="select-form-div">
-                            <select onChange={onGenreChangeHandler} value={game?.genre}>
+                            <select onChange={onGenreChangeHandler} value={genre}>
                                 {genres?.map(x => <option key={x.id} value={x.id}>{x.name}</option>)}
                             </select>
                         </div>
 
                         <div className="select-form-div">
-                            <select onChange={onDevChangeHandler} value={game?.dev}>
+                            <select onChange={onDevChangeHandler} value={dev}>
                                 {devs?.map(x => <option key={x.id} value={x.id}>{x.orgName}</option>)}
                             </select>
                         </div>
