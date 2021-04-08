@@ -4,6 +4,8 @@ import { useRouteMatch, useHistory } from 'react-router-dom'
 
 import genreService from '../../services/genreService'
 
+import InputField from '../Common/InputField/InputField'
+
 import errorHandler from '../../utils/errorHandler'
 import validator from '../../utils/validator'
 
@@ -49,22 +51,8 @@ const AddGenreInfo = () => {
             <div className="form-container">
                 <form onSubmit={onAddGenreInfoSubmitHandler}>
 
-                    <input
-                        className="input-field"
-                        type="text"
-                        name="name"
-                        placeholder="Name"
-                        defaultValue={genre?.name}
-                        onChange={onNameChangeHandler}
-                    />
-                    <input
-                        className="input-field"
-                        type="text"
-                        name="imageUrl"
-                        placeholder="Image Url"
-                        defaultValue={genre?.imageUrl}
-                        onChange={onImageUrlChangeHandler}
-                    />
+                    <InputField name="name" placeholder="Genre Name" value={genre?.name} onChangeHandler={onNameChangeHandler} />
+                    <InputField name="imageUrl" placeholder="Image Url" value={genre?.imageUrl} onChangeHandler={onImageUrlChangeHandler} />
 
                     <button className="add-button">Edit Info</button>
 

@@ -6,6 +6,8 @@ import gameService from '../../services/gameService'
 import genreService from '../../services/genreService'
 import devService from '../../services/devService'
 
+import InputField from '../Common/InputField/InputField'
+
 import errorHandler from '../../utils/errorHandler'
 import validator from '../../utils/validator'
 
@@ -55,8 +57,9 @@ const AddGames = () => {
             <div className="items-container">
                 <form onSubmit={onAddGameSubmitHandler}>
 
-                    <input className="input-field" type="text" name="title" placeholder="Title" />
-                    <input className="input-field" type="text" name="imageUrl" placeholder="Image Url" />
+                    <InputField name="title" placeholder="Game Title" />
+                    <InputField name="imageUrl" placeholder="Image Url" />
+
                     <textarea className="textarea" type="text" name="intro" placeholder="Intro to the game"></textarea>
 
                     <div>

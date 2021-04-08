@@ -4,6 +4,8 @@ import { useHistory } from 'react-router-dom'
 import devService from '../../services/devService'
 import validator from '../../utils/validator'
 
+import InputField from '../Common/InputField/InputField'
+
 import './Add.css'
 
 const AddDevs = () => {
@@ -29,8 +31,8 @@ const AddDevs = () => {
             <div className="items-container">
                 <form onSubmit={onAddDevSubmitHandler}>
 
-                    <input className="input-field" type="text" name="orgName" placeholder="Org Name" />
-                    <input className="input-field" type="text" name="imageUrl" placeholder="Image Url" />
+                    <InputField name="orgName" placeholder="Org Name" />
+                    <InputField name="imageUrl" placeholder="Image Url" />
 
                     <button className="add-button">Add Developer</button>
 

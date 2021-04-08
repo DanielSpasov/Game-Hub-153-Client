@@ -1,0 +1,23 @@
+.input-field {
+    display: block;
+    background-color: #464649;
+    border: 2px solid #464649;
+    border-radius: 10px;
+    padding: 8px;
+    margin-top: 10px;
+    font-size: 15px;
+    color: white;
+    width: 500px;
+}
+
+.input-field:hover {
+    outline: none;
+    border: 2px solid #aeaeb0;
+    color: white;
+}
+
+.input-field:focus {
+    outline: none;
+    border: 2px solid #a970ff;
+    color: white;
+}

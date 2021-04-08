@@ -6,6 +6,9 @@ import gameService from '../../services/gameService'
 import genreService from '../../services/genreService'
 import devService from '../../services/devService'
 
+import InputField from '../Common/InputField/InputField'
+import Textarea from '../Common/Textarea/Textarea'
+
 import errorHandler from '../../utils/errorHandler'
 import validator from '../../utils/validator'
 
@@ -72,46 +75,13 @@ const AddGameInfo = () => {
             <div className="form-container">
                 <form onSubmit={onAddInfoSubmitHandler}>
 
-                    <input
-                        className="input-field"
-                        type="text"
-                        name="title"
-                        placeholder="Title"
-                        defaultValue={game?.title}
-                        onChange={onTitleChangeHandler}
-                    />
-                    <input
-                        className="input-field"
-                        type="text"
-                        name="imageUrl"
-                        placeholder="Image Url"
-                        defaultValue={game?.imageUrl}
-                        onChange={onImageUrlChangeHandler}
-                    />
-                    <textarea
-                        className="textarea"
-                        type="text"
-                        name="intro"
-                        placeholder="Intro to the game"
-                        defaultValue={game?.intro}
-                        onChange={onIntroChangeHandler}
-                    ></textarea>
-                    <textarea
-                        className="textarea"
-                        type="text"
-                        name="moreInfo"
-                        placeholder="More information"
-                        defaultValue={game?.moreInfo}
-                        onChange={onMoreInfoChangeHandler}
-                    ></textarea>
-                    <input
-                        className="input-field"
-                        type="text"
-                        name="videoUrl"
-                        placeholder="Video Url"
-                        defaultValue={game?.videoUrl}
-                        onChange={onVideoUrlChangeHandler}
-                    />
+                    <InputField name="title" placeholder="Game Title" value={game?.title} onChangeHandler={onTitleChangeHandler} />
+                    <InputField name="imageUrl" placeholder="Image Url" value={game?.imageUrl} onChangeHandler={onImageUrlChangeHandler} />
+
+                    <Textarea name="intro" placeholder="Intro to the game" value={game?.intro} onChangeHandler={onIntroChangeHandler} />
+                    <Textarea name="moreInfo" placeholder="More information" value={game?.moreInfo} onChangeHandler={onMoreInfoChangeHandler} />
+
+                    <InputField name="videoUrl" placeholder="Video Url" value={game?.videoUrl} onChangeHandler={onVideoUrlChangeHandler} />
 
                     <div>
                         <div className="select-form-div">

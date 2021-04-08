@@ -4,6 +4,8 @@ import { useRouteMatch, useHistory } from 'react-router-dom'
 
 import devService from '../../services/devService'
 
+import InputField from '../Common/InputField/InputField'
+
 import errorHandler from '../../utils/errorHandler'
 import validator from '../../utils/validator'
 
@@ -49,22 +51,8 @@ const AddDevInfo = () => {
             <div className="form-container">
                 <form onSubmit={onAddGenreInfoSubmitHandler}>
 
-                    <input
-                        className="input-field"
-                        type="text"
-                        name="orgName"
-                        placeholder="Organization Name"
-                        defaultValue={dev?.orgName}
-                        onChange={onOrgNameChangeHandler}
-                    />
-                    <input
-                        className="input-field"
-                        type="text"
-                        name="imageUrl"
-                        placeholder="Image Url"
-                        defaultValue={dev?.imageUrl}
-                        onChange={onImageUrlChangeHandler}
-                    />
+                    <InputField name="orgName" placeholder="Organiztion Name" value={dev?.orgName} onChangeHandler={onOrgNameChangeHandler} />
+                    <InputField name="imageUrl" placeholder="Image Url" value={dev?.imageUrl} onChangeHandler={onImageUrlChangeHandler} />
 
                     <button className="add-button">Edit Info</button>
 

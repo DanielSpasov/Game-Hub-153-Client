@@ -4,6 +4,8 @@ import { useHistory } from 'react-router-dom'
 import genreService from '../../services/genreService'
 import validator from '../../utils/validator'
 
+import InputField from '../Common/InputField/InputField'
+
 import './Add.css'
 
 const AddGenres = () => {
@@ -16,7 +18,7 @@ const AddGenres = () => {
         let name = e.target.name.value
         let imageUrl = e.target.imageUrl.value
 
-        validator({name, imageUrl})
+        validator({ name, imageUrl })
         genreService.add({ name, imageUrl, upvotes: 0, usersUpvoted: [] })
         history.push('/genres')
     }
@@ -29,8 +31,8 @@ const AddGenres = () => {
             <div className="items-container">
                 <form onSubmit={onAddGenreSubmitHandler}>
 
-                    <input className="input-field" type="text" name="name" placeholder="Name" />
-                    <input className="input-field" type="text" name="imageUrl" placeholder="Image Url" />
+                    <InputField name="name" placeholder="Genre Name" />
+                    <InputField name="imageUrl" placeholder="Image Url" />
 
                     <button className="add-button">Add Genre</button>
 
