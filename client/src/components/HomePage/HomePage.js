@@ -25,7 +25,7 @@ const HomePage = () => {
         <div className="home-container">
 
             <h1 className="home-page-title">Welcome to Game Hub</h1>
-            <h3 className="home-page-description">The best place for game info, ratings, and discussion</h3>
+            <h3 className="home-page-description">The best place for game information</h3>
 
             <TopFive category="games" items={games} />
             <TopFive category="genres" items={genres} />

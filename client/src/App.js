@@ -19,7 +19,7 @@ import AddGenreInfo from './components/AddInfo/Genre'
 import AddDevInfo from './components/AddInfo/Dev'
 import Register from './components/Register/Register'
 import Login from './components/Login/Login'
-import InvalidPage from './components/Common/InvalidPage/InvalidPage'
+import InvalidPage from './components/InvalidPage/InvalidPage'
 // import Footer from './components/Footer/Footer'
 
 
