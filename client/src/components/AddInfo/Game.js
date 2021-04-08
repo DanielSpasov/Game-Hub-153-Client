@@ -85,22 +85,14 @@ const AddGameInfo = () => {
 
                     <div>
                         <div className="select-form-div">
-                            <select onChange={onGenreChangeHandler}>
-                                {genres?.map(x => (
-                                    game?.genre === x.id ?
-                                        <option key={x.id} value={x.id} selected>{x.name}</option> :
-                                        <option key={x.id} value={x.id}>{x.name}</option>
-                                ))}
+                            <select onChange={onGenreChangeHandler} value={game?.genre}>
+                                {genres?.map(x => <option key={x.id} value={x.id}>{x.name}</option>)}
                             </select>
                         </div>
 
                         <div className="select-form-div">
-                            <select onChange={onDevChangeHandler}>
-                                {devs?.map(x => (
-                                    game?.dev === x.id ?
-                                        <option key={x.id} value={x.id} selected>{x.orgName}</option> :
-                                        <option key={x.id} value={x.id}>{x.orgName}</option>
-                                ))}
+                            <select onChange={onDevChangeHandler} value={game?.dev}>
+                                {devs?.map(x => <option key={x.id} value={x.id}>{x.orgName}</option>)}
                             </select>
                         </div>
                     </div>
