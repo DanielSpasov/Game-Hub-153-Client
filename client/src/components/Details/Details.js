@@ -20,7 +20,7 @@ const Details = () => {
     const match = useRouteMatch()
     const location = useLocation().pathname.split('/')[1]
 
-    const { email, isAuth } = useContext(UserContext)
+    const { email } = useContext(UserContext)
 
     const [game, setGame] = useState(null)
     const [genre, setGenre] = useState(null)
@@ -39,23 +39,22 @@ const Details = () => {
     }
 
     let additionalInfoBtn
-    let upvoteBtn = isAuth ? <button onClick={handleUpvote}>Upvote</button> : null
     let title
     let info
 
     switch (location) {
         case 'games':
             title = <h1>{game?.title}</h1>
-            additionalInfoBtn = isAuth ? <Link to={`/games/${game?.id}/addInfo`}>Add or Edit Info</Link> : null
+            additionalInfoBtn = <Link to={`/games/${game?.id}/addInfo`}>Add or Edit Info</Link>
             info = <GameDetails game={game} />
             break
         case 'genres':
             title = <h1>{genre?.name}</h1>
-            additionalInfoBtn = isAuth ? <Link to={`/genres/${genre?.id}/addInfo`}>Add or Edit Info</Link> : null
+            additionalInfoBtn = <Link to={`/genres/${genre?.id}/addInfo`}>Add or Edit Info</Link>
             info = <GenreDetails genre={genre} />
             break
         case 'devs':
-            additionalInfoBtn = isAuth ? <Link to={`/devs/${dev?.id}/addInfo`}>Add or Edit Info</Link> : null
+            additionalInfoBtn = <Link to={`/devs/${dev?.id}/addInfo`}>Add or Edit Info</Link>
             title = <h1>{dev?.orgName}</h1>
             info = <DevDetails dev={dev} />
             break
@@ -67,7 +66,7 @@ const Details = () => {
         <div className="details-section">
 
             <div className="header-div">
-                {upvoteBtn}
+                <button onClick={handleUpvote}>Upvote</button>
                 {title}
                 {additionalInfoBtn}
             </div>
