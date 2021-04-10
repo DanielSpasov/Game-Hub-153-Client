@@ -1,2 +1,4 @@
 ### Game-Hub
-Web app for game reviews.
+## Game-Hub
+# Game-Hub
+Wiki for games.
