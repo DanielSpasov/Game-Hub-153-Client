@@ -12,14 +12,21 @@ Games, genres and developers's information can be edited if incorrect or removed
 New games, genres or developers can be added. (You need to have an account to add new games)
 
 ## Usage
-You need to get into the client folder.
-After you've done that, you need to create a buildback.
-After you've created the buildback you need to run the server on your local machine.
+You need to get into the client folder:
 ```bash
 cd client
-npm run build
-serve -s build
 ```
+Then you need to install the dependencies:
+```bash
+npm install
+```
+Then you need to execute the start script:
+```bash
+npm start
+```
+
+And you are ready to go you can access the website at [localhost:3000](http://localhost:3000)
+
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/) &copy; SalimShady | Daniel Spasov
