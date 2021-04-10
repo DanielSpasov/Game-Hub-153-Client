@@ -12,16 +12,12 @@ Games, genres and developers's information can be edited if incorrect or removed
 New games, genres or developers can be added. (You need to have an account to add new games)
 
 ## Usage
-You need to get into the client by typing the following in the console:
+You need to get into the client folder.
+After you've done that, you need to create a buildback.
+After you've created the buildback you need to run the server on your local machine.
 ```bash
 cd client
-```
-After you've done that, you need to create a buildback by typing:
-```bash
 npm run build
-```
-After you've created the buildback you need to run the server on your local machine by typing:
-```bash
 serve -s build
 ```
 
