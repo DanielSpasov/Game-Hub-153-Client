@@ -7,11 +7,11 @@ The wikipedia for game info. Supported games, genres and game developers, all yo
 ### Upvote
 Games, genres and developers can be upvoted. When upvoted enough they can appear on the home page on the website in the top 5 lists. (You need to have an account to upvote & you can only upvote 1 time)
 ### Edit
-Games, genres and developers's information can be edited if incorrect or removed if inappropriate. (You need to have an account to edit information)
+Games, genres and developers's information can be edited if incorrect or removed if inappropriate. (You need to have an account to edit or remove information)
 ### Add 
 New games, genres or developers can be added. (You need to have an account to add new games)
 
-## Usage
+## Usage for contributors
 You need to get into the client folder:
 ```bash
 cd client
