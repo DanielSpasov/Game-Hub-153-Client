@@ -12,16 +12,9 @@ Games, genres and developers's information can be edited if incorrect or removed
 New games, genres or developers can be added. (You need to have an account to add new games)
 
 ## Usage for contributors
-You need to get into the client folder:
-```bash
-cd client
-```
-Then you need to install the dependencies:
+You need to install the dependencies, then you need to execute the start script:
 ```bash
 npm install
-```
-Then you need to execute the start script:
-```bash
 npm start
 ```
 
