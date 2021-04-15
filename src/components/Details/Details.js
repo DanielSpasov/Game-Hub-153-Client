@@ -39,23 +39,27 @@ const Details = () => {
     }
 
     let additionalInfoBtn
+    let commentBtn
     let title
     let info
 
     switch (location) {
         case 'games':
             title = <h1>{game?.title}</h1>
-            additionalInfoBtn = <Link to={`/games/${game?.id}/addInfo`}>Add or Edit Info</Link>
+            additionalInfoBtn = <Link to={`/games/${game?.id}/addInfo`}><img src="/white-pencil.png" alt="Edit Info"/></Link>
+            commentBtn = <Link to={`/games/${game?.id}/comment`}><img src="/white-comment.png" alt="Comment"/></Link>
             info = <GameDetails game={game} />
             break
         case 'genres':
             title = <h1>{genre?.name}</h1>
-            additionalInfoBtn = <Link to={`/genres/${genre?.id}/addInfo`}>Add or Edit Info</Link>
+            additionalInfoBtn = <Link to={`/genres/${genre?.id}/addInfo`}><img src="/white-pencil.png" alt="Edit Info"/></Link>
+            commentBtn = <Link to={`/genres/${genre?.id}/comment`}><img src="/white-comment.png" alt="Comment"/></Link>
             info = <GenreDetails genre={genre} />
             break
         case 'devs':
-            additionalInfoBtn = <Link to={`/devs/${dev?.id}/addInfo`}>Add or Edit Info</Link>
+            additionalInfoBtn = <Link to={`/devs/${dev?.id}/addInfo`}><img src="/white-pencil.png" alt="Edit Info"/></Link>
             title = <h1>{dev?.orgName}</h1>
+            commentBtn = <Link to={`/devs/${dev?.id}/comment`}><img src="/white-comment.png" alt="Comment"/></Link>
             info = <DevDetails dev={dev} />
             break
         default:
@@ -66,12 +70,16 @@ const Details = () => {
         <div className="details-section">
 
             <div className="header-div">
-                <button onClick={handleUpvote}>Upvote</button>
                 {title}
-                {additionalInfoBtn}
             </div>
 
             {info}
+
+            <div className="header-div">
+                <button onClick={handleUpvote}><img src="/white-upvote.png" alt="Upvote" /></button>
+                {commentBtn}
+                {additionalInfoBtn}
+            </div>
 
             <ToastContainer />
         </div>
