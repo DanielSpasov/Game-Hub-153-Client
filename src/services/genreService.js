@@ -77,6 +77,24 @@ const getGames = (id) => {
         .catch(errorHandler)
 }
 
+const comment = (commentContent, email, id) => {
+    return db.collection('genres')
+        .doc(id)
+        .get()
+        .then(res => {
+            res = res.data()
+            res.comments.push({ user: email, content: commentContent })
+            return res
+        })
+        .then(data => {
+            db.collection('genres')
+                .doc(id)
+                .update(data)
+                .catch(errorHandler)
+        })
+        .catch(errorHandler)
+}
+
 const genreService = {
     getAll,
     getOne,
@@ -85,5 +103,6 @@ const genreService = {
     upvote,
     editOne,
     getGames,
+    comment,
 }
 export default genreService

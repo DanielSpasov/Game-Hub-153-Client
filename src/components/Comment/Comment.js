@@ -32,7 +32,11 @@ const Comment = () => {
                 .then(() => history.push(`/games/${match.params.gameId}`))
                 .catch(errorHandler)
         }
-        // if(location === 'genres') genreService.comment(commentContent, email, match.params.genreId)
+        if (location === 'genres') {
+            genreService.comment(commentContent, email, match.params.genreId)
+                .then(() => history.push(`/genres/${match.params.genreId}`))
+                .catch(errorHandler)
+        }
         if (location === 'devs') {
             devService.comment(commentContent, email, match.params.devId)
                 .then(() => history.push(`/devs/${match.params.devId}`))

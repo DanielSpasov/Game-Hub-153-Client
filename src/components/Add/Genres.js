@@ -19,7 +19,7 @@ const AddGenres = () => {
         let imageUrl = e.target.imageUrl.value
 
         validator({ name, imageUrl })
-        genreService.add({ name, imageUrl, upvotes: 0, usersUpvoted: [] })
+        genreService.add({ name, imageUrl, upvotes: 0, usersUpvoted: [], comments: [] })
         history.push('/genres')
     }
 
