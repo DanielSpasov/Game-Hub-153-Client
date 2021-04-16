@@ -11,7 +11,7 @@ import devService from '../../services/devService'
 
 import GameDetails from './GameDetails'
 import GenreDetails from './GenreDetails'
-import DevDetails from './DevDetails';
+import DevDetails from './DevDetails'
 
 import './Details.css'
 
@@ -73,13 +73,13 @@ const Details = () => {
                 {title}
             </div>
 
-            {info}
-
             <div className="header-div">
                 <button onClick={handleUpvote}><img src="/white-upvote.png" alt="Upvote" /></button>
                 {commentBtn}
                 {additionalInfoBtn}
             </div>
+
+            {info}
 
             <ToastContainer />
         </div>

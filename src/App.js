@@ -17,6 +17,7 @@ import AddDevs from './components/Add/Devs'
 import AddGameInfo from './components/AddInfo/Game'
 import AddGenreInfo from './components/AddInfo/Genre'
 import AddDevInfo from './components/AddInfo/Dev'
+import Comment from './components/Comment/Comment'
 import Register from './components/Register/Register'
 import Login from './components/Login/Login'
 import InvalidPage from './components/InvalidPage/InvalidPage'
@@ -58,14 +59,17 @@ const App = () => {
                         <Route exact path="/games" component={List} />
                         <Route exact path="/games/:gameId" render={() => isAuth ? <Details /> : <Redirect to="/user/login" />} />
                         <Route exact path="/games/:gameId/addInfo" render={() => isAuth ? <AddGameInfo /> : <Redirect to="/user/login" />} />
+                        <Route exact path="/games/:gameId/comment" render={() => isAuth ? <Comment /> : <Redirect to="/user/login" />} />
 
                         <Route exact path="/genres" component={List} />
                         <Route exact path="/genres/:genreId" render={() => isAuth ? <Details /> : <Redirect to="/user/login" />} />
                         <Route exact path="/genres/:genreId/addInfo" render={() => isAuth ? <AddGenreInfo /> : <Redirect to="/user/login" />} />
+                        <Route exact path="/genres/:genreId/comment" render={() => isAuth ? <Comment /> : <Redirect to="/user/login" />} />
 
                         <Route exact path="/devs" component={List} />
                         <Route exact path="/devs/:devId" render={() => isAuth ? <Details /> : <Redirect to="/user/login" />} />
                         <Route exact path="/devs/:devId/addInfo" render={() => isAuth ? <AddDevInfo /> : <Redirect to="/user/login" />} />
+                        <Route exact path="/devs/:devId/comment" render={() => isAuth ? <Comment /> : <Redirect to="/user/login" />} />
 
                         <Route exact path="/add/games" render={() => isAuth ? <AddGames /> : <Redirect to="/user/login" />} />
                         <Route exact path="/add/genres" render={() => isAuth ? <AddGenres /> : <Redirect to="/user/login" />} />

@@ -19,7 +19,7 @@ const AddDevs = () => {
         let imageUrl = e.target.imageUrl.value
 
         validator({orgName, imageUrl})
-        devService.add({ orgName, imageUrl, upvotes: 0, usersUpvoted: [] })
+        devService.add({ orgName, imageUrl, upvotes: 0, usersUpvoted: [], comments: [] })
         history.push('/devs')
     }
 

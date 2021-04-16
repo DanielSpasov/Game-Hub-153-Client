@@ -1,0 +1,10 @@
+.comment {
+    background-color: #3d3d3d;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 10px;
+}
+
+.comment span {
+    font-weight: bold;
+}
