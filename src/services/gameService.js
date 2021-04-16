@@ -69,6 +69,24 @@ const editOne = (id, data) => {
         .catch(errorHandler)
 }
 
+const comment = (commentContent, email, id) => {
+    return db.collection('games')
+        .doc(id)
+        .get()
+        .then(res => {
+            res = res.data()
+            res.comments.push({ user: email, content: commentContent })
+            return res
+        })
+        .then(data => {
+            db.collection('games')
+                .doc(id)
+                .update(data)
+                .catch(errorHandler)
+        })
+        .catch(errorHandler)
+}
+
 const gameService = {
     getAll,
     getOne,
@@ -76,5 +94,6 @@ const gameService = {
     getTopFive,
     upvote,
     editOne,
+    comment,
 }
 export default gameService

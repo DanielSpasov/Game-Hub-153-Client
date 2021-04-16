@@ -44,7 +44,8 @@ const AddGames = () => {
             genre,
             dev,
             upvotes: 0,
-            usersUpvoted: []
+            usersUpvoted: [],
+            comments: [],
         })
         history.push('/games')
     }

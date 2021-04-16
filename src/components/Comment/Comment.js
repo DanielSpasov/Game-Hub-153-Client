@@ -27,7 +27,11 @@ const Comment = () => {
 
         let commentContent = e.target.content.value
 
-        // if(location === 'games') gameService.comment(commentContent, email, match.params.gameId)
+        if (location === 'games') {
+            gameService.comment(commentContent, email, match.params.gameId)
+                .then(() => history.push(`/games/${match.params.gameId}`))
+                .catch(errorHandler)
+        }
         // if(location === 'genres') genreService.comment(commentContent, email, match.params.genreId)
         if (location === 'devs') {
             devService.comment(commentContent, email, match.params.devId)
