@@ -22,10 +22,10 @@ const DevDetails = ({ dev }) => {
     let gamesCreated = games?.length > 0 ?
         <div><h3>Games this developers have created:</h3>{items}</div> :
         <div><h3>There is no games this developers have created</h3></div>
-    let comments = dev?.comments.length > 0 ?
+    let comments = dev?.comments?.length > 0 ?
         <div>
             <h2>Comments</h2>
-            {dev?.comments.map(x => <Comment key={x.content} user={x.user} content={x.content} />)}
+            {dev?.comments?.map(x => <Comment key={x.content} user={x.user} content={x.content} />)}
         </div> : null
 
     return (

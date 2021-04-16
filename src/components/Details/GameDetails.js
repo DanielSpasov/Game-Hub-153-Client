@@ -25,10 +25,10 @@ const GameDetails = ({ game }) => {
     let intro = game?.intro ? <div><h3>Intro:</h3><p>{game?.intro}</p></div> : null
     let genres = game?.genre ? <div><h3>Game genre:</h3><Genre name={genre?.name} imageUrl={genre?.imageUrl} id={genre?.id} /></div> : null
     let devs = game?.dev ? <div><h3>Game developers:</h3><Dev orgName={dev?.orgName} imageUrl={dev?.imageUrl} id={dev?.id} /></div> : null
-    let comments = game?.comments.length > 0 ?
+    let comments = game?.comments?.length > 0 ?
         <div>
             <h2>Comments</h2>
-            {game?.comments.map(x => <Comment key={x.content} user={x.user} content={x.content} />)}
+            {game?.comments?.map(x => <Comment key={x.content} user={x.user} content={x.content} />)}
         </div> : null
 
 
