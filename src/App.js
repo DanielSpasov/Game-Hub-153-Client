@@ -4,7 +4,7 @@ import { auth } from './utils/firebase'
 import './utils/firebase'
 
 // Contexts
-import UserContext from './contexts/UserContext'
+import { UserProvider } from './contexts/UserContext'
 
 // Components 
 import Navbar from './components/Navbar/Navbar'
@@ -21,6 +21,8 @@ import Comment from './components/Comment/Comment'
 import Register from './components/Register/Register'
 import Login from './components/Login/Login'
 import InvalidPage from './components/InvalidPage/InvalidPage'
+
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 
 
 // css
@@ -44,11 +46,12 @@ const App = () => {
         })
     }, [])
 
-    const isAuth = Boolean(user)
+    let email = user ? user.email : null
+    let isAuth = Boolean(user)
 
     return (
         <div className="app">
-            <UserContext.Provider value={{ email: user?.email, isAuth: Boolean(user) }}>
+            <UserProvider value={{ email, isAuth }}>
                 <Navbar />
 
                 <div className="main-container">
@@ -57,26 +60,26 @@ const App = () => {
                         <Route exact path="/" component={HomePage} />
 
                         <Route exact path="/games" component={List} />
-                        <Route exact path="/games/:gameId" render={() => isAuth ? <Details /> : <Redirect to="/user/login" />} />
-                        <Route exact path="/games/:gameId/addInfo" render={() => isAuth ? <AddGameInfo /> : <Redirect to="/user/login" />} />
-                        <Route exact path="/games/:gameId/comment" render={() => isAuth ? <Comment /> : <Redirect to="/user/login" />} />
+                        <ProtectedRoute exact={true} path="/games/:gameId" component={Details} />
+                        <ProtectedRoute exact={true} path="/games/:gameId/addInfo" component={AddGameInfo} />
+                        <ProtectedRoute exact={true} path="/games/:gameId/comment" component={Comment} />
 
                         <Route exact path="/genres" component={List} />
-                        <Route exact path="/genres/:genreId" render={() => isAuth ? <Details /> : <Redirect to="/user/login" />} />
-                        <Route exact path="/genres/:genreId/addInfo" render={() => isAuth ? <AddGenreInfo /> : <Redirect to="/user/login" />} />
-                        <Route exact path="/genres/:genreId/comment" render={() => isAuth ? <Comment /> : <Redirect to="/user/login" />} />
+                        <ProtectedRoute exact path="/genres/:genreId" component={Details} />
+                        <ProtectedRoute exact path="/genres/:genreId/addInfo" component={AddGenreInfo} />
+                        <ProtectedRoute exact path="/genres/:genreId/comment" component={Comment} />
 
                         <Route exact path="/devs" component={List} />
-                        <Route exact path="/devs/:devId" render={() => isAuth ? <Details /> : <Redirect to="/user/login" />} />
-                        <Route exact path="/devs/:devId/addInfo" render={() => isAuth ? <AddDevInfo /> : <Redirect to="/user/login" />} />
-                        <Route exact path="/devs/:devId/comment" render={() => isAuth ? <Comment /> : <Redirect to="/user/login" />} />
+                        <ProtectedRoute exact path="/devs/:devId" component={Details} />
+                        <ProtectedRoute exact path="/devs/:devId/addInfo" component={AddDevInfo} />
+                        <ProtectedRoute exact path="/devs/:devId/comment" component={Comment} />
 
-                        <Route exact path="/add/games" render={() => isAuth ? <AddGames /> : <Redirect to="/user/login" />} />
-                        <Route exact path="/add/genres" render={() => isAuth ? <AddGenres /> : <Redirect to="/user/login" />} />
-                        <Route exact path="/add/devs" render={() => isAuth ? <AddDevs /> : <Redirect to="/user/login" />} />
+                        <ProtectedRoute exact path="/add/games" component={AddGames} />
+                        <ProtectedRoute exact path="/add/genres" component={AddGenres} />
+                        <ProtectedRoute exact path="/add/devs" component={AddDevs} />
 
-                        <Route exact path="/user/login" render={() => isAuth ? <Redirect to="/" /> : <Login />} />
-                        <Route exact path="/user/register" render={() => isAuth ? <Redirect to="/" /> : <Register />} />
+                        <Route exact path="/user/login" component={Login} />
+                        <Route exact path="/user/register" component={Register} />
                         <Route exact path="/user/logout" render={() => {
                             auth.signOut()
                             return <Redirect to="/" />
@@ -87,7 +90,7 @@ const App = () => {
 
                     </Switch>
                 </div>
-            </UserContext.Provider>
+            </UserProvider>
         </div>
     )
 }
