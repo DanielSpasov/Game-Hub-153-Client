@@ -32,8 +32,6 @@ import './App.css'
 
 const App = () => {
 
-    console.log(`App is running in ${process.env.NODE_ENV} mode.`)
-
     const [user, setUser] = useState(null)
 
     useEffect(() => {
@@ -44,6 +42,7 @@ const App = () => {
                 setUser(null)
             }
         })
+        console.log(`App is running in ${process.env.NODE_ENV} mode.`)
     }, [])
 
     let email = user ? user.email : null
