@@ -20,7 +20,7 @@ const GameDetails = ({ game }) => {
     }, [game?.genre, game?.dev])
 
     let embedVideoUrl = `https://www.youtube.com/embed/${game?.videoUrl?.slice(32, game?.videoUrl.length)}`
-    let video = game?.videoUrl ? <div><h3>Trailer of the game:</h3><iframe width="920" height="520" src={embedVideoUrl} title={game?.title} frameBorder="0" /></div> : null
+    let video = game?.videoUrl ? <iframe style={{ position: 'absolute', top: 0, bottom: 0, left: 0, right: 0 }} width="100%" height="100%" src={embedVideoUrl} title={game?.title} frameBorder="0" /> : null
     let moreInfo = game?.moreInfo ? <div><h3>More information about the game:</h3><p>{game?.moreInfo}</p></div> : null
     let intro = game?.intro ? <div><h3>Intro:</h3><p>{game?.intro}</p></div> : null
     let genres = game?.genre ? <div><h3>Game genre:</h3><Genre name={genre?.name} imageUrl={genre?.imageUrl} id={genre?.id} /></div> : null
@@ -40,7 +40,12 @@ const GameDetails = ({ game }) => {
 
             {intro}
             {moreInfo}
-            {video}
+            <div>
+                <h3>Trailer of the game:</h3>
+                <div style={{ paddingTop: '56.25%', position: 'relative' }}>
+                    {video}
+                </div>
+            </div>
             {genres}
             {devs}
             {comments}
