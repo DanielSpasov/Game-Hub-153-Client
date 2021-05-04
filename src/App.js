@@ -59,23 +59,23 @@ const App = () => {
                         <Route exact path="/" component={HomePage} />
 
                         <Route exact path="/games" component={List} />
-                        <ProtectedRoute path="/games/:gameId" component={Details} />
-                        <ProtectedRoute path="/games/:gameId/addInfo" component={AddGameInfo} />
-                        <ProtectedRoute path="/games/:gameId/comment" component={Comment} />
+                        <ProtectedRoute exact path="/games/:gameId" component={Details} />
+                        <ProtectedRoute exact path="/games/:gameId/addInfo" component={AddGameInfo} />
+                        <ProtectedRoute exact path="/games/:gameId/comment" component={Comment} />
 
                         <Route exact path="/genres" component={List} />
-                        <ProtectedRoute path="/genres/:genreId" component={Details} />
-                        <ProtectedRoute path="/genres/:genreId/addInfo" component={AddGenreInfo} />
-                        <ProtectedRoute path="/genres/:genreId/comment" component={Comment} />
+                        <ProtectedRoute exact path="/genres/:genreId" component={Details} />
+                        <ProtectedRoute exact path="/genres/:genreId/addInfo" component={AddGenreInfo} />
+                        <ProtectedRoute exact path="/genres/:genreId/comment" component={Comment} />
 
                         <Route exact path="/devs" component={List} />
-                        <ProtectedRoute path="/devs/:devId" component={Details} />
-                        <ProtectedRoute path="/devs/:devId/addInfo" component={AddDevInfo} />
-                        <ProtectedRoute path="/devs/:devId/comment" component={Comment} />
+                        <ProtectedRoute exact path="/devs/:devId" component={Details} />
+                        <ProtectedRoute exact path="/devs/:devId/addInfo" component={AddDevInfo} />
+                        <ProtectedRoute exact path="/devs/:devId/comment" component={Comment} />
 
-                        <ProtectedRoute path="/add/games" component={AddGames} />
-                        <ProtectedRoute path="/add/genres" component={AddGenres} />
-                        <ProtectedRoute path="/add/devs" component={AddDevs} />
+                        <ProtectedRoute exact path="/add/games" component={AddGames} />
+                        <ProtectedRoute exact path="/add/genres" component={AddGenres} />
+                        <ProtectedRoute exact path="/add/devs" component={AddDevs} />
 
                         <Route exact path="/user/login" component={Login} />
                         <Route exact path="/user/register" component={Register} />
