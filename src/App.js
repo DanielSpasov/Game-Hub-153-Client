@@ -23,13 +23,14 @@ import InvalidPage from './components/InvalidPage'
 
 import ProtectedRoute from './components/ProtectedRoute'
 
-
 // css
 import 'react-toastify/dist/ReactToastify.css';
 import './common-css/fields.css'
 import './common-css/icons.css'
 import './common-css/buttons.css'
 import './App.css'
+
+const db_uri = process.env.REACT_APP_DB_URI
 
 
 
@@ -48,12 +49,12 @@ const App = () => {
                 token = ''
             }
 
-            const tokenResponse = await axios.post('http://localhost:5153/user/tokenIsValid', null, {
+            const tokenResponse = await axios.post(`${db_uri}/user/tokenIsValid`, null, {
                 headers: { 'x-auth-token': token }
             })
 
             if (tokenResponse.data) {
-                const userResponse = await axios.get('http://localhost:5153/user/', {
+                const userResponse = await axios.get(`${db_uri}/user/`, {
                     headers: { 'x-auth-token': token }
                 })
                 setUserData({ token, user: userResponse.data })

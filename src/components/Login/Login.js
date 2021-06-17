@@ -7,6 +7,8 @@ import UserContext from '../../contexts/UserContext'
 
 import errorHandler from '../../utils/errorHandler'
 
+const db_uri = process.env.REACT_APP_DB_URI
+
 
 
 const Login = () => {
@@ -23,7 +25,7 @@ const Login = () => {
 
         try {
 
-            let loginReponse = await axios.post('http://localhost:5153/user/login', { email, password })
+            let loginReponse = await axios.post(`${db_uri}/user/login`, { email, password })
             setUserData({ token: loginReponse.data.token, user: loginReponse.data.user })
             localStorage.setItem('auth-token', loginReponse.data.token)
             history.push('/')

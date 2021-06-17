@@ -5,6 +5,8 @@ import axios from 'axios'
 
 import errorHandler from '../../utils/errorHandler'
 
+const db_uri = process.env.REACT_APP_DB_URI
+
 
 
 const Register = () => {
@@ -20,7 +22,7 @@ const Register = () => {
 
         if (password !== rePassword) return toast.error('Passwords doesn\'t match.')
 
-        axios.post('http://localhost:5153/user/register',
+        axios.post(`${db_uri}/user/register`,
             { email, password, rePassword }
         )
             .then(() => history.push('/user/login'))
