@@ -33,7 +33,6 @@ const Details = () => {
     const match = useRouteMatch()
     const history = useHistory()
     const type = useHistory().location.pathname.split('/')[1]
-    const coolerType = type.slice(0, type.length - 1).replace(type[0], type[0].toUpperCase())
 
     const { userData } = useContext(UserContext)
 
@@ -65,7 +64,10 @@ const Details = () => {
         try {
 
             if (item.usersUpvoted.includes(userData.user.id)) toast.info('Upvote removed.')
-            if (!item.usersUpvoted.includes(userData.user.id)) toast.success(`${coolerType} upvoted.`)
+            if (!item.usersUpvoted.includes(userData.user.id)) {
+                if (item.title === 'League of Legends') toast.warn(`Yikes...`)
+                if (item.title !== 'League of Legends') toast.success(`${item.title} upvoted.`)
+            }
 
             if (type === 'games') setItem(await gameService.upvote(item, userData.user.id))
             if (type === 'genres') setItem(await genreService.upvote(item, userData.user.id))

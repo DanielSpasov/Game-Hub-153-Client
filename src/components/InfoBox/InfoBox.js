@@ -20,7 +20,7 @@ const InfoBox = (props) => {
 
     return (
         <div className="info-box">
-            <hr />
+
             <h2 className="info-box-title" onClick={handleContentState}>{props.title}</h2>
 
             <div className={`info-box-content ${contentState}`}>
