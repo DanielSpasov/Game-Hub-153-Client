@@ -1,0 +1,29 @@
+.card {
+    display: inline-block;
+    margin: 10px;
+    width: 200px;
+}
+
+.card a {
+    font-size: 15px;
+}
+
+.image-box {
+    background-color: #a970ff;
+    border-radius: 16px;
+}
+
+.card-image {
+    display: block;
+    border-radius: 15px;
+}
+
+.card-image:hover {
+    animation: mover 0.7s infinite alternate;
+}
+
+@keyframes mover {
+    100% {
+        transform: translateY(-10px);
+    }
+}

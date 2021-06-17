@@ -1,0 +1,32 @@
+button {
+    background: #464649;
+    border: 2px solid #464649;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    padding: 12px;
+    margin: 8px;
+}
+
+button:hover {
+    color: #a970ff;
+}
+
+button:focus {
+    outline: none;
+    color: #a970ff;
+}
+
+.icon-btn {
+    border: none;
+    background: transparent;
+}
+
+.icon-btn:hover {
+    color: white;
+}
+
+.icon-btn:focus {
+    outline: none;
+}

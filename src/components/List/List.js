@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 
-import Game from '../Common/Game/Game'
-import Genre from '../Common/Genre/Genre'
-import Dev from '../Common/Dev/Dev'
+import Card from '../Card'
 
 import gameService from '../../services/gameService'
 import genreService from '../../services/genreService'
@@ -11,41 +9,24 @@ import devService from '../../services/devService'
 
 import './List.css'
 
+
+
 const List = () => {
 
-    const location = useLocation()
+    const history = useHistory()
+    const type = history.location.pathname.split('/')[1]
 
     const [search, setSearch] = useState('')
 
-    const [games, setGames] = useState(null)
-    const [genres, setGenres] = useState(null)
-    const [devs, setDevs] = useState(null)
-
-    let title
-    let items
-
-    switch (location.pathname) {
-        case '/games':
-            title = <h1>Search Games:</h1>
-            items = games?.map(x => <Game key={x.id} title={x.title} imageUrl={x.imageUrl} id={x.id} />)
-            break
-        case '/genres':
-            title = <h1>Search Genres:</h1>
-            items = genres?.map(x => <Genre key={x.id} name={x.name} imageUrl={x.imageUrl} id={x.id} />)
-            break
-        case '/devs':
-            title = <h1>Search Game Developers:</h1>
-            items = devs?.map(x => <Dev key={x.id} orgName={x.orgName} imageUrl={x.imageUrl} id={x.id} />)
-            break
-        default:
-            break
-    }
+    const [games, setGames] = useState([])
+    const [genres, setGenres] = useState([])
+    const [devs, setDevs] = useState([])
 
     useEffect(() => {
-        gameService.getAll().then(items => setGames(items))
-        genreService.getAll().then(items => setGenres(items))
-        devService.getAll().then(items => setDevs(items))
-    }, [])
+        if (type === 'games') gameService.getAll().then(items => setGames(items))
+        if (type === 'genres') genreService.getAll().then(items => setGenres(items))
+        if (type === 'devs') devService.getAll().then(items => setDevs(items))
+    }, [type])
 
     const onSearchSubmitHandler = (e) => {
         e.preventDefault()
@@ -54,49 +35,61 @@ const List = () => {
     const onSearchChangeHandler = (e) => {
         setSearch(e.target.value)
 
-        switch (location.pathname) {
-            case '/games':
-                if (e.target.value !== '') gameService.getAll(e.target.value).then(items => setGames(items))
-                if (e.target.value === '') gameService.getAll('').then(items => setGames(items))
-                break
-            case '/genres':
-                if (e.target.value !== '') genreService.getAll(e.target.value).then(items => setGenres(items))
-                if (e.target.value === '') genreService.getAll('').then(items => setGenres(items))
-                break
-            case '/devs':
-                if (e.target.value !== '') devService.getAll(e.target.value).then(items => setDevs(items))
-                if (e.target.value === '') devService.getAll('').then(items => setDevs(items))
-                break
+        switch (type) {
+            // case 'games':
+            //     if (e.target.value !== '') gameService.getAll(e.target.value).then(items => setGames(items))
+            //     if (e.target.value === '') gameService.getAll('').then(items => setGames(items))
+            //     break
+            // case 'genres':
+            //     if (e.target.value !== '') genreService.getAll(e.target.value).then(items => setGenres(items))
+            //     if (e.target.value === '') genreService.getAll('').then(items => setGenres(items))
+            //     break
+            // case 'devs':
+            //     if (e.target.value !== '') devService.getAll(e.target.value).then(items => setDevs(items))
+            //     if (e.target.value === '') devService.getAll('').then(items => setDevs(items))
+            //     break
             default:
                 break
         }
     }
-
+    
     return (
-        <div className="main-section">
+        <section>
 
-            {title}
+            <header>
 
-            <div className="nav-container" >
-                <div className="search-form-div">
-                    <form onSubmit={onSearchSubmitHandler}>
-                        <input
-                            className="search-field"
-                            placeholder="Search"
-                            name="searchQuery"
-                            type="text"
-                            value={search}
-                            onChange={onSearchChangeHandler}
-                        />
-                    </form>
-                </div>
-            </div>
+                <h1>Search {type}:</h1>
 
-            <div className="items-container">
-                {items}
-            </div>
+                <form onSubmit={onSearchSubmitHandler}>
+                    <input
+                        placeholder={'Search ' + type}
+                        name="searchQuery"
+                        type="text"
+                        value={search}
+                        onChange={onSearchChangeHandler}
+                    />
+                </form>
 
-        </div>
+            </header>
+
+            <article>
+                {type === 'games' ?
+                    <>
+                        {games.map(game => <Card key={game._id} id={game._id} title={game.title} image={game.image} type={type} />)}
+                    </> : null}
+
+                {type === 'genres' ?
+                    <>
+                        {genres.map(genre => <Card key={genre._id} id={genre._id} title={genre.title} image={genre.image} type={type} />)}
+                    </> : null}
+
+                {type === 'devs' ?
+                    <>
+                        {devs.map(dev => <Card key={dev._id} id={dev._id} title={dev.title} image={dev.image} type={type} />)}
+                    </> : null}
+            </article>
+
+        </section>
     )
 }
 

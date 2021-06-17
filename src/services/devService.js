@@ -1,108 +1,76 @@
-import { db } from '../utils/firebase'
-import { toast } from 'react-toastify'
+import axios from 'axios'
 
 import errorHandler from '../utils/errorHandler'
 
-import gameService from './gameService'
 
 
-
-const getAll = (query = '') => {
-    return db.collection('devs')
-        .get()
-        .then(res =>
-            res.docs
-                .map(x => x = { id: x.id, ...x.data() })
-                .filter(x => x.orgName.toLowerCase().includes(query.toLowerCase()))
-        )
-        .catch(errorHandler)
+const add = async (data, userID) => {
+    try {
+        const response = await axios.post('http://localhost:5153/devs/add', { data, userID })
+        return response
+    } catch (err) { errorHandler(err) }
 }
 
-const getOne = (id) => {
-    return db.collection('devs')
-        .doc(id)
-        .get()
-        .then(res => res = { id: res.id, ...res.data() })
-        .catch(errorHandler)
+const getAll = async (query = '') => {
+    try {
+        const response = await axios.get(`http://localhost:5153/devs/getAll${query}`)
+        return response.data
+    } catch (err) { errorHandler(err) }
 }
 
-const add = (dev) => {
-    db.collection('devs')
-        .add(dev)
-        .catch(errorHandler)
+const getOne = async (id) => {
+    try {
+        const response = await axios.get(`http://localhost:5153/devs/getOne/${id}`)
+        return response.data
+    } catch (err) { errorHandler(err) }
 }
 
-const upvote = (id, email) => {
-    db.collection('devs')
-        .doc(id)
-        .get()
-        .then(res => {
-            if (res.data().usersUpvoted.includes(email)) throw toast.warning('You have already upvoted this developer.')
-            res = { ...res.data(), upvotes: res.data().upvotes + 1 }
-            res.usersUpvoted.push(email)
-            return res
-        })
-        .then(upvotedGame => {
-            db.collection('devs')
-                .doc(id)
-                .set(upvotedGame)
-                .then(() => toast.success('Developer upvoted.'))
-                .catch(errorHandler)
-        })
-        .catch(errorHandler)
+const editOne = async (id, data) => {
+    try {
+        const response = await axios.post(`http://localhost:5153/devs/editOne/${id}`, { data })
+        return response.data
+    } catch (err) { errorHandler(err) }
 }
 
-const getTopFive = () => {
-    return db.collection('devs')
-        .get()
-        .then(res =>
-            res.docs
-                .map(x => x = { id: x.id, ...x.data() })
-                .sort((a, b) => b.upvotes - a.upvotes)
-                .slice(0, 5)
-        )
-        .catch(errorHandler)
+const upvote = async (data, userID) => {
+    try {
+        const response = await axios.post(`http://localhost:5153/devs/upvote/${data._id}`, { data, userID })
+        return response.data
+    } catch (err) { errorHandler(err) }
 }
 
-const editOne = (id, data) => {
-    return db.collection('devs')
-        .doc(id)
-        .update(data)
-        .catch(errorHandler)
+const getTopFive = async () => {
+    try {
+        const response = await axios.get(`http://localhost:5153/devs/topFive`)
+        return response.data
+    } catch (err) { errorHandler(err) }
 }
 
-const getGames = (id) => {
-    return gameService.getAll()
-        .then(games => games = games.filter(x => x.dev === id))
-        .catch(errorHandler)
+const deleteDev = async (devID) => {
+    try {
+        const response = await axios.get(`http://localhost:5153/devs/delete/${devID}`)
+        return response.data
+    } catch (err) { errorHandler(err) }
 }
 
-const comment = (commentContent, email, id) => {
-    return db.collection('devs')
-        .doc(id)
-        .get()
-        .then(res => {
-            res = res.data()
-            res.comments.push({ user: email, content: commentContent })
-            return res
-        })
-        .then(data => {
-            db.collection('devs')
-                .doc(id)
-                .update(data)
-                .catch(errorHandler)
-        })
-        .catch(errorHandler)
+const comment = async (devID, content, username) => {
+    try {
+        const response = await axios.post(`http://localhost:5153/devs/comment/${devID}`, { content, username })
+        return response.data
+    } catch (err) { errorHandler(err) }
 }
 
-const devService = {
+
+
+const functions = {
+    add,
     getAll,
     getOne,
-    add,
-    getTopFive,
-    upvote,
     editOne,
-    getGames,
+    upvote,
+    getTopFive,
+    deleteDev,
     comment,
 }
-export default devService
+
+export default functions

@@ -1,0 +1,79 @@
+input {
+    background-color: #464649;
+    border: 2px solid #464649;
+    border-radius: 10px;
+    padding: 8px;
+    font-size: 15px;
+    width: 100%;
+    margin: 10px 0px 10px 0px;
+    box-sizing: border-box;
+    color: white;
+    outline: none;
+}
+
+input:hover {
+    border: 2px solid #aeaeb0;
+}
+
+input:focus {
+    border: 2px solid #a970ff;
+}
+
+input::-webkit-file-upload-button {
+    border-radius: 10px;
+    background-color: #464649;
+    border: 2px solid #464649;
+    color: gray;
+    margin-left: -10px;
+}
+
+textarea {
+    background-color: #464649;
+    border: 2px solid #464649;
+    border-radius: 10px;
+    padding: 8px;
+    font-size: 15px;
+    color: white;
+    width: 100%;
+    margin: 10px 10px 5px 0px;
+    resize: vertical;
+    box-sizing: border-box;
+    outline: none;
+}
+
+textarea:hover {
+    border: 2px solid #aeaeb0;
+}
+
+textarea:focus {
+    border: 2px solid #a970ff;
+}
+
+select {
+    display: inline-block;
+    background-color: #464649;
+    border: 2px solid #464649;
+    width: 46%;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 1% 10px 1%;
+    color: white;
+}
+
+select:hover {
+    border: 2px solid #aeaeb0;
+}
+
+select:focus {
+    border: 2px solid #a970ff;
+    outline: none;
+}
+
+fieldset {
+    border: none;
+}
+
+label {
+    font-size: 20px;
+    display: inline-block;
+}

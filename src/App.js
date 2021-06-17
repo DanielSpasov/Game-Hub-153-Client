@@ -1,94 +1,105 @@
-import { useEffect, useState } from 'react'
-import { Redirect, Route, Switch } from 'react-router-dom'
-import { auth } from './utils/firebase'
-import './utils/firebase'
+import { useState, useEffect } from 'react'
+import { Route, Switch } from 'react-router-dom'
+import axios from 'axios'
 
 // Contexts
 import { UserProvider } from './contexts/UserContext'
 
 // Components 
-import Navbar from './components/Navbar/Navbar'
-import HomePage from './components/HomePage/HomePage'
-import List from './components/List/List'
-import Details from './components/Details/Details'
-import AddGames from './components/Add/Games'
-import AddGenres from './components/Add/Genres'
-import AddDevs from './components/Add/Devs'
-import AddGameInfo from './components/AddInfo/Game'
-import AddGenreInfo from './components/AddInfo/Genre'
-import AddDevInfo from './components/AddInfo/Dev'
-import Comment from './components/Comment/Comment'
-import Register from './components/Register/Register'
-import Login from './components/Login/Login'
-import InvalidPage from './components/InvalidPage/InvalidPage'
+import Navbar from './components/Navbar'
 
-import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
+import Home from './components/Home'
+import List from './components/List'
+import Details from './components/Details'
+
+import AddItem from './components/AddItem'
+import Edit from './components/Edit'
+
+import Register from './components/Register'
+import Login from './components/Login'
+import Logout from './components/Logout'
+
+import InvalidPage from './components/InvalidPage'
+
+import ProtectedRoute from './components/ProtectedRoute'
 
 
 // css
 import 'react-toastify/dist/ReactToastify.css';
+import './common-css/fields.css'
+import './common-css/icons.css'
+import './common-css/buttons.css'
 import './App.css'
+
 
 
 const App = () => {
 
-    const [user, setUser] = useState(null)
+    const [userData, setUserData] = useState({})
 
     useEffect(() => {
-        auth.onAuthStateChanged((authUser) => {
-            if (authUser) {
-                setUser(authUser)
-            } else {
-                setUser(null)
-            }
-        })
-        console.log(`App is running in ${process.env.NODE_ENV} mode.`)
-    }, [])
 
-    let email = user ? user.email : null
-    let isAuth = Boolean(user)
+        console.log(`App is running in ${process.env.NODE_ENV} mode.`)
+
+        const checkLoggedIn = async () => {
+            let token = localStorage.getItem('auth-token')
+            if (token === null) {
+                localStorage.setItem('auth-token', '')
+                token = ''
+            }
+
+            const tokenResponse = await axios.post('http://localhost:5153/user/tokenIsValid', null, {
+                headers: { 'x-auth-token': token }
+            })
+
+            if (tokenResponse.data) {
+                const userResponse = await axios.get('http://localhost:5153/user/', {
+                    headers: { 'x-auth-token': token }
+                })
+                setUserData({ token, user: userResponse.data })
+            }
+        }
+
+        checkLoggedIn()
+    }, [])
 
     return (
         <div className="app">
-            <UserProvider value={{ email, isAuth }}>
+            <UserProvider value={{ userData, setUserData }}>
                 <Navbar />
 
-                <div className="main-container">
+                <main>
                     <Switch>
 
-                        <Route exact path="/" component={HomePage} />
+                        <Route exact path="/" component={Home} />
 
                         <Route exact path="/games" component={List} />
-                        <ProtectedRoute exact path="/games/:gameId" component={Details} />
-                        <ProtectedRoute exact path="/games/:gameId/addInfo" component={AddGameInfo} />
-                        <ProtectedRoute exact path="/games/:gameId/comment" component={Comment} />
+                        <ProtectedRoute exact path="/games/:itemID" component={Details} />
+                        <ProtectedRoute exact path="/games/:itemID/edit" component={Edit} />
 
                         <Route exact path="/genres" component={List} />
-                        <ProtectedRoute exact path="/genres/:genreId" component={Details} />
-                        <ProtectedRoute exact path="/genres/:genreId/addInfo" component={AddGenreInfo} />
-                        <ProtectedRoute exact path="/genres/:genreId/comment" component={Comment} />
+                        <ProtectedRoute exact path="/genres/:itemID" component={Details} />
+                        <ProtectedRoute exact path="/genres/:itemID/edit" component={Edit} />
 
                         <Route exact path="/devs" component={List} />
-                        <ProtectedRoute exact path="/devs/:devId" component={Details} />
-                        <ProtectedRoute exact path="/devs/:devId/addInfo" component={AddDevInfo} />
-                        <ProtectedRoute exact path="/devs/:devId/comment" component={Comment} />
+                        <ProtectedRoute exact path="/devs/:itemID" component={Details} />
+                        <ProtectedRoute exact path="/devs/:itemID/edit" component={Edit} />
 
-                        <ProtectedRoute exact path="/add/games" component={AddGames} />
-                        <ProtectedRoute exact path="/add/genres" component={AddGenres} />
-                        <ProtectedRoute exact path="/add/devs" component={AddDevs} />
+                        <ProtectedRoute exact path="/add/game" component={AddItem} />
+                        <ProtectedRoute exact path="/add/genre" component={AddItem} />
+                        <ProtectedRoute exact path="/add/dev" component={AddItem} />
+
+                        <Route exact path="/profile" component={Home} />
 
                         <Route exact path="/user/login" component={Login} />
                         <Route exact path="/user/register" component={Register} />
-                        <Route exact path="/user/logout" render={() => {
-                            auth.signOut()
-                            return <Redirect to="/" />
-                        }} />
+                        <Route exact path="/user/logout" component={Logout} />
 
 
                         <Route path="*" component={InvalidPage} />
 
                     </Switch>
-                </div>
+                </main>
             </UserProvider>
         </div>
     )

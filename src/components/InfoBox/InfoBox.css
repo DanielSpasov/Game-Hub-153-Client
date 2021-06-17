@@ -1,0 +1,51 @@
+.info-box {
+    position: relative;
+}
+
+.info-box-title:hover {
+    color: #a970ff;
+}
+
+.info-box-content {
+    position: relative;
+    display: block;
+}
+
+.visible {
+    opacity: 1;
+    animation: show 0.75s;
+    display: block;
+    top: 0px;
+}
+
+.hidden {
+    opacity: 0;
+    top: 0px;
+    display: none;
+}
+
+.visuallyHidden {
+    animation: hide 0.75s;
+}
+
+@keyframes show {
+    from {
+        opacity: 0;
+        top: -75px;
+    }
+    to {
+        opacity: 1;
+        top: 0px;
+    }
+}
+
+@keyframes hide {
+    from {
+        opacity: 1;
+        top: 0px;
+    }
+    to {
+        opacity: 0;
+        top: -75px;
+    }
+}

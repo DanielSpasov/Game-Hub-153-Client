@@ -1,13 +1,15 @@
 import { ToastContainer, toast } from 'react-toastify'
-import {auth} from '../../utils/firebase'
+import { useHistory } from 'react-router-dom'
+import axios from 'axios'
+
 
 import errorHandler from '../../utils/errorHandler'
 
-import './Register.css'
 
-const Register = ({
-    history
-}) => {
+
+const Register = () => {
+
+    const history = useHistory()
 
     const onRegisterFormSubmitHandler = (e) => {
         e.preventDefault()
@@ -16,36 +18,48 @@ const Register = ({
         const password = e.target.password.value
         const rePassword = e.target.rePassword.value
 
-        if(password !== rePassword) return toast.error('Passwords doesn\'t match.')
+        if (password !== rePassword) return toast.error('Passwords doesn\'t match.')
 
-        auth.createUserWithEmailAndPassword(email, password)
-            .then(() => history.push('/'))
+        axios.post('http://localhost:5153/user/register',
+            { email, password, rePassword }
+        )
+            .then(() => history.push('/user/login'))
             .catch(errorHandler)
     }
 
     return (
-        <div>
+        <section>
 
-            <h1 className="register-section-title">Register</h1>
+            <header>
+                <h1>Register</h1>
+            </header>
 
-            <form onSubmit={onRegisterFormSubmitHandler}>
+            <article>
+                <form onSubmit={onRegisterFormSubmitHandler}>
 
-                <label htmlFor="email" className="field-label">Email</label>
-                <input className="register-field" type="text" name="email" placeholder="Email" />
+                    <fieldset>
+                        <label htmlFor="email">Email</label>
+                        <input type="email" name="email" placeholder="Email" autoComplete="email" />
+                    </fieldset>
 
-                <label htmlFor="password" className="field-label">Password</label>
-                <input className="register-field" type="password" name="password" placeholder="Password" />
+                    <fieldset>
+                        <label htmlFor="password">Password</label>
+                        <input type="password" name="password" placeholder="Password" autoComplete="new-password" />
+                    </fieldset>
 
-                <label htmlFor="repeat-password" className="field-label">Repeat Password</label>
-                <input className="register-field" type="password" name="rePassword" placeholder="Repeat Password" />
+                    <fieldset>
+                        <label htmlFor="repeat-password">Repeat Password</label>
+                        <input type="password" name="rePassword" placeholder="Repeat Password" autoComplete="new-password" />
+                    </fieldset>
 
-                <br></br>
+                    <button>Register</button>
 
-                <button className="register-button">Register</button>
+                </form>
+            </article>
 
-            </form>
             <ToastContainer />
-        </div>
+
+        </section>
     )
 }
 

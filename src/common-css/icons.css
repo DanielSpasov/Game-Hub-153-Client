@@ -1,0 +1,39 @@
+@import url('https://use.fontawesome.com/releases/v5.15.3/css/all.css');
+.fa-caret-square-down {
+    color: white;
+}
+
+.fa-home,
+.fa-book,
+.fa-laptop-code,
+.fa-hat-wizard,
+.fa-user,
+.fa-caret-square-down {
+    font-size: 30px;
+}
+
+.fa-arrow-alt-circle-up,
+.fa-pen-square,
+.fa-plus,
+.fa-trash,
+.fa-plus-circle,
+.fa-arrow-alt-circle-down,
+.fa-exclamation-triangle {
+    font-size: 40px;
+}
+
+.fa-arrow-alt-circle-down:hover, .fa-trash:hover {
+    color: rgb(255, 106, 106);
+}
+
+.fa-pen-square:hover {
+    color: rgb(255, 255, 137);
+}
+
+.fa-plus-circle:hover, .fa-arrow-alt-circle-up:hover, .fa-plus:hover {
+    color: lightgreen;
+}
+
+.fa-exclamation-triangle {
+    color: rgb(255, 255, 137);
+}

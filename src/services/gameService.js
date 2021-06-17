@@ -1,99 +1,76 @@
-import { db } from '../utils/firebase'
-import { toast } from 'react-toastify'
+import axios from 'axios'
 
 import errorHandler from '../utils/errorHandler'
 
 
 
-const getAll = (query = '') => {
-    return db.collection('games')
-        .get()
-        .then(res =>
-            res.docs
-                .map(x => x = { id: x.id, ...x.data() })
-                .filter(x => x.title.toLowerCase().includes(query.toLowerCase()))
-        )
-        .catch(errorHandler)
+const add = async (data, userID) => {
+    try {
+        const response = await axios.post('http://localhost:5153/games/add', { data, userID })
+        return response
+    } catch (err) { errorHandler(err) }
 }
 
-const getOne = (id) => {
-    return db.collection('games')
-        .doc(id)
-        .get()
-        .then(res => res = { id: res.id, ...res.data() })
-        .catch(errorHandler)
+const getAll = async (query = '') => {
+    try {
+        const response = await axios.get(`http://localhost:5153/games/getAll${query}`)
+        return response.data
+    } catch (err) { errorHandler(err) }
 }
 
-const add = (game) => {
-    db.collection('games')
-        .add(game)
-        .catch(errorHandler)
+const getOne = async (id) => {
+    try {
+        const response = await axios.get(`http://localhost:5153/games/getOne/${id}`)
+        return response.data
+    } catch (err) { errorHandler(err) }
 }
 
-const upvote = (id, email) => {
-    db.collection('games')
-        .doc(id)
-        .get()
-        .then(res => {
-            if (res.data().usersUpvoted.includes(email)) throw toast.warning('You have already upvoted this game.')
-            res = { ...res.data(), upvotes: res.data().upvotes + 1 }
-            res.usersUpvoted.push(email)
-            return res
-        })
-        .then(upvotedGame => {
-            db.collection('games')
-                .doc(id)
-                .set(upvotedGame)
-                .then(() => toast.success('Game upvoted.'))
-                .catch(errorHandler)
-        })
-        .catch(errorHandler)
+const editOne = async (id, data) => {
+    try {
+        const response = await axios.post(`http://localhost:5153/games/editOne/${id}`, { data })
+        return response.data
+    } catch (err) { errorHandler(err) }
 }
 
-const getTopFive = () => {
-    return db.collection('games')
-        .get()
-        .then(res =>
-            res.docs
-                .map(x => x = { id: x.id, ...x.data() })
-                .sort((a, b) => b.upvotes - a.upvotes)
-                .slice(0, 5)
-        )
-        .catch(errorHandler)
+const upvote = async (data, userID) => {
+    try {
+        const response = await axios.post(`http://localhost:5153/games/upvote/${data._id}`, { data, userID })
+        return response.data
+    } catch (err) { errorHandler(err) }
 }
 
-const editOne = (id, data) => {
-    return db.collection('games')
-        .doc(id)
-        .update(data)
-        .catch(errorHandler)
+const getTopFive = async () => {
+    try {
+        const response = await axios.get(`http://localhost:5153/games/topFive`)
+        return response.data
+    } catch (err) { errorHandler(err) }
 }
 
-const comment = (commentContent, email, id) => {
-    return db.collection('games')
-        .doc(id)
-        .get()
-        .then(res => {
-            res = res.data()
-            res.comments.push({ user: email, content: commentContent })
-            return res
-        })
-        .then(data => {
-            db.collection('games')
-                .doc(id)
-                .update(data)
-                .catch(errorHandler)
-        })
-        .catch(errorHandler)
+const deleteGame = async (gameID) => {
+    try {
+        const response = await axios.get(`http://localhost:5153/games/delete/${gameID}`)
+        return response.data
+    } catch (err) { errorHandler(err) }
 }
 
-const gameService = {
+const comment = async (gameID, content, username) => {
+    try {
+        const response = await axios.post(`http://localhost:5153/games/comment/${gameID}`, { content, username })
+        return response.data
+    } catch (err) { errorHandler(err) }
+}
+
+
+
+const functions = {
+    add,
     getAll,
     getOne,
-    add,
-    getTopFive,
-    upvote,
     editOne,
-    comment,
+    upvote,
+    getTopFive,
+    deleteGame,
+    comment
 }
-export default gameService
+
+export default functions

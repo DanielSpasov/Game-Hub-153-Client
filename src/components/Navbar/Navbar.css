@@ -1,6 +1,8 @@
-.navbar {
+nav {
     position: fixed;
+    display: flex;
     width: 100%;
+    min-width: 360px;
     height: 50px;
     background-color: #18181b;
     font-family: 'Verdana';
@@ -8,144 +10,100 @@
     z-index: 99;
 }
 
-.navigation {
-    position: relative;
-    float: left;
-    padding: 13px
+.left-navigation {
+    text-align: left;
+    margin: 0px;
+    width: 70%;
 }
 
-.user-navigation {
-    position: relative;
-    float: right;
-    padding: 13px
+.right-navigation {
+    text-align: right;
+    margin: 0px;
+    width: 30%;
 }
 
-.navigation a {
-    display: table-cell;
-    text-decoration: none;
-    color: white;
-    font-size: 20px;
-    padding-right: 13px;
-    padding-left: 13px;
-    border-left: 1px solid #aeaeb0;
+ul {
+    list-style-type: none;
+    display: inline-block;
+    padding: 0px;
+    margin: 10px 0px 10px 0px;
 }
 
-.navigation a:visited {
-    text-decoration: none;
-    color: white;
-}
-
-.navigation a:hover {
-    text-decoration: none;
-    color: #a970ff;
-}
-
-.logo {
-    position: relative;
-    float: left;
-    padding: 4px;
-    padding-left: 8px;
-}
-
-.logo .img-top {
-    position: absolute;
-    display: none;
-    padding: 4px;
-    padding-left: 8px;
-    top: 0;
-    left: 0;
-    z-index: 99;
-}
-
-.logo:hover .img-top {
+li {
     display: inline;
 }
 
-.user-navigation a {
-    display: table-cell;
+li a {
     text-decoration: none;
-    color: white;
     font-size: 20px;
-    padding-left: 13px;
-    padding-right: 13px;
-    border-right: 1px solid #aeaeb0;
+    padding: 0px 12px 0px 12px;
 }
 
-.user-navigation a:visited {
-    text-decoration: none;
-    color: white;
-}
-
-.user-navigation a:hover {
-    text-decoration: none;
+li i:hover {
     color: #a970ff;
 }
 
-.user-navigation span {
-    display: table-cell;
+span {
+    display: inline-block;
     color: white;
-    padding-left: 8px;
+    padding: 0px 8px 0px 0px;
 }
 
-@media screen and (max-width: 770px) {
-    .user-navigation a#login {
-        display: none;
-    }
+.left-list a {
+    border-right: 1px solid #aeaeb0;
 }
 
-@media screen and (max-width: 700px) {
-    .user-navigation a#register {
-        display: none;
-    }
+.right-list a {
+    border-left: 1px solid #aeaeb0;
 }
 
-@media screen and (max-width: 1165px) {
-    .user-navigation a#logout {
-        display: none;
-    }
-    .user-navigation span {
-        padding-top: 4px;
-    }
-}
-
-@media screen and (max-width: 1100px) {
-    .user-navigation span {
-        display: none;
-    }
-}
-
-@media screen and (max-width: 300px) {
-    .navigation a#games {
-        display: none;
-    }
-}
-
-@media screen and (max-width: 410px) {
-    .navigation a#genres {
-        display: none;
-    }
+#games-icon, #genres-icon, #devs-icon, #dropdown, #left-profile {
+    display: none;
 }
 
 @media screen and (max-width: 550px) {
-    .navigation a#devs {
+    #devs-text, #genres-text, #games-text {
+        display: none;
+    }
+    #devs-icon, #genres-icon, #games-icon {
+        display: inline-block;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    .right-navigation {
+        width: 0%;
+    }
+    .left-navigation {
+        text-align: center;
+        width: 100%
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    #add-devs, #add-genres, #add-games, #right-profile, #login, #register {
+        display: none;
+    }
+    #dropdown, #left-profile {
+        display: inline-block;
+    }
+}
+
+@media screen and (max-width: 1150px) {
+    #logout, span {
         display: none;
     }
 }
 
-@media screen and (max-width: 630px) {
-    .navigation a#addGames {
-        display: none;
-    }
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 99;
 }
 
-@media screen and (max-width: 770px) {
-    .navigation a#addGenres {
-        display: none;
-    }
-}
-
-@media screen and (max-width: 900px) {
-    .navigation a#addDevs {
-        display: none;
-    }
+.dropdown-btn:hover {
+    color: lightgreen
 }

@@ -1,46 +1,66 @@
+import { useContext } from 'react'
+import { useHistory } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
-import { auth } from '../../utils/firebase'
+import axios from 'axios'
+
+import UserContext from '../../contexts/UserContext'
 
 import errorHandler from '../../utils/errorHandler'
 
-import './Login.css'
 
-const Login = ({
-    history
-}) => {
 
-    const onLoginFormSubmitHandler = (e) => {
+const Login = () => {
+
+    const history = useHistory()
+
+    const { setUserData } = useContext(UserContext)
+
+    const onLoginFormSubmitHandler = async (e) => {
         e.preventDefault()
 
         const email = e.target.email.value
         const password = e.target.password.value
 
-        auth.signInWithEmailAndPassword(email, password)
-            .then(() => history.push('/'))
-            .catch(errorHandler)
+        try {
+
+            let loginReponse = await axios.post('http://localhost:5153/user/login', { email, password })
+            setUserData({ token: loginReponse.data.token, user: loginReponse.data.user })
+            localStorage.setItem('auth-token', loginReponse.data.token)
+            history.push('/')
+
+        } catch (err) {
+            errorHandler(err)
+        }
     }
 
     return (
-        <div>
+        <section>
 
-            <h1 className="login-section-title">Login</h1>
+            <header>
+                <h1>Login</h1>
+            </header>
 
-            <form onSubmit={onLoginFormSubmitHandler}>
+            <article>
+                <form onSubmit={onLoginFormSubmitHandler}>
 
-                <label className="field-label">Email</label>
-                <input className="login-field" type="text" name="email" placeholder="Email" />
+                    <fieldset>
+                        <label>Email</label>
+                        <input type="email" name="email" placeholder="Email" autoComplete="email" />
+                    </fieldset>
 
-                <label className="field-label">Password</label>
-                <input className="login-field" type="password" name="password" placeholder="Repeat Password" />
+                    <fieldset>
+                        <label>Password</label>
+                        <input type="password" name="password" placeholder="Repeat Password" autoComplete="current-password" />
+                    </fieldset>
 
-                <br></br>
+                    <button>Login</button>
 
-                <button className="login-button">Login</button>
-
-            </form>
+                </form>
+            </article>
 
             <ToastContainer />
-        </div >
+
+        </section >
     )
 }
 
