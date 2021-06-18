@@ -44,33 +44,20 @@ const AddGames = () => {
         const dataIsValid = await validateData({ title, image, description, videoUrl })
         if (!dataIsValid) return
 
-        if (type === 'game') {
-            gameService
-                .add({ title, image, description, moreInfo, videoUrl, genre, dev }, userData.user.id)
-                .then(res => {
-                    if (typeof (res) === 'string') throw new Error(res)
-                    if (typeof (res) === 'object') history.push('/games')
-                })
-                .catch(errorHandler)
-        }
-        if (type === 'genre') {
-            genreService
-                .add({ title, image, description }, userData.user.id)
-                .then(res => {
-                    if (typeof (res) === 'string') throw new Error(res)
-                    if (typeof (res) === 'object') history.push('/genres')
-                })
-                .catch(errorHandler)
-        }
-        if (type === 'dev') {
-            devService
-                .add({ title, image, description }, userData.user.id)
-                .then(res => {
-                    if (typeof (res) === 'string') throw new Error(res)
-                    if (typeof (res) === 'object') history.push('/devs')
-                })
-                .catch(errorHandler)
-        }
+        try {
+            if (type === 'game') {
+                let gameRes = await gameService.add({ title, image, description, moreInfo, videoUrl, genre, dev }, userData.user.id)
+                if (gameRes.data) history.push('/games')
+            }
+            if (type === 'genre') {
+                let genreRes = await genreService.add({ title, image, description }, userData.user.id)
+                if (genreRes.data) history.push('/genres')
+            }
+            if (type === 'dev') {
+                let devRes = await devService.add({ title, image, description }, userData.user.id)
+                if (devRes.data) history.push('/devs')
+            }
+        } catch (err) { errorHandler(err) }
     }
 
     return (

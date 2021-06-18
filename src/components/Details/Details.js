@@ -11,10 +11,9 @@ import devService from '../../services/devService'
 import errorHandler from '../../utils/errorHandler'
 
 import AlertBox from '../AlertBox'
+import InfoBox from '../InfoBox'
 
-import ImageBox from './ImageBox'
 import ButtonsBox from './ButtonsBox'
-import DesciprtionBox from './DescriptionBox'
 import VideoBox from './VideoBox'
 import MoreInfoBox from './MoreInfoBox'
 import GameGenreBox from './GameGenreBox'
@@ -30,7 +29,7 @@ import './Details.css'
 
 const Details = () => {
 
-    const match = useRouteMatch()
+    const { itemID } = useRouteMatch().params
     const history = useHistory()
     const type = useHistory().location.pathname.split('/')[1]
 
@@ -44,20 +43,20 @@ const Details = () => {
 
         const fetchData = async () => {
             let item
-            if (type === 'games') item = await gameService.getOne(match.params.itemID)
-            if (type === 'genres') item = await genreService.getOne(match.params.itemID)
-            if (type === 'devs') item = await devService.getOne(match.params.itemID)
+            if (type === 'games') item = await gameService.getOne(itemID)
+            if (type === 'genres') item = await genreService.getOne(itemID)
+            if (type === 'devs') item = await devService.getOne(itemID)
             if (componentMounted) setItem(item)
         }
         fetchData()
 
         return () => { componentMounted = false }
-    }, [match.params.itemID, type])
+    }, [itemID, type])
 
     const handleEdit = () => {
         const isAuthorized = isCreator ? true : item.authorizedEditors.includes(userData.user.id)
         if (!isAuthorized) return toast.error(`You don't have permission to edit this ${type.slice(0, type.length - 1)}`)
-        history.push(`/${type}/${match.params.itemID}/edit`)
+        history.push(`/${type}/${itemID}/edit`)
     }
 
     const handleUpvote = async () => {
@@ -76,6 +75,18 @@ const Details = () => {
         } catch (err) { errorHandler(err) }
     }
 
+    const handleComment = async (e) => {
+        e.preventDefault()
+        try {
+            let content = e.target.content.value
+            if (type === 'games') gameService.comment(itemID, content, userData.user.username)
+            if (type === 'genres') genreService.comment(itemID, content, userData.user.username)
+            if (type === 'devs') devService.comment(itemID, content, userData.user.username)
+            e.target.content.value = ''
+            toast.success(`Your comment on ${item.title} was sent.`)
+        } catch (err) { errorHandler(err) }
+    }
+
     const [alertBox, setAlertBox] = useState('hide')
     const handleDelete = () => {
         if (!isCreator) return toast.error(`You don't have permission to delete this ${type.slice(0, type.length - 1)}`)
@@ -84,26 +95,14 @@ const Details = () => {
 
     const handleDeleteYes = async () => {
         try {
-            if (type === 'games') gameService.deleteGame(match.params.itemID, userData.user.id)
-            if (type === 'genres') genreService.deleteGenre(match.params.itemID, userData.user.id)
-            if (type === 'devs') devService.deleteDev(match.params.itemID, userData.user.id)
+            if (type === 'games') gameService.deleteGame(itemID, userData.user.id)
+            if (type === 'genres') genreService.deleteGenre(itemID, userData.user.id)
+            if (type === 'devs') devService.deleteDev(itemID, userData.user.id)
             history.push(`/${type}`)
         } catch (err) { errorHandler(err) }
     }
 
     const handleDeleteNo = () => { setAlertBox('hide') }
-
-    const handleComment = async (e) => {
-        e.preventDefault()
-        try {
-            let content = e.target.content.value
-            if (type === 'games') gameService.comment(match.params.itemID, content, userData.user.username)
-            if (type === 'genres') genreService.comment(match.params.itemID, content, userData.user.username)
-            if (type === 'devs') devService.comment(match.params.itemID, content, userData.user.username)
-            e.target.content.value = ''
-            toast.success(`Your comment on ${item.title} was sent.`)
-        } catch (err) { errorHandler(err) }
-    }
 
     return (
         <section>
@@ -114,11 +113,14 @@ const Details = () => {
 
             <article>
 
+                <div>
+                    <img className="blockbuster-image" src={item.image} alt={item.title} />
+                </div>
+
                 <AlertBox display={alertBox} yesHandler={handleDeleteYes} noHandler={handleDeleteNo}>
                     <p>{`Are you sure you want to delete this ${type.slice(0, type.length - 1)}?`}</p>
                 </AlertBox>
 
-                <ImageBox image={item.image} title={item.title} />
                 <ButtonsBox
                     isCreator={isCreator}
                     editors={item.authorizedEditors}
@@ -126,13 +128,20 @@ const Details = () => {
                     handleUpvote={handleUpvote}
                     handleDelete={handleDelete}
                 />
-                <DesciprtionBox description={item.description} />
+
+                <InfoBox title="Description">
+                    <p>{item.description}</p>
+                </InfoBox>
+
                 <VideoBox videoUrl={item.videoUrl} />
                 <MoreInfoBox moreInfo={item.moreInfo} />
                 <GameGenreBox genre={item.genre} type={type} />
                 <GameDevBox dev={item.dev} type={type} />
+
                 <GamesByDevBox games={item.gamesByDev} type={type} />
+
                 <GamesInGenreBox games={item.gamesInGenre} type={type} />
+
                 <AddCommentBox handleComment={handleComment} />
                 <CommentsBox comments={item.comments} type={type} />
 
