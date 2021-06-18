@@ -69,8 +69,8 @@ const Details = () => {
             }
 
             if (type === 'games') setItem(await gameService.upvote(item._id, userData.user.id))
-            if (type === 'genres') setItem(await genreService.upvote(item, userData.user.id))
-            if (type === 'devs') setItem(await devService.upvote(item, userData.user.id))
+            if (type === 'genres') setItem(await genreService.upvote(item._id, userData.user.id))
+            if (type === 'devs') setItem(await devService.upvote(item._id, userData.user.id))
 
         } catch (err) { errorHandler(err) }
     }
