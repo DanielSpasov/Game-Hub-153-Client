@@ -34,9 +34,9 @@ const editOne = async (id, data) => {
     } catch (err) { errorHandler(err) }
 }
 
-const upvote = async (data, userID) => {
+const upvote = async (gameID, userID) => {
     try {
-        const response = await axios.post(`${db_uri}/games/upvote/${data._id}`, { data, userID })
+        const response = await axios.post(`${db_uri}/games/upvote/${gameID}`, { userID })
         return response.data
     } catch (err) { errorHandler(err) }
 }
