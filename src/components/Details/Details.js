@@ -68,10 +68,7 @@ const Details = () => {
                 if (item.title !== 'League of Legends') toast.success(`You upvoted ${item.title}.`)
             }
 
-            if (type === 'games') {
-                let test = await gameService.upvote(item._id, userData.user.id)
-                setItem(test)
-            }
+            if (type === 'games') setItem(await gameService.upvote(item._id, userData.user.id))
             if (type === 'genres') setItem(await genreService.upvote(item, userData.user.id))
             if (type === 'devs') setItem(await devService.upvote(item, userData.user.id))
 
