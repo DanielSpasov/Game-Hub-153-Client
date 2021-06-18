@@ -48,9 +48,9 @@ const getTopFive = async () => {
     } catch (err) { errorHandler(err) }
 }
 
-const deleteGame = async (gameID) => {
+const deleteGame = async (gameID, userID) => {
     try {
-        const response = await axios.get(`${db_uri}/games/delete/${gameID}`)
+        const response = await axios.post(`${db_uri}/games/delete/${gameID}`, { userID })
         return response.data
     } catch (err) { errorHandler(err) }
 }

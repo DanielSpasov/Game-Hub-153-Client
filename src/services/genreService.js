@@ -48,9 +48,9 @@ const getTopFive = async () => {
     } catch (err) { errorHandler(err) }
 }
 
-const deleteGenre = async (genreID) => {
+const deleteGenre = async (genreID, userID) => {
     try {
-        const response = await axios.get(`${db_uri}/genres/delete/${genreID}`)
+        const response = await axios.get(`${db_uri}/genres/delete/${genreID}`, { userID })
         return response.data
     } catch (err) { errorHandler(err) }
 }

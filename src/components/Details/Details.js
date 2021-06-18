@@ -84,9 +84,9 @@ const Details = () => {
 
     const handleDeleteYes = async () => {
         try {
-            if (type === 'games') gameService.deleteGame(match.params.itemID)
-            if (type === 'genres') genreService.deleteGenre(match.params.itemID)
-            if (type === 'devs') devService.deleteDev(match.params.itemID)
+            if (type === 'games') gameService.deleteGame(match.params.itemID, userData.user.id)
+            if (type === 'genres') genreService.deleteGenre(match.params.itemID, userData.user.id)
+            if (type === 'devs') devService.deleteDev(match.params.itemID, userData.user.id)
             history.push(`/${type}`)
         } catch (err) { errorHandler(err) }
     }
