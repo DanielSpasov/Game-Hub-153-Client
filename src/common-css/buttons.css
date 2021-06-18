@@ -15,18 +15,36 @@ button:hover {
 
 button:focus {
     outline: none;
-    color: #a970ff;
 }
 
 .icon-btn {
     border: none;
     background: transparent;
+    border-radius: 0px;
 }
 
 .icon-btn:hover {
-    color: white;
+    color: lightgreen;
 }
 
 .icon-btn:focus {
     outline: none;
+}
+
+#upvote::after {
+    content: '';
+    display: block;
+    width: 0%;
+    height: 3px;
+    background: lightgreen;
+    margin-top: 3px;
+    transition: width 5s;
+}
+
+#upvote:disabled::after {
+    width: 100%;
+}
+
+#upvote:disabled {
+    color: #464649;
 }

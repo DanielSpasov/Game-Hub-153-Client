@@ -30,10 +30,6 @@
     color: rgb(255, 255, 137);
 }
 
-.fa-plus-circle:hover, .fa-arrow-alt-circle-up:hover, .fa-plus:hover {
-    color: lightgreen;
-}
-
 .fa-exclamation-triangle {
     color: rgb(255, 255, 137);
 }

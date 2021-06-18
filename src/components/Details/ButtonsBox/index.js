@@ -26,7 +26,7 @@ const ButtonsBox = ({ isDisabled, itemCreator, editors, handleUpvote, handleDele
     return (
         <InfoBox title="Functions">
 
-            <button className="icon-btn" onClick={handleUpvote} disabled={isDisabled}>
+            <button id="upvote" className="icon-btn" onClick={handleUpvote} disabled={isDisabled}>
                 <i className="fas fa-arrow-alt-circle-up"></i>
             </button>
 
