@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react'
 import { Route, Switch } from 'react-router-dom'
-import axios from 'axios'
+
+// Services
+import userService from './services/userService'
 
 // Contexts
 import { UserProvider } from './contexts/UserContext'
@@ -30,8 +32,6 @@ import './common-css/icons.css'
 import './common-css/buttons.css'
 import './App.css'
 
-const db_uri = process.env.REACT_APP_DB_URI
-
 
 
 const App = () => {
@@ -42,26 +42,8 @@ const App = () => {
 
         console.log(`App is running in ${process.env.NODE_ENV} mode.`)
 
-        const checkLoggedIn = async () => {
-            let token = localStorage.getItem('auth-token')
-            if (token === null) {
-                localStorage.setItem('auth-token', '')
-                token = ''
-            }
-
-            const tokenResponse = await axios.post(`${db_uri}/user/tokenIsValid`, null, {
-                headers: { 'x-auth-token': token }
-            })
-
-            if (tokenResponse.data) {
-                const userResponse = await axios.get(`${db_uri}/user/`, {
-                    headers: { 'x-auth-token': token }
-                })
-                setUserData({ token, user: userResponse.data })
-            }
-        }
-
-        checkLoggedIn()
+        userService.checkLoggedIn(setUserData)
+        
     }, [])
 
     return (

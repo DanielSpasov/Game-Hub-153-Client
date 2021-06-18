@@ -1,11 +1,9 @@
 import { ToastContainer, toast } from 'react-toastify'
 import { useHistory } from 'react-router-dom'
-import axios from 'axios'
 
+import userService from '../../services/userService'
 
 import errorHandler from '../../utils/errorHandler'
-
-const db_uri = process.env.REACT_APP_DB_URI
 
 
 
@@ -13,20 +11,20 @@ const Register = () => {
 
     const history = useHistory()
 
-    const onRegisterFormSubmitHandler = (e) => {
+    const onRegisterFormSubmitHandler = async (e) => {
         e.preventDefault()
 
-        const email = e.target.email.value
-        const password = e.target.password.value
-        const rePassword = e.target.rePassword.value
+        try {
+            const email = e.target.email.value
+            const password = e.target.password.value
+            const rePassword = e.target.rePassword.value
 
-        if (password !== rePassword) return toast.error('Passwords doesn\'t match.')
+            if (password !== rePassword) return toast.error('Passwords doesn\'t match.')
 
-        axios.post(`${db_uri}/user/register`,
-            { email, password, rePassword }
-        )
-            .then(() => history.push('/user/login'))
-            .catch(errorHandler)
+            let registerRes = await userService.register(email, password, rePassword)
+            if (registerRes) history.push('/user/login')
+
+        } catch (err) { errorHandler(err) }
     }
 
     return (

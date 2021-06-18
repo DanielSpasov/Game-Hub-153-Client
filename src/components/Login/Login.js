@@ -1,13 +1,12 @@
 import { useContext } from 'react'
 import { useHistory } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
-import axios from 'axios'
 
 import UserContext from '../../contexts/UserContext'
 
-import errorHandler from '../../utils/errorHandler'
+import userService from '../../services/userService'
 
-const db_uri = process.env.REACT_APP_DB_URI
+import errorHandler from '../../utils/errorHandler'
 
 
 
@@ -20,19 +19,14 @@ const Login = () => {
     const onLoginFormSubmitHandler = async (e) => {
         e.preventDefault()
 
-        const email = e.target.email.value
-        const password = e.target.password.value
-
         try {
+            const email = e.target.email.value
+            const password = e.target.password.value
 
-            let loginReponse = await axios.post(`${db_uri}/user/login`, { email, password })
-            setUserData({ token: loginReponse.data.token, user: loginReponse.data.user })
-            localStorage.setItem('auth-token', loginReponse.data.token)
-            history.push('/')
+            let loginRes = await userService.login(email, password, setUserData)
+            if (loginRes) history.push('/')
 
-        } catch (err) {
-            errorHandler(err)
-        }
+        } catch (err) { errorHandler(err) }
     }
 
     return (
