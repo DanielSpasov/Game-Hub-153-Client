@@ -36,7 +36,6 @@ const Details = () => {
     const { userData } = useContext(UserContext)
 
     const [item, setItem] = useState({})
-    const isCreator = userData.user ? userData.user.id === item.creator : false
 
     useEffect(() => {
         let componentMounted = true
@@ -54,13 +53,16 @@ const Details = () => {
     }, [itemID, type])
 
     const handleEdit = () => {
-        const isAuthorized = isCreator ? true : item.authorizedEditors.includes(userData.user.id)
+        const isAuthorized = userData.user.id === item.creator ? true : item.authorizedEditors.includes(userData.user.id)
         if (!isAuthorized) return toast.error(`You don't have permission to edit this ${type.slice(0, type.length - 1)}`)
         history.push(`/${type}/${itemID}/edit`)
     }
 
+    const [isDisabled, setIsDisabled] = useState(false)
     const handleUpvote = async () => {
         try {
+
+            if (!isDisabled) setIsDisabled(true); setTimeout(() => setIsDisabled(false), 5000)
 
             if (item.usersUpvoted.includes(userData.user.id)) toast.info('Upvote removed.')
             if (!item.usersUpvoted.includes(userData.user.id)) {
@@ -69,8 +71,8 @@ const Details = () => {
             }
 
             if (type === 'games') setItem(await gameService.upvote(item._id, userData.user.id))
-            if (type === 'genres') setItem(await genreService.upvote(item._id, userData.user.id))
-            if (type === 'devs') setItem(await devService.upvote(item._id, userData.user.id))
+            if (type === 'genres') genreService.upvote(item._id, userData.user.id)
+            if (type === 'devs') devService.upvote(item._id, userData.user.id)
 
         } catch (err) { errorHandler(err) }
     }
@@ -89,7 +91,7 @@ const Details = () => {
 
     const [alertBox, setAlertBox] = useState('hide')
     const handleDelete = () => {
-        if (!isCreator) return toast.error(`You don't have permission to delete this ${type.slice(0, type.length - 1)}`)
+        if (userData.user.id !== item.creator) return toast.error(`You don't have permission to delete this ${type.slice(0, type.length - 1)}`)
         setAlertBox('show')
     }
 
@@ -122,8 +124,9 @@ const Details = () => {
                 </AlertBox>
 
                 <ButtonsBox
-                    isCreator={isCreator}
                     editors={item.authorizedEditors}
+                    itemCreator={item.creator}
+                    isDisabled={isDisabled}
                     handleEdit={handleEdit}
                     handleUpvote={handleUpvote}
                     handleDelete={handleDelete}

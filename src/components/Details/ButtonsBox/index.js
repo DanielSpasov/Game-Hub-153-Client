@@ -6,24 +6,27 @@ import InfoBox from '../../InfoBox'
 
 
 
-const ButtonsBox = ({ isCreator, editors, handleUpvote, handleDelete, handleEdit }) => {
+const ButtonsBox = ({ isDisabled, itemCreator, editors, handleUpvote, handleDelete, handleEdit }) => {
 
     const { userData } = useContext(UserContext)
+
+    const [isCreator, setIsCreator] = useState(false)
     const [isEditor, setIsEditor] = useState(false)
 
     useEffect(() => {
 
         if (editors && userData.user) {
+            setIsCreator(userData.user.id === itemCreator)
             let isAuthorized = isCreator ? true : editors.includes(userData.user.id)
             setIsEditor(isAuthorized)
         }
 
-    }, [editors, isCreator, userData.user])
+    }, [editors, isCreator, userData.user, itemCreator])
 
     return (
         <InfoBox title="Functions">
 
-            <button className="icon-btn" onClick={handleUpvote}>
+            <button className="icon-btn" onClick={handleUpvote} disabled={isDisabled}>
                 <i className="fas fa-arrow-alt-circle-up"></i>
             </button>
 
