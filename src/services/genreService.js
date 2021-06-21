@@ -62,6 +62,13 @@ const comment = async (genreID, content, username) => {
     } catch (err) { errorHandler(err) }
 }
 
+const authorizeEditor = async (userID, editorEmail, genreID) => {
+    try {
+        const response = await axios.post(`${db_uri}/genres/authorizeEditor/${genreID}`, { userID, editorEmail })
+        return response.data
+    } catch (err) { errorHandler(err) }
+}
+
 
 
 const functions = {
@@ -73,6 +80,7 @@ const functions = {
     getTopFive,
     deleteGenre,
     comment,
+    authorizeEditor,
 }
 
 export default functions

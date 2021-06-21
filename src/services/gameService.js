@@ -62,6 +62,13 @@ const comment = async (gameID, content, username) => {
     } catch (err) { errorHandler(err) }
 }
 
+const authorizeEditor = async (userID, editorEmail, gameID) => {
+    try {
+        const response = await axios.post(`${db_uri}/games/authorizeEditor/${gameID}`, { userID, editorEmail })
+        return response.data
+    } catch (err) { errorHandler(err) }
+}
+
 
 
 const functions = {
@@ -72,7 +79,8 @@ const functions = {
     upvote,
     getTopFive,
     deleteGame,
-    comment
+    comment,
+    authorizeEditor
 }
 
 export default functions

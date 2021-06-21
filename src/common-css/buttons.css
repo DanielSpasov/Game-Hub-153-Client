@@ -24,7 +24,7 @@ button:focus {
 }
 
 .icon-btn:hover {
-    color: lightgreen;
+    color: unset;
 }
 
 .icon-btn:focus {

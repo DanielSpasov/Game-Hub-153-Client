@@ -3,22 +3,11 @@
     color: white;
 }
 
-.fa-home,
-.fa-book,
-.fa-laptop-code,
-.fa-hat-wizard,
-.fa-user,
-.fa-caret-square-down {
+.fa-home, .fa-book, .fa-laptop-code, .fa-hat-wizard, .fa-user, .fa-caret-square-down {
     font-size: 30px;
 }
 
-.fa-arrow-alt-circle-up,
-.fa-pen-square,
-.fa-plus,
-.fa-trash,
-.fa-plus-circle,
-.fa-arrow-alt-circle-down,
-.fa-exclamation-triangle {
+.fa-arrow-alt-circle-up, .fa-pen-square, .fa-plus, .fa-trash, .fa-plus-circle, .fa-arrow-alt-circle-down, .fa-exclamation-triangle {
     font-size: 40px;
 }
 
@@ -32,4 +21,9 @@
 
 .fa-exclamation-triangle {
     color: rgb(255, 255, 137);
+}
+
+.fa-plus-circle:hover,
+.fa-arrow-alt-circle-up:hover {
+    color: lightgreen;
 }

@@ -6,7 +6,7 @@ import InfoBox from '../../InfoBox'
 
 
 
-const ButtonsBox = ({ isDisabled, itemCreator, editors, handleUpvote, handleDelete, handleEdit }) => {
+const ButtonsBox = ({ isDisabled, itemCreator, editors, handleUpvote, handleDelete, handleEdit, handleAddEditor }) => {
 
     const { userData } = useContext(UserContext)
 
@@ -31,7 +31,7 @@ const ButtonsBox = ({ isDisabled, itemCreator, editors, handleUpvote, handleDele
             </button>
 
             {isCreator ?
-                <button className="icon-btn">
+                <button className="icon-btn" onClick={handleAddEditor}>
                     <i className="fas fa-plus-circle"></i>
                 </button> : null}
 
