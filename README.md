@@ -25,6 +25,5 @@ You can access the website at [https://game-hub-153.herokuapp.com/](https://game
 
 
 ## TODO:
-### Unauthrorize editors
 ### Fix commenting (comments don't show when you comment)
 ### Make the edit alert style
