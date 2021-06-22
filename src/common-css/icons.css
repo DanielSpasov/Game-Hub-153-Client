@@ -11,7 +11,9 @@
     font-size: 40px;
 }
 
-.fa-arrow-alt-circle-down:hover, .fa-trash:hover {
+.fa-arrow-alt-circle-down:hover,
+.fa-trash:hover,
+.fa-user-times:hover {
     color: rgb(255, 106, 106);
 }
 

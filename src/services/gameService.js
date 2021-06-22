@@ -69,6 +69,13 @@ const authorizeEditor = async (userID, editorEmail, gameID) => {
     } catch (err) { errorHandler(err) }
 }
 
+const removeEditor = async (userID, editorID, gameID) => {
+    try {
+        const response = await axios.post(`${db_uri}/games/removeEditor/${gameID}`, { userID, editorID })
+        return response.data
+    } catch (err) { errorHandler(err) }
+}
+
 
 
 const functions = {
@@ -80,7 +87,8 @@ const functions = {
     getTopFive,
     deleteGame,
     comment,
-    authorizeEditor
+    authorizeEditor,
+    removeEditor,
 }
 
 export default functions

@@ -97,10 +97,21 @@ const Details = () => {
     }
 
     const [authAlert, setAuthAlert] = useState('hide')
-    const handleAddEditor = () => {
+    const handleAddEditor = (e) => {
         const isCreator = userData.user.id === item.creator ? true : false
         if (!isCreator) toast.error('You don\'t have persmission to authorize editors.')
         setAuthAlert('show')
+    }
+
+    const removeEditor = async (e) => {
+        try {
+            e.target.parentElement.style = 'display: none'
+            let res
+            if (type === 'games') res = await gameService.removeEditor(userData.user.id, e.target.id, itemID)
+            if (type === 'genres') res = await genreService.removeEditor(userData.user.id, e.target.id, itemID)
+            if (type === 'devs') res = await devService.removeEditor(userData.user.id, e.target.id, itemID)
+            if(res) toast.info(`${e.target.parentElement.children[0].innerHTML} removed from the editors list`)
+        } catch (err) { errorHandler(err) }
     }
 
     const handleDeleteYes = async () => {
@@ -121,6 +132,7 @@ const Details = () => {
         e.preventDefault()
         try {
             let userEmail = e.target.parentElement.parentElement.children[1].children[0].children[0].value
+            e.target.parentElement.parentElement.children[1].children[0].children[0].value = ''
             let res
             if (type === 'games') res = await gameService.authorizeEditor(userData.user.id, userEmail, itemID)
             if (type === 'genres') res = await genreService.authorizeEditor(userData.user.id, userEmail, itemID)
@@ -159,6 +171,14 @@ const Details = () => {
                     <form>
                         <input type="email" name="email" placeholder="User email" />
                     </form>
+                    <div>
+                        {item.authorizedEditors ? item.authorizedEditors.map(x =>
+                            <div key={x._id} className="authorized-editor">
+                                <p>{x.email}</p>
+                                <i id={x._id} className="fas fa-user-times" onClick={removeEditor}></i>
+                            </div>
+                        ) : null}
+                    </div>
                 </AlertBox>
 
                 <ButtonsBox

@@ -18,6 +18,9 @@ const ButtonsBox = ({ isDisabled, itemCreator, editors, handleUpvote, handleDele
         if (editors && userData.user) {
             setIsCreator(userData.user.id === itemCreator)
             let isAuthorized = isCreator ? true : editors.includes(userData.user.id)
+            for (let kvp of editors) {
+                if (kvp._id === userData.user.id) isAuthorized = true
+            }
             setIsEditor(isAuthorized)
         }
 
