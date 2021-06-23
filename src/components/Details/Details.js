@@ -59,7 +59,7 @@ const Details = () => {
             toast.success(`Your comment on ${item.title} was sent.`)
         } catch (err) { errorHandler(err) }
     }
-    
+
     const [editAlert, setEditAlert] = useState('hide')
     const [editorsAlert, setEditorsAlert] = useState('hide')
     const [deleteAlert, setDeleteAlert] = useState('hide')
@@ -73,12 +73,10 @@ const Details = () => {
 
             <article>
 
-                <div>
-                    <img className="blockbuster-image" src={item.image} alt={item.title} />
-                </div>
+                <div><img className="blockbuster-image" src={item.image} alt={item.title} /></div>
 
                 <DeleteAlert deleteAlert={deleteAlert} setDeleteAlert={setDeleteAlert} />
-                <EditAlert editAlert={editAlert} setEditAlert={setEditAlert} />
+                <EditAlert editAlert={editAlert} setEditAlert={setEditAlert} item={item} setItem={setItem} />
                 <EditorsAlert editorsAlert={editorsAlert} setEditorsAlert={setEditorsAlert} item={item} setItem={setItem} />
 
                 <ButtonsBox
@@ -136,13 +134,13 @@ const Details = () => {
                     </form>
                 </InfoBox>
 
+
                 {item.comments ? item.comments.length ?
                     <InfoBox title="Comments">
                         {item.comments.map(x => <Comment key={x.author + x.content} author={x.author} content={x.content} />)}
                     </InfoBox> : <InfoBox title={`There is no comments on this ${type.slice(0, type.length - 1)}`} /> : null}
 
             </article>
-
             <ToastContainer />
         </section >
     )
