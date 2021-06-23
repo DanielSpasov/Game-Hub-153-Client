@@ -14,14 +14,14 @@ import AlertBox from '../../AlertBox'
 
 
 
-const EditorsAlert = ({ item, setItem, authAlert, setAuthAlert }) => {
+const EditorsAlert = ({ item, setItem, editorsAlert, setEditorsAlert }) => {
 
     const { userData } = useContext(UserContext)
 
     const { itemID } = useRouteMatch().params
     const type = useHistory().location.pathname.split('/')[1]
 
-    const handleAuthEditYes = async (e) => {
+    const handleEditorsYes = async (e) => {
         e.preventDefault()
         try {
             let userEmail = e.target.parentElement.parentElement.children[1].children[0].children[0].value
@@ -38,7 +38,7 @@ const EditorsAlert = ({ item, setItem, authAlert, setAuthAlert }) => {
         } catch (err) { errorHandler(err) }
     }
 
-    const handleAuthEditNo = () => { setAuthAlert('hide') }
+    const handleEditorsNo = () => { setEditorsAlert('hide') }
 
     const removeEditor = async (e) => {
         try {
@@ -54,7 +54,7 @@ const EditorsAlert = ({ item, setItem, authAlert, setAuthAlert }) => {
     }
 
     return (
-        <AlertBox display={authAlert} yesHandler={handleAuthEditYes} noHandler={handleAuthEditNo} type="auth">
+        <AlertBox display={editorsAlert} yesHandler={handleEditorsYes} noHandler={handleEditorsNo} type="auth">
             <form>
                 <input type="email" name="email" placeholder="User email" />
             </form>

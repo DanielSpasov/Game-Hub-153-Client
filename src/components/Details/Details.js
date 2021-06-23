@@ -11,20 +11,14 @@ import devService from '../../services/devService'
 import errorHandler from '../../utils/errorHandler'
 
 import InfoBox from '../InfoBox'
+import Card from '../Card'
+import Comment from '../Comment'
 
 import DeleteAlert from './DeleteAlert'
 import EditAlert from './EditAlert'
 import EditorsAlert from './EditorsAlert'
 
 import ButtonsBox from './ButtonsBox'
-import VideoBox from './VideoBox'
-import MoreInfoBox from './MoreInfoBox'
-import GameGenreBox from './GameGenreBox'
-import GameDevBox from './GameDevBox'
-import GamesInGenreBox from './GamesInGenreBox'
-import GamesByDevBox from './GamesByDevBox'
-import AddCommentBox from './AddCommentBox'
-import CommentsBox from './CommentsBox'
 
 import './Details.css'
 
@@ -54,28 +48,6 @@ const Details = () => {
         return () => { componentMounted = false }
     }, [itemID, type])
 
-    const [isDisabled, setIsDisabled] = useState(false)
-    const handleUpvote = async () => {
-        try {
-
-            if (!isDisabled) {
-                setIsDisabled(true)
-                setTimeout(() => setIsDisabled(false), 5000)
-            }
-
-            if (item.usersUpvoted.includes(userData.user.id)) toast.info('Upvote removed.')
-            if (!item.usersUpvoted.includes(userData.user.id)) {
-                if (item.title === 'League of Legends') toast.warn(`Yikes`)
-                if (item.title !== 'League of Legends') toast.success(`You upvoted ${item.title}.`)
-            }
-
-            if (type === 'games') setItem(await gameService.upvote(item._id, userData.user.id))
-            if (type === 'genres') setItem(await genreService.upvote(item._id, userData.user.id))
-            if (type === 'devs') setItem(await devService.upvote(item._id, userData.user.id))
-
-        } catch (err) { errorHandler(err) }
-    }
-
     const handleComment = async (e) => {
         e.preventDefault()
         try {
@@ -87,27 +59,10 @@ const Details = () => {
             toast.success(`Your comment on ${item.title} was sent.`)
         } catch (err) { errorHandler(err) }
     }
-
-    const [deleteAlert, setDeleteAlert] = useState('hide')
-    const handleDelete = () => {
-        const isCreator = userData.user.id === item.creator ? true : false
-        if (!isCreator) return toast.error(`You don't have permission to delete this ${type.slice(0, type.length - 1)}`)
-        setDeleteAlert('show')
-    }
-
+    
     const [editAlert, setEditAlert] = useState('hide')
-    const handleEdit = () => {
-        const isAuthorized = userData.user.id === item.creator ? true : item.authorizedEditors.includes(userData.user.id)
-        if (!isAuthorized) return toast.error(`You don't have permission to edit this ${type.slice(0, type.length - 1)}`)
-        setEditAlert('show')
-    }
-
-    const [authAlert, setAuthAlert] = useState('hide')
-    const handleEditors = () => {
-        const isCreator = userData.user.id === item.creator ? true : false
-        if (!isCreator) return toast.error('You don\'t have persmission to authorize editors.')
-        setAuthAlert('show')
-    }
+    const [editorsAlert, setEditorsAlert] = useState('hide')
+    const [deleteAlert, setDeleteAlert] = useState('hide')
 
     return (
         <section>
@@ -124,31 +79,67 @@ const Details = () => {
 
                 <DeleteAlert deleteAlert={deleteAlert} setDeleteAlert={setDeleteAlert} />
                 <EditAlert editAlert={editAlert} setEditAlert={setEditAlert} />
-                <EditorsAlert authAlert={authAlert} setAuthAlert={setAuthAlert} item={item} setItem={setItem} />
+                <EditorsAlert editorsAlert={editorsAlert} setEditorsAlert={setEditorsAlert} item={item} setItem={setItem} />
 
                 <ButtonsBox
-                    editors={item.authorizedEditors}
-                    itemCreator={item.creator}
-                    isDisabled={isDisabled}
-                    handleUpvote={handleUpvote}
-                    handleEditors={handleEditors}
-                    handleEdit={handleEdit}
-                    handleDelete={handleDelete}
+                    item={item}
+                    setItem={setItem}
+                    setDeleteAlert={setDeleteAlert}
+                    setEditorsAlert={setEditorsAlert}
+                    setEditAlert={setEditAlert}
                 />
 
                 <InfoBox title="Description"><p>{item.description}</p></InfoBox>
 
-                <VideoBox videoUrl={item.videoUrl} />
-                <MoreInfoBox moreInfo={item.moreInfo} />
-                <GameGenreBox genre={item.genre} type={type} />
-                <GameDevBox dev={item.dev} type={type} />
+                {item.videoUrl ?
+                    <InfoBox title="Gameplay Video">
+                        <div className="video-player">
+                            <iframe width="560" height="315" src={item.videoUrl.replace('watch?v=', 'embed/')} title="YouTube video player" frameBorder="0" allowFullScreen></iframe>
+                        </div>
+                    </InfoBox> : null}
 
-                <GamesByDevBox games={item.gamesByDev} type={type} />
 
-                <GamesInGenreBox games={item.gamesInGenre} type={type} />
+                {item.moreInfo ?
+                    <InfoBox title="More Information">
+                        <p>{item.moreInfo}</p>
+                    </InfoBox> : null}
 
-                <AddCommentBox handleComment={handleComment} />
-                <CommentsBox comments={item.comments} type={type} />
+
+                {type === 'games' && item.genre ?
+                    <InfoBox title="Game Genre">
+                        <Card key={item.genre._id} id={item.genre._id} title={item.genre.title} image={item.genre.image} type={'genres'} />
+                    </InfoBox> : null}
+
+
+                {type === 'games' && item.dev ?
+                    <InfoBox title="Game Developer">
+                        <Card key={item.dev._id} id={item.dev._id} title={item.dev.title} image={item.dev.image} type={'devs'} />
+                    </InfoBox> : null}
+
+
+                {type === 'devs' ? item.gamesByDev ?
+                    <InfoBox title="Games made by this Developers">
+                        {item.gamesByDev.map(game => <Card key={game._id} id={game._id} title={game.title} image={game.image} type={'games'} />)}
+                    </InfoBox> : <InfoBox title="There is currently no games from this Developers" /> : null}
+
+
+                {type === 'genres' ? item.gamesInGenre ?
+                    <InfoBox title="Games in this Genre">
+                        {item.gamesInGenre.map(game => <Card key={game._id} id={game._id} title={game.title} image={game.image} type={'games'} />)}
+                    </InfoBox> : <InfoBox title="There is currently no games in this Genre" /> : null}
+
+
+                <InfoBox title="Add Comment">
+                    <form onSubmit={handleComment}>
+                        <textarea name="content" placeholder="comment"></textarea>
+                        <button>Comment</button>
+                    </form>
+                </InfoBox>
+
+                {item.comments ? item.comments.length ?
+                    <InfoBox title="Comments">
+                        {item.comments.map(x => <Comment key={x.author + x.content} author={x.author} content={x.content} />)}
+                    </InfoBox> : <InfoBox title={`There is no comments on this ${type.slice(0, type.length - 1)}`} /> : null}
 
             </article>
 

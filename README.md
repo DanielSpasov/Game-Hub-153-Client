@@ -29,3 +29,4 @@ You can access the website at [https://game-hub-153.herokuapp.com/](https://game
 -- Edit alert style
 -- Profile Page
 -- Navbar responseive design
+-- Make a dropdown menu
