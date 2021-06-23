@@ -10,8 +10,11 @@ import devService from '../../services/devService'
 
 import errorHandler from '../../utils/errorHandler'
 
-import AlertBox from '../AlertBox'
 import InfoBox from '../InfoBox'
+
+import DeleteAlert from './DeleteAlert'
+import EditAlert from './EditAlert'
+import EditorsAlert from './EditorsAlert'
 
 import ButtonsBox from './ButtonsBox'
 import VideoBox from './VideoBox'
@@ -30,7 +33,6 @@ import './Details.css'
 const Details = () => {
 
     const { itemID } = useRouteMatch().params
-    const history = useHistory()
     const type = useHistory().location.pathname.split('/')[1]
 
     const { userData } = useContext(UserContext)
@@ -62,7 +64,10 @@ const Details = () => {
             }
 
             if (item.usersUpvoted.includes(userData.user.id)) toast.info('Upvote removed.')
-            if (!item.usersUpvoted.includes(userData.user.id)) toast.success(`You upvoted ${item.title}.`)
+            if (!item.usersUpvoted.includes(userData.user.id)) {
+                if (item.title === 'League of Legends') toast.warn(`Yikes`)
+                if (item.title !== 'League of Legends') toast.success(`You upvoted ${item.title}.`)
+            }
 
             if (type === 'games') setItem(await gameService.upvote(item._id, userData.user.id))
             if (type === 'genres') setItem(await genreService.upvote(item._id, userData.user.id))
@@ -85,7 +90,8 @@ const Details = () => {
 
     const [deleteAlert, setDeleteAlert] = useState('hide')
     const handleDelete = () => {
-        if (userData.user.id !== item.creator) return toast.error(`You don't have permission to delete this ${type.slice(0, type.length - 1)}`)
+        const isCreator = userData.user.id === item.creator ? true : false
+        if (!isCreator) return toast.error(`You don't have permission to delete this ${type.slice(0, type.length - 1)}`)
         setDeleteAlert('show')
     }
 
@@ -97,54 +103,11 @@ const Details = () => {
     }
 
     const [authAlert, setAuthAlert] = useState('hide')
-    const handleAddEditor = (e) => {
+    const handleEditors = () => {
         const isCreator = userData.user.id === item.creator ? true : false
-        if (!isCreator) toast.error('You don\'t have persmission to authorize editors.')
+        if (!isCreator) return toast.error('You don\'t have persmission to authorize editors.')
         setAuthAlert('show')
     }
-
-    const removeEditor = async (e) => {
-        try {
-            e.target.parentElement.style = 'display: none'
-            let res
-            if (type === 'games') res = await gameService.removeEditor(userData.user.id, e.target.id, itemID)
-            if (type === 'genres') res = await genreService.removeEditor(userData.user.id, e.target.id, itemID)
-            if (type === 'devs') res = await devService.removeEditor(userData.user.id, e.target.id, itemID)
-            if(res) toast.info(`${e.target.parentElement.children[0].innerHTML} removed from the editors list`)
-        } catch (err) { errorHandler(err) }
-    }
-
-    const handleDeleteYes = async () => {
-        try {
-            if (type === 'games') gameService.deleteGame(itemID, userData.user.id)
-            if (type === 'genres') genreService.deleteGenre(itemID, userData.user.id)
-            if (type === 'devs') devService.deleteDev(itemID, userData.user.id)
-            history.push(`/${type}`)
-        } catch (err) { errorHandler(err) }
-    }
-
-    const handleEditYes = async () => {
-        try {
-        } catch (err) { errorHandler(err) }
-    }
-
-    const handleAuthEditYes = async (e) => {
-        e.preventDefault()
-        try {
-            let userEmail = e.target.parentElement.parentElement.children[1].children[0].children[0].value
-            e.target.parentElement.parentElement.children[1].children[0].children[0].value = ''
-            let res
-            if (type === 'games') res = await gameService.authorizeEditor(userData.user.id, userEmail, itemID)
-            if (type === 'genres') res = await genreService.authorizeEditor(userData.user.id, userEmail, itemID)
-            if (type === 'devs') res = await devService.authorizeEditor(userData.user.id, userEmail, itemID)
-            if (res) toast.info(`${userEmail} is now editor.`)
-            setAuthAlert('hide')
-        } catch (err) { errorHandler(err) }
-    }
-
-    const handleDeleteNo = () => { setDeleteAlert('hide') }
-    const handleEditNo = () => { setEditAlert('hide') }
-    const handleAuthEditNo = () => { setAuthAlert('hide') }
 
     return (
         <section>
@@ -159,41 +122,21 @@ const Details = () => {
                     <img className="blockbuster-image" src={item.image} alt={item.title} />
                 </div>
 
-                <AlertBox display={deleteAlert} yesHandler={handleDeleteYes} noHandler={handleDeleteNo} type="delete">
-                    <p>{`Are you sure you want to delete this ${type.slice(0, type.length - 1)}?`}</p>
-                </AlertBox>
-
-                <AlertBox display={editAlert} yesHandler={handleEditYes} noHandler={handleEditNo} type="edit" title={item.title}>
-                    <p>This is the edit alert</p>
-                </AlertBox>
-
-                <AlertBox display={authAlert} yesHandler={handleAuthEditYes} noHandler={handleAuthEditNo} type="auth">
-                    <form>
-                        <input type="email" name="email" placeholder="User email" />
-                    </form>
-                    <div>
-                        {item.authorizedEditors ? item.authorizedEditors.map(x =>
-                            <div key={x._id} className="authorized-editor">
-                                <p>{x.email}</p>
-                                <i id={x._id} className="fas fa-user-times" onClick={removeEditor}></i>
-                            </div>
-                        ) : null}
-                    </div>
-                </AlertBox>
+                <DeleteAlert deleteAlert={deleteAlert} setDeleteAlert={setDeleteAlert} />
+                <EditAlert editAlert={editAlert} setEditAlert={setEditAlert} />
+                <EditorsAlert authAlert={authAlert} setAuthAlert={setAuthAlert} item={item} setItem={setItem} />
 
                 <ButtonsBox
                     editors={item.authorizedEditors}
                     itemCreator={item.creator}
                     isDisabled={isDisabled}
                     handleUpvote={handleUpvote}
-                    handleAddEditor={handleAddEditor}
+                    handleEditors={handleEditors}
                     handleEdit={handleEdit}
                     handleDelete={handleDelete}
                 />
 
-                <InfoBox title="Description">
-                    <p>{item.description}</p>
-                </InfoBox>
+                <InfoBox title="Description"><p>{item.description}</p></InfoBox>
 
                 <VideoBox videoUrl={item.videoUrl} />
                 <MoreInfoBox moreInfo={item.moreInfo} />
