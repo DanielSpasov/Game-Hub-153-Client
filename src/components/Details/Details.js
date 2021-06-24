@@ -52,11 +52,15 @@ const Details = () => {
         e.preventDefault()
         try {
             let content = e.target.content.value
-            if (type === 'games') gameService.comment(itemID, content, userData.user.username)
-            if (type === 'genres') genreService.comment(itemID, content, userData.user.username)
-            if (type === 'devs') devService.comment(itemID, content, userData.user.username)
-            e.target.content.value = ''
-            toast.success(`Your comment on ${item.title} was sent.`)
+            let res
+            if (type === 'games') res = await gameService.comment(itemID, content, userData.user.username)
+            if (type === 'genres') res = await genreService.comment(itemID, content, userData.user.username)
+            if (type === 'devs') res = await devService.comment(itemID, content, userData.user.username)
+            if(res) {
+                setItem(res)
+                toast.success(`Your comment on ${item.title} was sent.`)
+                e.target.content.value = ''
+            }
         } catch (err) { errorHandler(err) }
     }
 
