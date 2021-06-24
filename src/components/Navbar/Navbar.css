@@ -7,19 +7,19 @@ nav {
     background-color: #18181b;
     font-family: 'Verdana';
     box-shadow: 0px 0px 16px 5px rgba(0, 0, 0, 1);
-    z-index: 99;
+    z-index: 98;
 }
 
-.left-navigation {
+nav section:nth-child(1) {
     text-align: left;
     margin: 0px;
-    width: 70%;
+    width: 63%;
 }
 
-.right-navigation {
+nav section:nth-child(2) {
     text-align: right;
     margin: 0px;
-    width: 30%;
+    width: 37%;
 }
 
 ul {
@@ -47,6 +47,7 @@ span {
     display: inline-block;
     color: white;
     padding: 0px 8px 0px 0px;
+    text-overflow: ellipsis;
 }
 
 .left-list a {
@@ -57,53 +58,83 @@ span {
     border-left: 1px solid #aeaeb0;
 }
 
-#games-icon, #genres-icon, #devs-icon, #dropdown, #left-profile {
+#games-icon, #genres-icon, #devs-icon, #dropdown {
     display: none;
 }
 
-@media screen and (max-width: 550px) {
+/** DROPDOWN MENU  **/
+
+#dropdown {
+    position: relative;
+}
+
+#dropdown h3 {
+    color: white;
+    margin: 0px;
+    padding: 8px;
+}
+
+#dropdown span {
+    padding: 10px;
+}
+
+#dropdown a {
+    margin: 0px;
+    padding: 8px;
+    display: block;
+    border: none;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: #222222;
+    border-radius: 10px;
+    padding: 0px 12px 0px 12px;
+    width: 180px;
+    right: 0px;
+    box-shadow: 0px 0px 16px 5px rgba(0, 0, 0, 1);
+}
+
+.dropdown-btn {
+    padding: 0px 12px 0px 12px;
+    margin: 0px;
+}
+
+.dropdown-btn:hover {
+    color: #a970ff;
+}
+
+#dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/** MEDIA QUERIES **/
+
+@media screen and (max-width: 1150px) {
+    nav section:nth-child(2) {
+        width: 0%;
+    }
+    nav section:nth-child(1) {
+        width: 100%;
+        text-align: center;
+    }
+    #dropdown {
+        display: inline-block;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    #add-devs, #add-genres, #add-games {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 600px) {
     #devs-text, #genres-text, #games-text {
         display: none;
     }
     #devs-icon, #genres-icon, #games-icon {
         display: inline-block;
     }
-}
-
-@media screen and (max-width: 650px) {
-    .right-navigation {
-        width: 0%;
-    }
-    .left-navigation {
-        text-align: center;
-        width: 100%
-    }
-}
-
-@media screen and (max-width: 1000px) {
-    #add-devs, #add-genres, #add-games, #right-profile, #login, #register {
-        display: none;
-    }
-    #dropdown, #left-profile {
-        display: inline-block;
-    }
-}
-
-@media screen and (max-width: 1150px) {
-    #logout, span {
-        display: none;
-    }
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 99;
-}
-
-.dropdown-btn:hover {
-    color: lightgreen
 }

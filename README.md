@@ -27,5 +27,3 @@ You can access the website at [https://game-hub-153.herokuapp.com/](https://game
 ## TODO:
 -- Fix commenting (comments don't show when you comment)
 -- Profile Page
--- Navbar responseive design
--- Make a dropdown menu
