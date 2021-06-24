@@ -14,11 +14,11 @@ const checkLoggedIn = async (setUserData) => {
             localStorage.setItem('-authtoken', '')
             token = ''
         }
-    
+
         const tokenResponse = await axios.post(`${db_uri}/user/tokenIsValid`, null, {
             headers: { 'x-auth-token': token }
         })
-    
+
         if (tokenResponse.data) {
             const userResponse = await axios.get(`${db_uri}/user/`, {
                 headers: { 'x-auth-token': token }
@@ -47,8 +47,15 @@ const register = async (email, password, rePassword) => {
 
 const getOne = async (username) => {
     try {
-        let registerRes = await axios.get(`${db_uri}/user/getOne/${username}`)
-        return registerRes.data
+        let dbRes = await axios.get(`${db_uri}/user/getOne/${username}`)
+        return dbRes.data
+    } catch (err) { errorHandler(err) }
+}
+
+const changeUsername = async (username, userID) => {
+    try {
+        let user = await axios.post(`${db_uri}/user/changeUsername/${userID}`, { username })
+        return user.data
     } catch (err) { errorHandler(err) }
 }
 
@@ -59,6 +66,7 @@ const functions = {
     login,
     register,
     getOne,
+    changeUsername,
 }
 
 export default functions
