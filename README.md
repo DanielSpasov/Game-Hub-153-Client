@@ -25,6 +25,5 @@ You can access the website at [https://game-hub-153.herokuapp.com/](https://game
 
 
 ## TODO:
--- Profile Page
 -- Search engine
 -- Protected Route
