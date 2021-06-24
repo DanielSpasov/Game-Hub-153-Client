@@ -1,0 +1,36 @@
+header {
+    overflow: auto;
+    left: 0px;
+    width: 100%;
+}
+
+.upvoted-items {
+    display: flex;
+}
+
+.games {
+    width: 33%;
+}
+
+.genres {
+    width: 33%;
+}
+
+.devs {
+    width: 33%;
+}
+
+@media screen and (max-width: 1100px) {
+    .upvoted-items {
+        flex-direction: column;
+    }
+    .games {
+        width: 100%;
+    }
+    .genres {
+        width: 100%;
+    }
+    .devs {
+        width: 100%;
+    }
+}

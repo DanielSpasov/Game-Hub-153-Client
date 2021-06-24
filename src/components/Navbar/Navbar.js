@@ -50,7 +50,7 @@ const Navbar = () => {
                                 <h3>User Options</h3>
                                 {isAuth ?
                                     <>
-                                        <li><NavLink to="/profile">Profile</NavLink></li>
+                                        <li><NavLink to={`/profile/${userData.user.username}`}>Profile</NavLink></li>
                                         <li><NavLink to="/user/logout">Logout</NavLink></li>
                                     </>
                                     :
@@ -73,7 +73,7 @@ const Navbar = () => {
                             <>
                                 <span>Welcome, {userData.user.username}</span>
                                 <li id="logout"><NavLink activeStyle={{ 'color': '#a970ff' }} to="/user/logout">Logout</NavLink></li>
-                                <li id="profile"><NavLink activeStyle={{ 'color': '#a970ff' }} to="/profile"><i className="fas fa-user"></i></NavLink></li>
+                                <li id="profile"><NavLink activeStyle={{ 'color': '#a970ff' }} to={`/profile/${userData.user.username}`}><i className="fas fa-user"></i></NavLink></li>
                             </> :
                             <>
                                 <li id="login"><NavLink activeStyle={{ 'color': '#a970ff' }} to="/user/login">Login</NavLink></li>

@@ -13,6 +13,7 @@ import Navbar from './components/Navbar'
 import Home from './components/Home'
 import List from './components/List'
 import Details from './components/Details'
+import Profile from './components/Profile'
 
 import AddItem from './components/AddItem'
 
@@ -67,7 +68,7 @@ const App = () => {
                         <ProtectedRoute exact path="/add/genre" component={AddItem} />
                         <ProtectedRoute exact path="/add/dev" component={AddItem} />
 
-                        <Route exact path="/profile" component={Home} />
+                        <ProtectedRoute exact path="/profile/:username" component={Profile} />
 
                         <Route exact path="/user/login" component={Login} />
                         <Route exact path="/user/register" component={Register} />

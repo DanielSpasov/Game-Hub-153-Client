@@ -45,12 +45,20 @@ const register = async (email, password, rePassword) => {
     } catch (err) { errorHandler(err) }
 }
 
+const getOne = async (username) => {
+    try {
+        let registerRes = await axios.get(`${db_uri}/user/getOne/${username}`)
+        return registerRes.data
+    } catch (err) { errorHandler(err) }
+}
+
 
 
 const functions = {
     checkLoggedIn,
     login,
     register,
+    getOne,
 }
 
 export default functions
