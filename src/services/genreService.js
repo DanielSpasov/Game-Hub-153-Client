@@ -55,9 +55,9 @@ const deleteGenre = async (genreID, userID) => {
     } catch (err) { errorHandler(err) }
 }
 
-const comment = async (genreID, content, username) => {
+const comment = async (genreID, content, userID) => {
     try {
-        const response = await axios.post(`${db_uri}/genres/comment/${genreID}`, { content, username })
+        const response = await axios.post(`${db_uri}/genres/comment/${genreID}`, { content, userID })
         return response.data
     } catch (err) { errorHandler(err) }
 }

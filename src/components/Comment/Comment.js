@@ -1,11 +1,13 @@
+import { Link } from 'react-router-dom'
+
 import './Comment.css'
 
 
 
-const Comment = ({ author, content }) => {
+const Comment = ({ username, content }) => {
     return (
         <div className="comment">
-            <p><b>{author}</b></p>
+            <Link to={`/profile/${username}`}><b>{username}</b></Link>
             <p>{content}</p>
         </div>
     )

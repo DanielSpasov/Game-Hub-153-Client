@@ -53,9 +53,9 @@ const Details = () => {
         try {
             let content = e.target.content.value
             let res
-            if (type === 'games') res = await gameService.comment(itemID, content, userData.user.username)
-            if (type === 'genres') res = await genreService.comment(itemID, content, userData.user.username)
-            if (type === 'devs') res = await devService.comment(itemID, content, userData.user.username)
+            if (type === 'games') res = await gameService.comment(itemID, content, userData.user.id)
+            if (type === 'genres') res = await genreService.comment(itemID, content, userData.user.id)
+            if (type === 'devs') res = await devService.comment(itemID, content, userData.user.id)
             if(res) {
                 setItem(res)
                 toast.success(`Your comment on ${item.title} was sent.`)
@@ -141,7 +141,7 @@ const Details = () => {
 
                 {item.comments ? item.comments.length ?
                     <InfoBox title="Comments">
-                        {item.comments.map(x => <Comment key={x.author + x.content} author={x.author} content={x.content} />)}
+                        {item.comments.map(x => <Comment key={x.author._id + x.content} username={x.author.username} content={x.content} />)}
                     </InfoBox> : <InfoBox title={`There is no comments on this ${type.slice(0, type.length - 1)}`} /> : null}
 
             </article>

@@ -19,13 +19,13 @@ Games, Genres and Developers can be upvoted. You can see the items you have upvo
 > The top 5 Games, Genres or Developers with the most upvotes appear on the home page. You cannot upvote the same item twice. (The second click removes your upvote)
 ### Comment
 You can comment on Games, Genres or Developers.
-> Account required
+> Account required.
 ### Change Username
 You can change your username.
 > By default your username is your email without the domain name.
 
 ## Backend
-Link to the backend repository [here](https://github.com/DanielSpasov/Game-Hub-153-Server)
+Link to the [backend repository](https://github.com/DanielSpasov/Game-Hub-153-Server).
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/) &copy; Daniel Spasov

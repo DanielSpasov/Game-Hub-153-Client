@@ -55,9 +55,9 @@ const deleteGame = async (gameID, userID) => {
     } catch (err) { errorHandler(err) }
 }
 
-const comment = async (gameID, content, username) => {
+const comment = async (gameID, content, userID) => {
     try {
-        const response = await axios.post(`${db_uri}/games/comment/${gameID}`, { content, username })
+        const response = await axios.post(`${db_uri}/games/comment/${gameID}`, { content, userID })
         return response.data
     } catch (err) { errorHandler(err) }
 }

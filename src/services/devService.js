@@ -55,9 +55,9 @@ const deleteDev = async (devID, userID) => {
     } catch (err) { errorHandler(err) }
 }
 
-const comment = async (devID, content, username) => {
+const comment = async (devID, content, userID) => {
     try {
-        const response = await axios.post(`${db_uri}/devs/comment/${devID}`, { content, username })
+        const response = await axios.post(`${db_uri}/devs/comment/${devID}`, { content, userID })
         return response.data
     } catch (err) { errorHandler(err) }
 }
