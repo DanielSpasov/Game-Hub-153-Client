@@ -15,7 +15,7 @@ const add = async (data, userID) => {
 
 const getAll = async (query = '') => {
     try {
-        const response = await axios.get(`${db_uri}/genres/getAll${query}`)
+        const response = await axios.get(`${db_uri}/genres/getAll?search=${query}`)
         return response.data
     } catch (err) { errorHandler(err) }
 }
