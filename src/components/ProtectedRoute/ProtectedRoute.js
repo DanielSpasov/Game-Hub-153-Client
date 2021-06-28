@@ -1,17 +1,16 @@
+import { useContext } from 'react'
 import { Route, Redirect } from 'react-router-dom'
+
+import UserContext from '../../contexts/UserContext'
 
 
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
-    return (
-        <Route {...rest} render={(props) => {
 
-            const token = localStorage.getItem('auth-token')
-            const isAuth = Boolean(token)
+    const { userData } = useContext(UserContext)
+    const isAuth = Boolean(userData.user)
 
-            return isAuth ? <Component {...props} /> : <Redirect to="/user/login" />
-        }} />
-    )
+    return <Route {...rest} render={() => isAuth ? <Component /> : <Redirect to="/user/login" />} />
 }
 
 export default ProtectedRoute
