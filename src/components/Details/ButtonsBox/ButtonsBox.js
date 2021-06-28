@@ -23,7 +23,7 @@ const ButtonsBox = ({ item, setItem, setDeleteAlert, setEditorsAlert, setEditAle
     const [isCreator, setIsCreator] = useState(false)
     const [isEditor, setIsEditor] = useState(false)
 
-    
+
     useEffect(() => {
 
         if (item.authorizedEditors && userData.user) {
@@ -73,7 +73,10 @@ const ButtonsBox = ({ item, setItem, setDeleteAlert, setEditorsAlert, setEditAle
     }
 
     const handleEdit = () => {
-        const isAuthorized = userData.user.id === item.creator ? true : item.authorizedEditors.includes(userData.user.id)
+        let isAuthorized = userData.user.id === item.creator
+        for (let kvp of item.authorizedEditors) {
+            if (kvp._id.includes(userData.user.id)) isAuthorized = true
+        }
         if (!isAuthorized) return toast.error(`You don't have permission to edit this ${type.slice(0, type.length - 1)}`)
         setEditAlert('show')
     }

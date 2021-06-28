@@ -48,7 +48,7 @@ const EditAlert = ({ editAlert, setEditAlert, item, setItem }) => {
         fetchData()
     }, [type, item])
 
-    const handleEditYes = async (e) => {
+    const handleEditYes = async () => {
         try {
             let res
             if (type === 'games') {

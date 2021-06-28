@@ -62,7 +62,7 @@ const EditorsAlert = ({ item, setItem, editorsAlert, setEditorsAlert }) => {
                 {item.authorizedEditors ? item.authorizedEditors.map(x =>
                     <div key={x.email} className="authorized-editor">
                         <p>{x.email}</p>
-                        <i id={x.email} className="fas fa-user-times" onClick={removeEditor}></i>
+                        <i id={x._id} className="fas fa-user-times" onClick={removeEditor}></i>
                     </div>
                 ) : null}
             </div>
